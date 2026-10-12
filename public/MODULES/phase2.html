@@ -1,0 +1,2177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Phase 2 - ChatGPT & Prompt Engineering</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+}
+
+.module-header{
+    text-align:center;
+    padding:60px 20px 50px;
+    margin-bottom:40px;
+}
+
+.phase-badge{
+    display:inline-block;
+    padding:10px 20px;
+    border:1px solid rgba(0,140,255,.3);
+    border-radius:50px;
+    background:rgba(0,140,255,.08);
+    color:#4da6ff;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:1px;
+    margin-bottom:20px;
+}
+
+.module-header h1{
+    font-size:48px;
+    font-weight:800;
+    color:white;
+    margin-bottom:15px;
+    line-height:1.2;
+}
+
+.module-header h1 span{
+    color:#4da6ff;
+}
+
+.module-subtitle{
+    max-width:800px;
+    margin:auto;
+    font-size:18px;
+    line-height:1.8;
+    color:#b8c7e0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    background: rgba(25,35,60,0.95);
+    border: 1px solid rgba(80,140,255,0.3);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px auto;
+max-width: 800px;
+}
+
+.card p {
+    font-size: 30px;
+    line-height: 1.8;
+    color: #d6e4ff;
+}
+
+.card ul {
+    margin-top: 10px;
+    padding-left: 25px;
+}
+
+.card li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    color: #d6e4ff;
+        font-size: 30px;
+
+}
+
+.card h2 {
+    margin-bottom: 15px;
+            font-size: 45px;
+
+}
+
+.lesson{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(77,124,255,.25);
+    border-radius:12px;
+
+    padding:25px;
+    margin-top:20px;
+}
+
+.lesson-info{
+    flex:1;
+}
+
+.lesson-info h3{
+    color:#69a7ff;
+    margin-bottom:10px;
+}
+
+.lesson-info p{
+    color:#d0d7ff;
+}
+
+.btn{
+    white-space:nowrap;
+}
+
+.lesson-action{
+    margin-left:20px;
+}
+
+/* Lesson Content */
+.lesson-box h3 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.lesson-box h4,
+.info-box h4 {
+    font-size: 25px;
+    font-weight: 600;
+       margin-top: 30px;
+    margin-bottom: 12px;
+    color: #4da3ff;
+}
+
+.lesson-box p,
+.info-box p {
+    font-size: 25px;
+       margin-bottom: 20px;
+    line-height: 1.8;
+    color: #d6e4ff;
+}
+
+.info-box ul li {
+    font-size: 25px;
+    line-height: 1.8;
+    margin-bottom: 8px;
+}
+
+.prompt-box {
+    background: rgba(77,163,255,0.08);
+    border-left: 4px solid #4da3ff;
+    padding: 18px;
+    margin: 20px 0;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.video-section {
+    text-align: center;
+    margin: 40px 0;
+    padding: 25px;
+    border: 1px solid rgba(77,163,255,.3);
+    border-radius: 12px;
+    background: rgba(77,163,255,.05);
+}
+
+.video-section h3 {
+    margin-bottom: 10px;
+    color: #4da3ff;
+}
+
+.video-section p {
+    margin-bottom: 20px;
+}
+
+h1,h2{
+color:#3b82f6;
+}
+
+.btn{
+display:inline-block;
+background:#3b82f6;
+padding:12px 20px;
+border-radius:8px;
+color:white;
+text-decoration:none;
+margin-top:15px;
+}
+
+.card,
+.lesson,
+.activity-card,
+.quiz-card,
+.premium-resource {
+    width: 100%;
+    max-width: 1200px;
+    margin: 25px auto;
+}
+
+.checklist label{
+display:block;
+margin-bottom:10px;
+}
+
+footer{
+text-align:center;
+padding:40px;
+}
+
+/* PREMIUM MODULE SECTIONS */
+
+.premium-resource,
+.activity-card,
+.quiz-card,
+.text-lesson{
+   padding:30px;
+    border-radius:20px;
+
+    background:rgba(15,23,42,.8);
+
+    border:1px solid rgba(96,165,250,.2);
+
+    box-shadow:
+    0 0 30px rgba(59,130,246,.08);
+}
+
+.premium-resource h2,
+.activity-card h3,
+.quiz-card h3,
+.text-lesson h3{
+    color:#60a5fa;
+    margin-bottom:15px;
+            font-size: 35px;
+
+    
+}
+
+.premium-resource .template-list li{
+    font-size: 30px;
+    line-height: 2;
+}
+
+.premium-resource p,
+.activity-card p,
+.quiz-card p,
+.text-lesson p{
+    color:#dbeafe;
+    line-height:1.8;
+     font-size: 30px;
+
+}
+
+.prompt-box{
+    background: rgba(96,165,250,0.12);
+    border-left:4px solid #60a5fa;
+    padding:15px;
+    border-radius:10px;
+    margin:15px 0;
+    color:white;
+      font-size: 25px;
+}
+
+.tip-box{
+    background: rgba(59,130,246,0.12);
+    border:1px solid rgba(96,165,250,0.25);
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+    color:#93c5fd;
+                font-size: 25px;
+
+}
+
+.template-list{
+    padding-left:20px;
+}
+
+.template-list li{
+    margin-bottom:10px;
+    color:#dbeafe;
+}
+
+.quiz-question{
+    margin-top:20px;
+    margin-bottom:10px;
+    color:white;
+    font-weight:600;
+}
+
+.quiz-card ul,
+.activity-card ul{
+    padding-left:25px;
+}
+
+.quiz-card li,
+.activity-card li{
+    margin-bottom:8px;
+    color:#dbeafe;
+}
+
+textarea{
+    width:100%;
+    min-height:120px;
+    background:#101d3d;
+    border:1px solid #2d5cff;
+    border-radius:10px;
+    color:white;
+    padding:15px;
+    margin:15px 0;
+}
+
+
+
+.quiz-card label{
+    display:block;
+    padding:12px 15px;
+    margin:10px 0;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(77,124,255,.2);
+    border-radius:10px;
+    transition:.3s;
+        font-size: 25px;
+    font-weight: 500;
+}
+
+.quiz-card label:hover{
+    border-color:#4d7cff;
+    background:rgba(77,124,255,.08);
+}
+
+.quiz-card input[type="radio"]{
+    margin-right:10px;
+    transform:scale(1.2);
+}
+
+.quiz-card h4{
+    color:#69a7ff;
+    margin-top:25px;
+    margin-bottom:10px;
+    font-size:25px;
+
+}
+
+.quiz-card p{
+    margin-bottom:15px;
+}
+
+#quiz21-result{
+    margin-top:20px;
+    font-weight:600;
+    color:#4cff88;
+}
+
+.quiz-result{
+    margin-top:20px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(76,255,136,.1);
+    border:1px solid rgba(76,255,136,.3);
+    color:#4cff88;
+    font-weight:600;
+}
+
+.quiz-result{
+    margin-top:20px;
+    padding:15px 20px;
+    border-radius:12px;
+    font-size:25px;
+    font-weight:700;
+    backdrop-filter: blur(10px);
+}
+
+.quiz-result.success{
+    background: rgba(0,255,120,.08);
+    border:1px solid rgba(0,255,120,.4);
+    box-shadow: 0 0 20px rgba(0,255,120,.15);
+    color:#7dffb2;
+}
+
+.quiz-result.fail{
+    background: rgba(255,60,60,.08);
+    border:1px solid rgba(255,60,60,.4);
+    box-shadow: 0 0 20px rgba(255,60,60,.15);
+    color:#ff8b8b;
+}
+
+.activity-input{
+    width:100%;
+    min-height:150px;
+    margin-top:15px;
+    padding:15px;
+    background:#162544;
+    border:1px solid #2d4f8f;
+    border-radius:10px;
+    color:white;
+    resize:vertical;
+    font-size:25px;
+}
+
+.activity-input:focus{
+    outline:none;
+    border-color:#4f8cff;
+}
+
+.prompt-tip{
+    margin-top:10px;
+    padding:12px;
+    background:rgba(79,140,255,.08);
+    border:1px solid rgba(79,140,255,.25);
+    border-radius:8px;
+    color:#9bbcff;
+    font-size:20px;
+}
+
+.quiz-option{
+    display:block;
+    padding:12px 15px;
+    margin:10px 0;
+    background:#162544;
+    border:1px solid #29477e;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.quiz-option:hover{
+    border-color:#4f8cff;
+    background:#1a2d52;
+}
+
+.quiz-option input{
+    margin-right:10px;
+}
+
+.comparison-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top:20px;
+}
+
+.case-card{
+    background:#111d3b;
+    border:1px solid #2b4f8a;
+    border-radius:12px;
+    padding:20px;
+}
+
+.bad-prompt{
+    border-left:4px solid #ff6b6b;
+}
+
+.good-prompt{
+    border-left:4px solid #4ade80;
+}
+
+.case-card ul{
+    margin-top:15px;
+    padding-left:20px;
+}
+
+.case-card li{
+    margin-bottom:8px;
+}
+
+.case-card ul li {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.challenge-box{
+    background:#101c3d;
+    border:1px solid #2f5cff;
+    border-radius:12px;
+    padding:20px;
+    margin:20px 0;
+}
+
+.activity-input{
+    width:100%;
+    background:#16284d;
+    border:1px solid #2f5cff;
+    color:white;
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+
+
+.result-success{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(0,255,120,.15);
+    border:1px solid #00ff88;
+    color:#00ff88;
+}
+
+.result-error{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(255,70,70,.15);
+    border:1px solid #ff5555;
+    color:#ff5555;
+}
+
+.completion-card{
+    margin-top:30px;
+}
+
+.check-item{
+    display:block;
+    background:#16284d;
+    border:1px solid rgba(255,255,255,.08);
+    padding:14px 18px;
+    border-radius:10px;
+    margin:10px 0;
+    cursor:pointer;
+     font-size: 25px;
+}
+
+.check-item input{
+    margin-right:10px;
+    cursor:pointer;
+}
+
+#progressText{
+    margin-top:15px;
+    font-weight:bold;
+    color:#58a6ff;
+}
+
+.check-item input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-right: 12px;
+}
+
+.phase-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#phase3Btn {
+    padding: 15px 35px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+.grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin:25px 0;
+}
+
+.success-message{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(0,255,100,.1);
+    border:1px solid #00ff88;
+    color:#00ff88;
+}
+
+.error-message{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(255,0,0,.1);
+    border:1px solid #ff4d4d;
+    color:#ff4d4d;
+}
+
+.challenge-card{
+    background:#0f2348;
+    border:1px solid #2f5fa8;
+    border-radius:12px;
+    padding:25px;
+    margin-top:30px;
+}
+
+.challenge-card h2{
+    color:#4da3ff;
+    margin-bottom:15px;
+}
+
+
+.challenge-box{
+    background:#152c54;
+    border:1px solid #2f5fa8;
+    border-radius:10px;
+    padding:20px;
+    margin-top:15px;
+}
+
+
+
+.challenge-box ul{
+    margin:15px 0;
+    padding-left:20px;
+        font-size: 25px;
+
+}
+
+.challenge-box li{
+    margin-bottom:8px;
+}
+
+</style>
+
+<script type="module">
+import { auth, onAuthStateChanged }
+from "./firebase-config.js";
+
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        window.location.href = "login.html";
+    }
+});
+</script>
+
+</head>
+
+<body>
+
+<header class="module-header">
+
+    <span class="phase-badge">
+         AI COMMAND ACADEMY
+    </span>
+
+  <h1>
+    Phase 2:
+    <span>ChatGPT & Prompt Engineering</span>
+</h1>
+
+    <p class="module-subtitle">
+        Learn how to communicate effectively with AI, create powerful prompts,
+        improve AI-generated outputs, and master professional ChatGPT workflows.
+    </p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Module Overview</h2>
+
+<p>
+Phase 2 focuses on Prompt Engineering—the skill of communicating effectively with AI to achieve better results.
+</p>
+
+<p>
+You will learn how to structure prompts using proven frameworks, provide context, define tasks clearly, and guide AI responses with precision. You'll also explore AI writing techniques, productivity workflows, and practical applications used in business and content creation.
+</p>
+
+<p>
+Through lessons, activities, case studies, and assessments, you'll develop the ability to transform simple prompts into powerful instructions that generate high-quality outputs consistently.
+</p>
+</div>
+
+<div class="card">
+    <h2>Learning Objectives</h2>
+
+    <ul class="objective-list">
+        <li>Create powerful prompts</li>
+        <li>Improve AI responses</li>
+        <li>Write content faster with AI</li>
+        <li>Use AI for work and business</li>
+    </ul>
+</div>
+</div>
+
+<div class="card text-lesson">
+
+<h2>Lesson 2.1</h2>
+
+<div class="text-lesson">
+
+    <h3>What is Prompt Engineering?</h3>
+
+    <p>
+        Prompt Engineering is the practice of creating clear and effective instructions that guide AI systems to generate better responses.
+    </p>
+
+    <p>
+        The quality of AI output depends heavily on the quality of the prompt provided. Well-structured prompts help AI understand the task, context, and expected outcome more accurately.
+    </p>
+
+    <p>
+        Think of AI as a highly skilled assistant. The clearer your instructions, the better the results.
+    </p>
+
+    <div class="tip-box">
+         Pro Tip: Use the formula Role + Task + Context + Format when writing prompts.
+    </div>
+
+</div>
+
+<div class="video-section">
+
+        <h3>Tips for ChatGPT Prompts</h3>
+        <p>Learn how to structure prompts for better AI outputs.</p>
+
+<a href="https://drive.google.com/file/d/1vdNsm71xgLg6IK5X4gOW4TD32AmOy3K2/view"
+   target="_blank"
+   class="btn">
+    Watch Video
+</a>
+
+</div>
+
+<div class="card premium-resource">
+
+    <h2>Prompt Frameworks</h2>
+
+    <ul>
+        <li>RACE Framework</li>
+        <li>RISEN Framework</li>
+        <li>CARE Framework</li>
+        <li>Role + Task + Context + Format</li>
+    </ul>
+
+</div>
+
+
+<div class="activity-card">
+    <h3> Activity 2.1</h3>
+
+    <p>Improve the following prompt:</p>
+
+    <div class="prompt-box">
+        Create a marketing post.
+    </div>
+
+<p>
+Improve the prompt by adding:
+Role, Task, Context, and Format.
+</p>
+
+
+<div class="prompt-tip">
+Example:
+Role: Marketing Expert
+Task: Create a Facebook post
+Context: Local coffee shop promotion
+Format: 100-word social media caption
+
+    <textarea id="activity21"
+        class="activity-input"
+        placeholder="Write your improved prompt here..."
+        ></textarea>
+
+    <button class="btn" onclick="checkActivity21()">
+        Submit Activity
+    </button>
+
+    <div id="activity21-result"></div>
+
+</div>
+</div>
+
+
+<div class="quiz-card">
+
+    <h3>Quiz 2.1</h3>
+
+<h4>Question 1</h4>
+
+<p>
+What is the primary goal of Prompt Engineering?
+</p>
+
+<label>
+<input type="radio" name="q1" value="A">
+Designing websites
+</label>
+
+<label>
+<input type="radio" name="q1" value="B">
+Giving clear instructions to AI
+</label>
+
+<label>
+<input type="radio" name="q1" value="C">
+Building hardware
+</label>
+
+<label>
+<input type="radio" name="q1" value="D">
+Creating databases
+</label>
+
+<h4>Question 2</h4>
+
+<p>Which prompt is more effective?</p>
+
+<label>
+<input type="radio" name="q2" value="A">
+Write an advertisement.
+</label>
+
+<label>
+<input type="radio" name="q2" value="B">
+Act as a professional copywriter and create a Facebook advertisement for a local fitness gym targeting busy professionals.
+</label>
+
+<button class="btn" onclick="checkQuiz21()">
+    Submit Quiz
+</button>
+
+<div id="quiz21-result"></div>
+
+</div>
+
+</div>
+
+
+<div class="card text-lesson">
+
+<h2>Lesson 2.2</h2>
+
+<div class="text-lesson">
+
+    <h3>Tips for ChatGPT Writing</h3>
+
+    <p>
+        ChatGPT can help you create high-quality written content for personal, professional, and business purposes.
+    </p>
+
+    <p>
+        Whether you're writing social media posts, emails, blog articles, product descriptions, or marketing copy, providing clear instructions will significantly improve the quality of the output.
+    </p>
+
+    <p>
+        Before generating content, always define the goal, target audience, tone of voice, length, and desired format.
+    </p>
+
+    <div class="tip-box">
+        Pro Tip: The more details you provide about your audience and goals, the more relevant and engaging the AI-generated content will be.
+    </div>
+    </div>
+
+
+<div class="video-section">
+        <h3>Tips for ChatGPT Writing</h3>
+        <p>Create posts, emails, articles, and marketing content using AI.</p>
+
+<a href="https://drive.google.com/file/d/1Fta8nxvbgMzNGixvPdg0Xu2csaVsIQCY/view"
+   target="_blank"
+   class="btn">
+    Watch Video
+</a>
+
+</div>
+
+<div class="activity-card">
+
+    <h3>Activity 2.2</h3>
+
+    <p>Create a prompt that asks ChatGPT to:</p>
+
+    <ul>
+        <li>Write a Facebook post</li>
+        <li>Promote a local business</li>
+        <li>Use a friendly tone</li>
+        <li>Include a call-to-action</li>
+    </ul>
+
+    <p>Use the following structure:</p>
+
+    <div class="prompt-box">
+        Role + Task + Context + Format
+    </div>
+
+    <textarea
+        id="activity22"
+        class="activity-input"
+        placeholder="Write your prompt here..."
+    ></textarea>
+
+    <button class="btn" onclick="checkActivity22()">
+        Submit Activity
+    </button>
+
+    <div id="activity22-result"></div>
+
+</div>
+
+<div class="quiz-card">
+
+    <h3>Quiz 2.2</h3>
+
+    <h4>Question 1</h4>
+
+    <p>What should you define before generating content?</p>
+
+    <label>
+        <input type="radio" name="q22_1" value="A">
+        Browser Version
+    </label>
+
+    <label>
+        <input type="radio" name="q22_1" value="B">
+        Audience
+    </label>
+
+    <label>
+        <input type="radio" name="q22_1" value="C">
+        Screen Size
+    </label>
+
+    <label>
+        <input type="radio" name="q22_1" value="D">
+        Device Type
+    </label>
+
+    <h4>Question 2</h4>
+
+    <p>Why is specifying tone important?</p>
+
+    <label>
+        <input type="radio" name="q22_2" value="A">
+        It influences the writing style
+    </label>
+
+    <label>
+        <input type="radio" name="q22_2" value="B">
+        It changes the AI model
+    </label>
+
+    <label>
+        <input type="radio" name="q22_2" value="C">
+        It improves internet speed
+    </label>
+
+    <label>
+        <input type="radio" name="q22_2" value="D">
+        It reduces word count
+    </label>
+
+    <button class="btn" onclick="checkQuiz22()">
+        Submit Quiz
+    </button>
+
+    <div id="quiz22-result"></div>
+
+</div>
+</div>
+
+<div class="premium-resource">
+
+    <h2>ChatGPT Writing Best Practices</h2>
+
+    <ul class="template-list">
+        <li>Define your target audience</li>
+        <li>Specify the desired tone</li>
+        <li>Provide sufficient context</li>
+        <li>Request multiple variations</li>
+        <li>Ask for revisions and improvements</li>
+        <li>Use examples whenever possible</li>
+    </ul>
+
+</div>
+</div>
+
+
+<div class="card text-lesson">
+
+<h2>Lesson 2.3</h2>
+
+<div class="text-lesson">
+
+    <h3>Beyond the Chatbox</h3>
+
+    <p>
+        Most people use ChatGPT simply to ask questions and receive answers. However, ChatGPT is capable of much more than basic conversations.
+    </p>
+
+    <p>
+        When used correctly, ChatGPT can serve as a powerful assistant for content creation, research, brainstorming, productivity, business planning, and problem-solving.
+    </p>
+
+    <p>
+        Instead of treating ChatGPT as a search engine, think of it as an intelligent assistant that can help you complete tasks, generate ideas, and improve your workflow.
+    </p>
+
+    <p>
+        The real power of AI comes from applying it to real-world scenarios where it can save time, increase productivity, and improve decision-making.
+    </p>
+
+    <div class="tip-box">
+         Pro Tip: The best AI users don't just ask questions—they use AI to complete tasks and solve problems.
+    </div>
+
+</div>
+
+
+<div class="video-section">
+
+        <h3>Beyond the Chatbox</h3>
+        <p>Discover advanced AI workflows beyond simple conversations.</p>
+
+<a href="https://drive.google.com/file/d/12YP2p4u2YfbI3j2MJqi6MA_o2cTY_LEy/view"
+   target="_blank"
+   class="btn">
+    Watch Video
+</a>
+
+
+</div>
+
+<div class="activity-card">
+
+    <h3>Activity 2.3</h3>
+
+    <p>
+        Choose one role below and create a prompt that transforms ChatGPT into that assistant:
+    </p>
+
+    <ul>
+        <li>Business Consultant</li>
+        <li>Content Creator</li>
+        <li>Productivity Assistant</li>
+        <li>Marketing Assistant</li>
+    </ul>
+
+    <p>Your prompt should include:</p>
+
+    <ul>
+        <li>Role</li>
+        <li>Task</li>
+        <li>Context</li>
+        <li>Output Format</li>
+    </ul>
+
+    <textarea
+        id="activity23"
+        class="activity-input"
+        placeholder="Write your assistant prompt here..."
+    ></textarea>
+
+    <div class="prompt-tip">
+
+Example:
+
+Role: Marketing Assistant
+
+Task: Create engaging social media content
+
+Context: Promote a new coffee shop opening in Manila
+
+Format: Facebook post under 100 words with a call-to-action
+</div>
+
+    <button class="btn" onclick="checkActivity23()">
+        Submit Activity
+    </button>
+
+    <div id="activity23-result"></div>
+
+</div>
+
+<div class="quiz-card">
+
+    <h3>Quiz 2.3</h3>
+
+    <h4>Question 1</h4>
+    <p>Which of the following is an advanced use case for ChatGPT?</p>
+
+    <label class="quiz-option">
+        <input type="radio" name="q23_1" value="A">
+        Research Assistant
+    </label>
+
+    <label class="quiz-option">
+        <input type="radio" name="q23_1" value="B">
+        File Storage
+    </label>
+
+    <label class="quiz-option">
+        <input type="radio" name="q23_1" value="C">
+        Antivirus Software
+    </label>
+
+    <label class="quiz-option">
+        <input type="radio" name="q23_1" value="D">
+        Operating System
+    </label>
+
+    <h4>Question 2</h4>
+    <p>What is one of the biggest advantages of using ChatGPT?</p>
+
+    <label class="quiz-option">
+        <input type="radio" name="q23_2" value="A">
+        Faster Internet
+    </label>
+
+    <label class="quiz-option">
+        <input type="radio" name="q23_2" value="B">
+        Increased Productivity
+    </label>
+
+    <label class="quiz-option">
+        <input type="radio" name="q23_2" value="C">
+        More Computer Memory
+    </label>
+
+    <label class="quiz-option">
+        <input type="radio" name="q23_2" value="D">
+        File Storage
+    </label>
+
+    <button class="btn" onclick="checkQuiz23()">
+        Submit Quiz
+    </button>
+
+    <div id="quiz23-result"></div>
+
+</div>
+<div class="premium-resource">
+
+    <h2>Real-World Applications of ChatGPT</h2>
+
+    <ul class="template-list">
+        <li>Content Creation & Copywriting</li>
+        <li>Social Media Management</li>
+        <li>Email Writing & Communication</li>
+        <li>Business Planning & Strategy</li>
+        <li>Research & Information Gathering</li>
+        <li>Productivity & Workflow Optimization</li>
+        <li>Idea Generation & Brainstorming</li>
+        <li>Learning & Skill Development</li>
+    </ul>
+
+</div>
+</div>
+
+<div class="premium-resource">
+
+    <h2>Prompt Lab</h2>
+
+    <p>
+        Practice improving prompts using the techniques learned throughout this module.
+    </p>
+
+<div class="prompt-box">
+    <strong>Weak Prompt:</strong><br>
+    "Write a social media post."
+</div>
+
+<textarea
+    id="promptlab"
+    class="activity-input"
+    placeholder="Rewrite the prompt using Role, Task, Context, and Format..."
+></textarea>
+
+<details>
+    <summary>View Sample Solution</summary>
+
+    <div class="prompt-box">
+        Role: Social Media Manager<br>
+        Task: Create a Facebook post<br>
+        Context: Promote a local coffee shop opening this weekend<br>
+        Format: Friendly Facebook post under 100 words with CTA
+    </div>
+</details>
+
+<button class="btn" onclick="checkPromptLab()">
+    Submit Prompt
+</button>
+<div id="promptlab-result"></div>
+
+<div id="promptlab-result"></div>
+</div>
+
+<div class="premium-resource">
+
+    <h2>Case Study: Transforming a Weak Prompt</h2>
+
+    <p>
+        One of the biggest mistakes beginners make is giving AI very little information.
+        The example below shows how a simple prompt can be transformed into a professional
+        prompt that produces more accurate and useful results.
+    </p>
+
+    <div class="comparison-grid">
+
+        <div class="case-card bad-prompt">
+            <h3>❌ Weak Prompt</h3>
+
+            <div class="prompt-box">
+                Write a Facebook post.
+            </div>
+
+            <ul>
+                <li>No role assigned</li>
+                <li>No audience specified</li>
+                <li>No clear objective</li>
+                <li>No formatting instructions</li>
+            </ul>
+        </div>
+
+        <div class="case-card good-prompt">
+            <h3>✅ Optimized Prompt</h3>
+
+            <div class="prompt-box">
+                Act as a Social Media Manager.
+                Create a Facebook post promoting a local coffee shop.
+                Target audience: Coffee lovers aged 20–35.
+                Use a friendly tone and include a call-to-action.
+                Keep the post under 100 words.
+            </div>
+
+            <ul>
+                <li>Role defined</li>
+                <li>Task clearly explained</li>
+                <li>Audience identified</li>
+                <li>Output requirements included</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="tip-box">
+         The optimized prompt includes:
+        <strong>Role + Task + Context + Audience + Format</strong>,
+        which helps AI generate higher-quality responses.
+    </div>
+
+</div>
+</div>
+
+<div class="premium-resource">
+
+<h2> Module Challenge</h2>
+
+<p>
+This challenge will test your ability to apply Prompt Engineering principles in a real-world scenario.
+Create a complete AI prompt using the frameworks and techniques learned throughout this module.
+</p>
+
+
+<div class="info-box">
+    <h4>Your Mission</h4>
+
+    <p>
+    Design a professional prompt that can generate a complete
+    30-Day Social Media Content Plan for a local business.
+    </p>
+
+</div>
+
+<div class="info-box">
+    <h4>Requirements</h4>
+
+<ul class="template-list">
+    <li><strong>Role:</strong> Define who the AI should act as.</li>
+    <li><strong>Task:</strong> Clearly describe what the AI must do.</li>
+    <li><strong>Context:</strong> Provide business information and audience details.</li>
+    <li><strong>Format:</strong> Specify how the output should be organized.</li>
+    <li><strong>Instructions:</strong> Include goals, tone, and content guidelines.</li>
+</ul>
+
+<div class="tip-box">
+Pro Tip: The best prompts are specific, detailed, and outcome-focused.
+</div>
+
+<textarea
+id="moduleChallenge"
+placeholder="Write your complete professional AI prompt here..."
+rows="8"
+class="activity-input">
+</textarea>
+
+<button class="btn" onclick="submitModuleChallenge()">
+    Submit Challenge
+</button>
+
+<div id="moduleChallenge-result"></div>
+</div>
+</div>
+
+
+<div class="card completion-card">
+
+    <h2>Completion Checklist</h2>
+
+    <p>
+        Complete all lessons, activities, and assessments to finish this module.
+    </p>
+
+<label class="check-item">
+    <input type="checkbox" id="lesson21">
+    Lesson 2.1 Completed
+</label>
+
+<label class="check-item">
+    <input type="checkbox" id="lesson22">
+    Lesson 2.2 Completed
+</label>
+
+<label class="check-item">
+    <input type="checkbox" id="lesson23">
+    Lesson 2.3 Completed
+</label>
+
+<label class="check-item">
+    <input type="checkbox" id="activities">
+    Activities Completed
+</label>
+
+<label class="check-item">
+    <input type="checkbox" id="quizzes">
+    Quizzes Completed
+</label>
+
+<label class="check-item">
+    <input type="checkbox" id="challenge">
+    Module Challenge Completed
+</label>
+
+<div id="progressText">
+    Progress: 0 / 6 Completed
+</div>
+
+</div>
+
+<div class="phase-btn-container">
+<a id="phase3Btn"
+   href="phase3.html"
+   class="btn">
+   Proceed to Phase 3
+</a>
+</div>
+
+<footer>
+
+<a href="../curriculum.html" class="btn">
+Back to Curriculum
+</a>
+
+</footer>
+
+<script>
+function checkActivity21(){
+
+    let answer =
+    document.getElementById("activity21")
+    .value.toLowerCase();
+
+    let score = 0;
+
+    if(answer.includes("role")) score++;
+    if(answer.includes("task")) score++;
+    if(answer.includes("context")) score++;
+    if(answer.includes("format")) score++;
+
+    let result =
+    document.getElementById("activity21-result");
+
+    if(score === 4){
+
+        result.innerHTML =
+        "✅ Activity Completed! Score: " + score + "/4";
+
+        result.className = "result-success";
+
+        localStorage.setItem(
+            "phase2_activity21_completed",
+            "true"
+        );
+
+    }else{
+
+        result.innerHTML =
+        "❌ Missing some prompt elements. Score: " + score + "/4";
+
+        result.className = "result-error";
+    }
+}
+
+
+/* ===========================
+   AUTO SAVE ACTIVITY 2.1
+=========================== */
+
+const activity21 =
+document.getElementById("activity21");
+
+if(activity21){
+
+    // Restore saved answer
+    activity21.value =
+    localStorage.getItem(
+        "phase2_activity21"
+    ) || "";
+
+    // Auto-save while typing
+    activity21.addEventListener(
+        "input",
+        function(){
+
+            localStorage.setItem(
+                "phase2_activity21",
+                this.value
+            );
+
+        }
+    );
+}
+
+function checkQuiz21(){
+
+    let score = 0;
+
+    let q1 =
+    document.querySelector(
+        'input[name="q1"]:checked'
+    );
+
+    let q2 =
+    document.querySelector(
+        'input[name="q2"]:checked'
+    );
+
+    if(q1 && q1.value === "B") score++;
+    if(q2 && q2.value === "B") score++;
+
+    let result =
+    document.getElementById("quiz21-result");
+
+    if(score === 2){
+
+        result.innerHTML =
+        "✅ Passed! Score: " + score + "/2";
+
+        result.className =
+        "result-success";
+
+        localStorage.setItem(
+            "phase2_quiz21_completed",
+            "true"
+        );
+
+        if(typeof updateProgress === "function"){
+            updateProgress();
+        }
+
+    }else{
+
+        result.innerHTML =
+        "❌ Try Again. Score: " +
+        score +
+        "/2";
+
+        result.className =
+        "result-error";
+    }
+}
+
+
+/* ==========================
+   AUTO SAVE QUIZ 2.1
+========================== */
+
+// Question 1
+document
+.querySelectorAll('input[name="q1"]')
+.forEach(option => {
+
+    option.addEventListener(
+        "change",
+        function(){
+
+            localStorage.setItem(
+                "phase2_q1",
+                this.value
+            );
+
+        }
+    );
+
+});
+
+// Restore Q1
+const savedQ1 =
+localStorage.getItem(
+    "phase2_q1"
+);
+
+if(savedQ1){
+
+    const radio =
+    document.querySelector(
+        'input[name="q1"][value="' +
+        savedQ1 +
+        '"]'
+    );
+
+    if(radio){
+        radio.checked = true;
+    }
+}
+
+
+// Question 2
+document
+.querySelectorAll('input[name="q2"]')
+.forEach(option => {
+
+    option.addEventListener(
+        "change",
+        function(){
+
+            localStorage.setItem(
+                "phase2_q2",
+                this.value
+            );
+
+        }
+    );
+
+});
+
+// Restore Q2
+const savedQ2 =
+localStorage.getItem(
+    "phase2_q2"
+);
+
+if(savedQ2){
+
+    const radio =
+    document.querySelector(
+        'input[name="q2"][value="' +
+        savedQ2 +
+        '"]'
+    );
+
+    if(radio){
+        radio.checked = true;
+    }
+}
+
+function checkQuiz22(){
+
+    let score = 0;
+
+    let q1 =
+    document.querySelector(
+        'input[name="q22_1"]:checked'
+    );
+
+    let q2 =
+    document.querySelector(
+        'input[name="q22_2"]:checked'
+    );
+
+    if(q1 && q1.value === "B") score++;
+    if(q2 && q2.value === "A") score++;
+
+    let result =
+    document.getElementById("quiz22-result");
+
+    if(score === 2){
+
+        result.innerHTML =
+        "✅ Passed! Score: " + score + "/2";
+
+        result.className =
+        "quiz-result pass";
+
+        localStorage.setItem(
+            "phase2_quiz22_completed",
+            "true"
+        );
+
+        if(typeof updateProgress === "function"){
+            updateProgress();
+        }
+
+    }else{
+
+        result.innerHTML =
+        "❌ Try Again. Score: " +
+        score +
+        "/2";
+
+        result.className =
+        "quiz-result fail";
+    }
+}
+
+
+/* ==========================
+   AUTO SAVE QUIZ 2.2
+========================== */
+
+// Question 1
+document
+.querySelectorAll('input[name="q22_1"]')
+.forEach(option => {
+
+    option.addEventListener(
+        "change",
+        function(){
+
+            localStorage.setItem(
+                "phase2_q22_1",
+                this.value
+            );
+
+        }
+    );
+
+});
+
+// Restore Question 1
+const savedQ221 =
+localStorage.getItem(
+    "phase2_q22_1"
+);
+
+if(savedQ221){
+
+    const radio =
+    document.querySelector(
+        'input[name="q22_1"][value="' +
+        savedQ221 +
+        '"]'
+    );
+
+    if(radio){
+        radio.checked = true;
+    }
+}
+
+
+// Question 2
+document
+.querySelectorAll('input[name="q22_2"]')
+.forEach(option => {
+
+    option.addEventListener(
+        "change",
+        function(){
+
+            localStorage.setItem(
+                "phase2_q22_2",
+                this.value
+            );
+
+        }
+    );
+
+});
+
+// Restore Question 2
+const savedQ222 =
+localStorage.getItem(
+    "phase2_q22_2"
+);
+
+if(savedQ222){
+
+    const radio =
+    document.querySelector(
+        'input[name="q22_2"][value="' +
+        savedQ222 +
+        '"]'
+    );
+
+    if(radio){
+        radio.checked = true;
+    }
+}
+
+function checkActivity22(){
+
+    let answer =
+    document.getElementById("activity22")
+    .value.toLowerCase();
+
+    let score = 0;
+
+    if(answer.includes("role")) score++;
+    if(answer.includes("task")) score++;
+    if(answer.includes("context")) score++;
+    if(answer.includes("format")) score++;
+
+    let result =
+    document.getElementById("activity22-result");
+
+    if(score === 4){
+
+        result.innerHTML =
+        "✅ Excellent! You included all prompt elements.";
+
+        result.className = "result-success";
+
+        localStorage.setItem(
+            "phase2_activity22_completed",
+            "true"
+        );
+
+    }else{
+
+        result.innerHTML =
+        "❌ Missing some elements. Include Role, Task, Context, and Format.";
+
+        result.className = "result-error";
+    }
+}
+
+
+/* ==========================
+   AUTO SAVE ACTIVITY 2.2
+========================== */
+
+const activity22 =
+document.getElementById("activity22");
+
+if(activity22){
+
+    // Restore saved answer
+    activity22.value =
+    localStorage.getItem(
+        "phase2_activity22"
+    ) || "";
+
+    // Auto-save while typing
+    activity22.addEventListener(
+        "input",
+        function(){
+
+            localStorage.setItem(
+                "phase2_activity22",
+                this.value
+            );
+
+        }
+    );
+
+}
+function checkActivity23(){
+
+    let answer =
+    document.getElementById("activity23")
+    .value
+    .toLowerCase();
+
+    let score = 0;
+
+    if(answer.includes("role")) score++;
+    if(answer.includes("task")) score++;
+    if(answer.includes("context")) score++;
+    if(answer.includes("format")) score++;
+
+    let result =
+    document.getElementById("activity23-result");
+
+    if(score === 4){
+
+        result.innerHTML =
+        "✅ Excellent! Assistant prompt completed. Score: 4/4";
+
+        result.className = "result-success";
+
+        localStorage.setItem(
+            "phase2_activity23_completed",
+            "true"
+        );
+
+    }else{
+
+        result.innerHTML =
+        "❌ Missing some required elements. Score: "
+        + score +
+        "/4";
+
+        result.className = "result-error";
+    }
+
+}
+
+
+/* ==========================
+   AUTO SAVE ACTIVITY 2.3
+========================== */
+
+const activity23 =
+document.getElementById("activity23");
+
+if(activity23){
+
+    // Restore saved answer
+    activity23.value =
+    localStorage.getItem(
+        "phase2_activity23"
+    ) || "";
+
+    // Auto-save habang nagta-type
+    activity23.addEventListener(
+        "input",
+        function(){
+
+            localStorage.setItem(
+                "phase2_activity23",
+                this.value
+            );
+
+        }
+    );
+
+}
+
+function checkQuiz23(){
+
+    let score = 0;
+
+    let q1 =
+    document.querySelector(
+        'input[name="q23_1"]:checked'
+    );
+
+    let q2 =
+    document.querySelector(
+        'input[name="q23_2"]:checked'
+    );
+
+    if(q1 && q1.value === "A") score++;
+    if(q2 && q2.value === "B") score++;
+
+    let result =
+    document.getElementById("quiz23-result");
+
+    if(score === 2){
+
+        result.innerHTML =
+        "✅ Passed! Score: " + score + "/2";
+
+        result.className =
+        "result-success";
+
+        localStorage.setItem(
+            "phase2_quiz23_completed",
+            "true"
+        );
+
+        if(typeof updateProgress === "function"){
+            updateProgress();
+        }
+
+    }else{
+
+        result.innerHTML =
+        "❌ Try Again. Score: " +
+        score +
+        "/2";
+
+        result.className =
+        "result-error";
+    }
+}
+
+
+/* ==========================
+   AUTO SAVE QUIZ 2.3
+========================== */
+
+// Question 1
+document
+.querySelectorAll('input[name="q23_1"]')
+.forEach(option => {
+
+    option.addEventListener(
+        "change",
+        function(){
+
+            localStorage.setItem(
+                "phase2_q23_1",
+                this.value
+            );
+
+        }
+    );
+
+});
+
+// Restore Question 1
+const savedQ231 =
+localStorage.getItem(
+    "phase2_q23_1"
+);
+
+if(savedQ231){
+
+    const radio =
+    document.querySelector(
+        'input[name="q23_1"][value="' +
+        savedQ231 +
+        '"]'
+    );
+
+    if(radio){
+        radio.checked = true;
+    }
+}
+
+
+// Question 2
+document
+.querySelectorAll('input[name="q23_2"]')
+.forEach(option => {
+
+    option.addEventListener(
+        "change",
+        function(){
+
+            localStorage.setItem(
+                "phase2_q23_2",
+                this.value
+            );
+
+        }
+    );
+
+});
+
+// Restore Question 2
+const savedQ232 =
+localStorage.getItem(
+    "phase2_q23_2"
+);
+
+if(savedQ232){
+
+    const radio =
+    document.querySelector(
+        'input[name="q23_2"][value="' +
+        savedQ232 +
+        '"]'
+    );
+
+    if(radio){
+        radio.checked = true;
+    }
+}
+
+function submitModuleChallenge(){
+
+    let answer =
+    document.getElementById("moduleChallenge")
+    .value
+    .toLowerCase();
+
+    let score = 0;
+
+    if(answer.includes("role")) score++;
+    if(answer.includes("task")) score++;
+    if(answer.includes("context")) score++;
+    if(answer.includes("format")) score++;
+
+    let result =
+    document.getElementById("moduleChallenge-result");
+
+    if(score >= 4){
+
+        result.innerHTML =
+        "🏆 Excellent! Module Challenge Completed.";
+
+        result.className = "result-success";
+
+        // Save completion
+        localStorage.setItem(
+            "phase2_moduleChallenge_completed",
+            "true"
+        );
+
+        // Auto check checklist
+        let challenge =
+        document.getElementById("challenge");
+
+        if(challenge){
+            challenge.checked = true;
+        }
+
+        // Update progress if function exists
+        if(typeof updateProgress === "function"){
+            updateProgress();
+        }
+
+    }else{
+
+        result.innerHTML =
+        "⚠️ Your prompt must include Role, Task, Context, and Format.";
+
+        result.className = "result-error";
+
+    }
+
+}
+
+
+/* ==========================
+   AUTO SAVE MODULE CHALLENGE
+========================== */
+
+const moduleChallenge =
+document.getElementById("moduleChallenge");
+
+if(moduleChallenge){
+
+    // Restore saved answer
+    moduleChallenge.value =
+    localStorage.getItem(
+        "phase2_moduleChallenge"
+    ) || "";
+
+    // Auto-save habang nagta-type
+    moduleChallenge.addEventListener(
+        "input",
+        function(){
+
+            localStorage.setItem(
+                "phase2_moduleChallenge",
+                this.value
+            );
+
+        }
+    );
+
+}
+
+const checkboxes =
+document.querySelectorAll('.check-item input');
+
+checkboxes.forEach(box => {
+    box.addEventListener('change', updateProgress);
+});
+
+function updateProgress(){
+
+    let completed = 0;
+
+    checkboxes.forEach(box => {
+        if(box.checked){
+            completed++;
+        }
+    });
+
+    document.getElementById("progressText").innerHTML =
+        "Progress: " + completed + " / 6 Completed";
+
+    const phase3Btn =
+        document.getElementById("phase3Btn");
+
+    if(completed === 6){
+
+        phase3Btn.style.pointerEvents = "auto";
+        phase3Btn.style.opacity = "1";
+        phase3Btn.innerHTML =
+        " Proceed to Phase 3";
+
+    }else{
+
+        phase3Btn.style.pointerEvents = "none";
+        phase3Btn.style.opacity = "0.5";
+        phase3Btn.innerHTML =
+        "Complete All Requirements";
+    }
+}
+
+function checkPromptLab(){
+
+    let answer =
+    document.getElementById("promptlab")
+    .value
+    .toLowerCase();
+
+    let score = 0;
+
+    if(answer.includes("role")) score++;
+    if(answer.includes("task")) score++;
+    if(answer.includes("context")) score++;
+    if(answer.includes("format")) score++;
+
+    let result =
+    document.getElementById("promptlab-result");
+
+    if(score === 4){
+
+        result.innerHTML =
+        "✅ Excellent! You included Role, Task, Context, and Format.";
+
+        result.className = "result-success";
+
+        localStorage.setItem(
+            "phase2_promptlab_completed",
+            "true"
+        );
+
+        if(typeof updateProgress === "function"){
+            updateProgress();
+        }
+
+    }else{
+
+        result.innerHTML =
+        "⚠️ Add Role, Task, Context, and Format to complete the exercise.";
+
+        result.className = "result-error";
+    }
+
+}
+
+
+/* ==========================
+   AUTO SAVE PROMPT LAB
+========================== */
+
+const promptLab =
+document.getElementById("promptlab");
+
+if(promptLab){
+
+    // Restore saved answer
+    promptLab.value =
+    localStorage.getItem(
+        "phase2_promptlab"
+    ) || "";
+
+    // Auto-save habang nagta-type
+    promptLab.addEventListener(
+        "input",
+        function(){
+
+            localStorage.setItem(
+                "phase2_promptlab",
+                this.value
+            );
+
+        }
+    );
+
+}
+
+</script>
+
+
+
+</body>
+</html>

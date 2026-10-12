@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Membership Benefits | AI COMMAND Academy</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background-image:
+        linear-gradient(
+            rgba(4,10,30,.88),
+            rgba(4,10,30,.88)
+        ),
+        url("images/ai-benefits-background.png");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.container{
+    max-width: 1600px; /* dating 1200px */
+    margin:auto;
+    padding:80px 50px;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:80px;
+}
+
+.hero h1{
+    font-size:5rem;
+    font-weight:800;
+    margin-bottom:20px;
+    color:#ffffff;
+}
+
+.hero span{
+    color:#3b82f6;
+}
+
+.hero p{
+    font-size:1.6rem;
+    color:#cbd5e1;
+    max-width:800px;
+    margin:auto;
+    line-height:1.8;
+}
+
+
+
+.benefits-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+.benefit-card{
+    background:rgba(20,30,50,.85);
+    border:1px solid rgba(59,130,246,.25);
+    border-radius:20px;
+    padding:40px;
+    backdrop-filter:blur(12px);
+    min-height:280px;
+
+    transition:.3s;
+}
+
+.benefit-card:hover{
+    transform:translateY(-8px);
+    border-color:#3b82f6;
+    box-shadow:0 0 30px rgba(59,130,246,.2);
+}
+
+.icon{
+    width:70px;
+    height:70px;
+    border-radius:16px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:20px;
+
+    background:rgba(59,130,246,.15);
+}
+
+.icon i{
+    font-size:32px;
+    color:#60a5fa;
+}
+
+.benefit-card h3{
+    font-size:2rem;
+    margin-bottom:18px;
+    color:#ffffff;
+    text-shadow:0 0 15px rgba(59,130,246,.4);
+}
+
+.benefit-card p{
+    color:#cbd5e1;
+    line-height:1.7;
+    font-size:1.7rem;
+}
+
+.cta{
+    text-align:center;
+    margin-top:100px;
+}
+
+.cta h2{
+    font-size:3rem;
+    margin-bottom:15px;
+    color:#3b82f6
+    
+}
+
+.cta p{
+    color:#cbd5e1;
+    margin-bottom:30px;
+    font-size:1.5rem;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 35px;
+    background:#3b82f6;
+    color:white;
+    text-decoration:none;
+    border-radius:12px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#2563eb;
+}
+
+.membership-benefits{
+    position: relative;
+
+    background-image:
+        linear-gradient(
+            rgba(4,10,30,.85),
+            rgba(4,10,30,.85)
+        ),
+        url("images/ai-benefits-background.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding: 120px 0;
+}
+</style>
+<script type="module">
+import { auth, onAuthStateChanged }
+from "./firebase-config.js";
+
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        window.location.href = "login.html";
+    }
+});
+</script>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="hero">
+        <h1>Membership <span>Benefits</span></h1>
+
+        <p>
+            Unlock everything you need to learn Artificial Intelligence,
+            build valuable skills, and stay ahead with lifetime access
+            to premium educational resources.
+        </p>
+    </div>
+
+    <div class="benefits-grid">
+
+        <div class="benefit-card">
+            <div class="icon">
+                <i class="fa-solid fa-book-open"></i>
+            </div>
+
+            <h3>8 Structured Modules</h3>
+
+            <p>
+                Follow a clear learning path from beginner concepts
+                to advanced AI applications and workflows.
+            </p>
+        </div>
+
+        <div class="benefit-card">
+            <div class="icon">
+                <i class="fa-solid fa-circle-play"></i>
+            </div>
+
+            <h3>21 Video Lessons</h3>
+
+            <p>
+                Learn through practical demonstrations,
+                walkthroughs, and real-world examples.
+            </p>
+        </div>
+
+        <div class="benefit-card">
+            <div class="icon">
+                <i class="fa-regular fa-file-lines"></i>
+            </div>
+
+            <h3>100 Premium Prompts</h3>
+
+            <p>
+                Access carefully crafted prompts designed to help
+                generate professional AI outputs faster.
+            </p>
+        </div>
+
+        <div class="benefit-card">
+            <div class="icon">
+                <i class="fa-solid fa-infinity"></i>
+            </div>
+
+            <h3>Lifetime Access</h3>
+
+            <p>
+                Enjoy unlimited access without recurring monthly
+                subscription fees.
+            </p>
+        </div>
+
+        <div class="benefit-card">
+            <div class="icon">
+                <i class="fa-solid fa-rocket"></i>
+            </div>
+
+            <h3>Future Updates</h3>
+
+            <p>
+                Receive future content improvements and learning
+                resources as they become available.
+            </p>
+        </div>
+
+        <div class="benefit-card">
+            <div class="icon">
+                <i class="fa-solid fa-briefcase"></i>
+            </div>
+
+            <h3>Career Growth</h3>
+
+            <p>
+                Build practical AI skills that can support productivity,
+                freelancing, and professional development.
+            </p>
+        </div>
+
+   <div class="benefit-card">
+    <div class="icon">
+        <i class="fa-brands fa-discord"></i>
+    </div>
+
+    <h3>Private Discord Community</h3>
+
+    <p>
+        Connect with fellow students, share ideas, ask questions,
+        and learn together inside our exclusive Discord community.
+    </p>
+</div>
+
+<div class="benefit-card">
+    <div class="icon">
+        <i class="fa-solid fa-headset"></i>
+    </div>
+
+    <h3>Dedicated Customer Support</h3>
+
+    <p>
+        Get assistance whenever you need help with course access,
+        technical issues, or learning guidance.
+    </p>
+</div>
+
+</div>
+
+    <div class="cta">
+        <h2>Start Learning Today</h2>
+
+        <p>
+            Gain access to practical AI education and valuable resources.
+        </p>
+
+        <a href="curriculum.html" class="btn">
+            Explore Curriculum
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

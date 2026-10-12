@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<title>AI COMMAND Academy</title>
+<script type="module">
+
+import {
+    auth,
+    db,
+    doc,
+    getDoc,
+    onAuthStateChanged
+} from "./firebase-config.js";
+
+onAuthStateChanged(auth, async (user) => {
+
+    // Kapag hindi naka-login
+    if (!user) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    try {
+
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (userSnap.exists()) {
+
+            document.getElementById("studentName").innerHTML =
+                "Welcome, " + userSnap.data().name;
+
+        } else {
+
+            document.getElementById("studentName").innerHTML =
+                "Welcome Student";
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+});
+
+</script>
+<style>
+
+ #studentName{
+    color:white;
+    font-weight:bold;
+    margin-right:15px;
+}   
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    color:#cbd5e1;
+
+    background:
+    linear-gradient(
+        rgba(2,6,23,.80),
+        rgba(2,6,23,.80)
+    ),
+    url('IMAGES/ai-background.png');
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+
+
+
+/* NAVBAR */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    background:rgba(15,23,42,.75);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(59,130,246,.15);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+     display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo img{
+    height:120px;
+    width:auto;
+    border-radius:10px;
+    filter:drop-shadow(0 0 15px rgba(59,130,246,.5));
+}
+
+.logo-text{
+    display:flex;
+    flex-direction:column;
+}
+
+.logo-text span{
+    font-size:44px;
+    font-weight:900;
+    color:#ffffff;
+    letter-spacing:1px;
+}
+
+.logo-text small{
+    color:#3b82f6;
+    font-size:12px;
+    letter-spacing:4px;
+    font-weight:700;
+}
+
+nav ul{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:25px;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+nav a{
+    display:block;
+    min-width:120px;
+    text-align:center;
+    font-size:22px;
+    font-weight:700;
+    padding:14px 20px;
+    color:#cbd5e1;
+    text-decoration:none;
+    border-radius:12px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#3b82f6;
+    text-shadow:0 0 10px #3b82f6;
+}
+
+nav ul li{
+    display:flex;
+    align-items:center;
+}
+
+nav a.active{
+    color:#3b82f6;
+    border-bottom:2px solid #3b82f6;
+}
+
+/* HERO */
+.hero{
+    text-align:center;
+    padding:120px 20px;
+    background:transparent;
+}
+
+.hero-content{
+    text-align:center;
+}
+
+.hero h1{
+    font-size:72px;
+    font-weight:800;
+    line-height:1.1;
+    margin-bottom:25px;
+}
+
+.hero h1 span{
+    color:#3b82f6;
+}
+
+.hero p{
+    font-size:30px;
+    color:#94a3b8;
+    max-width:700px;
+    margin:auto;
+    line-height:1.8;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:18px 40px;
+    background:#3b82f6;
+    color:white;
+    text-decoration:none;
+    border-radius:12px;
+    font-weight:600;
+    font-size:18px;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+
+
+/* TITLES */
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+    font-size:56px;
+    font-weight:800;
+    color:#cbd5e1;
+
+    text-shadow:0 0 15px rgba(59,130,246,.25);
+}
+
+/* FEATURE GRID */
+.features{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:nowrap;
+    margin-bottom: 80px;   
+}
+
+
+/* CARDS */
+.card{
+    background:rgba(30,41,59,.85);
+    border:1px solid rgba(59,130,246,.25);
+    border-radius:18px;
+
+    width:650px;
+    min-height:120px;
+
+    padding:25px 30px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    cursor:pointer;
+    transition:.35s ease;
+    backdrop-filter:blur(12px);
+}
+
+.card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 0 25px rgba(59,130,246,.35);
+}
+
+
+.card::before{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:0;
+
+    width:100%;
+    height:3px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #3b82f6,
+        transparent
+    );
+
+    opacity:0;
+    transition:.4s;
+}
+
+.card:hover::before{
+    opacity:1;
+}
+
+.card h3{
+    color:#3b82f6;
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.card p{
+    font-size:30px;
+    line-height:1.8;
+    color:#cbd5e1;
+    font-weight:500;
+}
+
+.card-content h3{
+     font-size:15rem;
+    font-weight:800;
+    color:#3b82f6;
+    margin-bottom:10px;
+}
+
+.card-content p{
+    line-height:1.6;
+    color:#e5e7eb;
+    margin-top:6px;
+         font-size:100rem;
+
+}
+
+.card-left{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.card-content{
+    flex:1;
+    margin-left:20px;
+}
+
+.card-content h3{
+    font-size:50px;
+    margin-bottom:8px;
+}
+
+
+
+
+.card h3{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    font-size:32px;
+    font-weight:700;
+    color:#3b82f6;
+    margin-bottom:18px;
+}
+
+.icon{
+    width:80px;
+    height:80px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(59,130,246,.12);
+    border-radius:12px;
+
+    border:1px solid rgba(59,130,246,.2);
+
+    box-shadow:0 0 8px rgba(59,130,246,.15);
+}
+
+.icon i{
+    font-size:44px;
+    color:#66a3ff;
+
+    text-shadow:0 0 4px rgba(102,163,255,.25);
+}
+
+.card:hover .icon{
+    box-shadow:
+        0 0 15px rgba(59,130,246,.6),
+        0 0 30px rgba(59,130,246,.4);
+}
+
+.card:hover .icon i{
+    transform:scale(1.1);
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:40px;
+    margin-top:80px;
+    background:rgba(15,23,42,.90);
+    color:#cbd5e1;
+}
+
+.container{
+    max-width:1700px;
+    width:95%;
+    margin:auto;
+}
+
+.contact{
+    text-align:center;
+    padding:80px 20px;
+    margin-top:80px;
+    background:rgba(15,23,42,.85);
+    border-top:1px solid rgba(59,130,246,.2);
+}
+
+.contact h2{
+    font-size:42px;
+    color:#ffffff;
+    margin-bottom:20px;
+}
+
+.contact p{
+    max-width:700px;
+    margin:0 auto 30px;
+    font-size:18px;
+    color:#cbd5e1;
+}
+
+.contact-btn{
+    display:inline-block;
+    padding:15px 35px;
+    background:#1877f2;
+    color:white;
+    text-decoration:none;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.contact-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(24,119,242,.4);
+}
+
+.icon{
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: rgba(59,130,246,.15);
+
+    color: #60a5fa;
+    font-size: 24px;
+
+    flex-shrink: 0;
+}
+
+.icon i{
+    font-size:38px;
+    color:#60a5fa;
+}
+
+.feature-card{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:25px;
+    background:#14213d;
+    border:1px solid #2563eb;
+    border-radius:16px;
+    transition:0.3s;
+}
+
+.feature-card:hover{
+    transform:translateY(-5px);
+    border-color:#60a5fa;
+    box-shadow:0 0 20px rgba(59,130,246,.3);
+}
+
+.feature-icon{
+    width:60px;
+    height:60px;
+    min-width:60px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(59,130,246,.15);
+    color:#60a5fa;
+    font-size:30px;
+}
+
+.feature-content h3{
+    color:#3b82f6;
+    font-size:30px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.feature-content p{
+    color:#cbd5e1;
+    line-height:1.6;
+    font-size:25px;
+}
+
+.discord-community{
+    max-width:1100px;
+    margin:80px auto;
+    padding:50px;
+    display:flex;
+    align-items:center;
+    gap:40px;
+
+    background:rgba(14,23,48,.85);
+
+    border:1px solid rgba(88,101,242,.25);
+
+    border-radius:28px;
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+    0 0 40px rgba(88,101,242,.15);
+}
+
+.discord-icon img{
+    width:160px;
+    filter:drop-shadow(0 0 20px rgba(88,101,242,.5));
+}
+
+.community-badge{
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border-radius:50px;
+
+    background:rgba(88,101,242,.15);
+
+    color:#7ea8ff;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    margin-bottom:15px;
+}
+
+.discord-content h2{
+    font-size:48px;
+
+    margin-bottom:15px;
+
+    color:#7ea8ff;
+
+    font-weight:800;
+}
+
+.discord-content p{
+    color:#a7b4d6;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+    max-width:700px;
+
+    margin-bottom:30px;
+}
+
+.discord-btn{
+    display:inline-block;
+
+    padding:18px 40px;
+
+    border-radius:15px;
+
+    text-decoration:none;
+
+    color:white;
+
+    font-weight:700;
+
+    background:linear-gradient(
+        135deg,
+        #5865F2,
+        #3b82f6
+    );
+
+    box-shadow:
+    0 0 25px rgba(88,101,242,.4);
+
+    transition:.3s;
+}
+
+.discord-btn:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 15px 35px rgba(88,101,242,.5);
+}
+
+.discord-features{
+    margin-top:25px;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+    color:#8fa4d4;
+
+    font-size:15px;
+}
+
+.discord-features span{
+    background:rgba(255,255,255,.03);
+
+    padding:10px 16px;
+
+    border-radius:10px;
+}
+
+.support-section{
+    max-width:1100px;
+    margin:100px auto;
+    padding:50px;
+
+    display:flex;
+    align-items:center;
+    gap:40px;
+
+    background:rgba(14,23,48,.85);
+
+    border:1px solid rgba(59,130,246,.25);
+
+    border-radius:30px;
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+    0 0 40px rgba(59,130,246,.15);
+}
+
+.support-icon{
+    width:180px;
+    height:180px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:30px;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    font-size:90px;
+    color:white;
+
+    box-shadow:
+    0 0 30px rgba(59,130,246,.4);
+}
+
+.support-badge{
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border-radius:50px;
+
+    background:rgba(59,130,246,.15);
+
+    color:#60a5fa;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    margin-bottom:15px;
+}
+
+.support-content h2{
+    font-size:54px;
+    font-weight:800;
+
+    background:linear-gradient(
+        90deg,
+        #60a5fa,
+        #2563eb
+    );
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
+.support-content p{
+    color:#94a3b8;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+    max-width:700px;
+
+    margin-bottom:30px;
+}
+
+.support-btn{
+    display:inline-block;
+
+    padding:18px 40px;
+
+    border-radius:15px;
+
+    text-decoration:none;
+
+    color:white;
+
+    font-weight:700;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    box-shadow:
+    0 0 25px rgba(59,130,246,.4);
+
+    transition:.3s;
+}
+
+.support-btn:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 15px 35px rgba(59,130,246,.5);
+}
+
+.support-features{
+    margin-top:25px;
+
+    display:flex;
+    flex-wrap:wrap;
+
+    gap:15px;
+}
+
+.support-features span{
+    background:rgba(255,255,255,.03);
+
+    border:1px solid rgba(255,255,255,.05);
+
+    padding:10px 16px;
+
+    border-radius:10px;
+
+    color:#94a3b8;
+}
+
+/* WRAPPER */
+.info-sections{
+    max-width:1600px;
+    margin:100px auto;
+
+    display:flex;
+    gap:30px;
+    justify-content:center;
+}
+
+/* CARD */
+.community-card{
+    flex:1;
+ width:750px;
+    height:350px;
+
+    display:flex;
+    align-items:center;
+    gap:35px;
+
+    padding:40px 50px;
+    background:rgba(8,16,45,.85);
+    border:1px solid rgba(77,163,255,.25);
+
+    border-radius:28px;
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+    0 0 40px rgba(37,99,235,.15),
+    inset 0 0 30px rgba(255,255,255,.02);
+
+    transition:.3s;
+}
+
+.community-card:hover{
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 20px 50px rgba(37,99,235,.25);
+}
+
+/* ICON */
+.card-icon{
+    width:180px;
+    height:180px;
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.card-icon img{
+    width:180px;
+    filter:drop-shadow(0 0 30px #5865F2);
+}
+
+.card-icon i{
+    font-size:140px;
+    color:#4da3ff;
+
+    text-shadow:
+    0 0 25px rgba(77,163,255,.8);
+}
+
+/* CONTENT */
+.card-content{
+    flex:1;
+}
+
+.card-badge{
+    display:inline-block;
+
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    background:rgba(77,163,255,.12);
+
+    border:1px solid rgba(77,163,255,.25);
+
+    color:#7ab8ff;
+
+    font-size:13px;
+    font-weight:700;
+
+    margin-bottom:20px;
+}
+
+.card-content h2{
+    font-size:30px;
+    font-weight:600;
+
+    line-height:1.1;
+
+    margin-bottom:20px;
+
+    color:#ffffff;
+}
+
+.card-content p{
+    color:#b7c5e4;
+
+    font-size:30px;
+
+    line-height:1.8;
+
+    margin-bottom:30px;
+}
+
+/* BUTTON */
+.main-btn{
+    display:inline-block;
+
+    padding:18px 40px;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        135deg,
+        #5865f2,
+        #2563eb
+    );
+
+    color:white;
+    text-decoration:none;
+
+    font-weight:700;
+
+    margin-bottom:30px;
+
+    box-shadow:
+    0 10px 30px rgba(88,101,242,.4);
+
+    transition:.3s;
+}
+
+.main-btn:hover{
+    transform:translateY(-3px);
+}
+
+/* TAGS */
+.feature-tags{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.feature-tags span{
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.03);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:#cfd9ff;
+
+    font-size:14px;
+}
+
+.community-card .card-content h2{
+    font-size:30px;
+}
+
+.community-card .card-content p{
+    font-size:20px;
+    line-height:1.8;
+}
+
+/* MOBILE */
+@media(max-width:1200px){
+
+    .community-card{
+        min-width:100%;
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .card-icon{
+        width:140px;
+        height:140px;
+    }
+
+    .card-icon img{
+        width:140px;
+    }
+
+    .card-content h2{
+        font-size:38px;
+    }
+}
+
+@media(max-width:1100px){
+
+    .info-sections{
+        flex-direction:column;
+    }
+
+    .community-section,
+    .support-section{
+        min-width:100%;
+    }
+
+}
+nav button{
+    background:#21197b81;
+    color:rgb(236, 228, 228);
+    border:none;
+    padding:10px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+
+    
+}
+
+/* Mobile responsive design */
+* {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        margin: 0;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    header,
+    nav,
+    .navbar {
+        flex-wrap: wrap;
+        max-width: 100%;
+    }
+
+    nav a,
+    .navbar a {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: clamp(26px, 7vw, 38px);
+        line-height: 1.2;
+    }
+
+    h2 {
+        font-size: 25px;
+    }
+
+    p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    section {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+</style>
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+</head>
+
+<body>
+
+<nav>
+
+
+<div class="logo">
+    <img src="IMAGES/ai-logo.png" alt="AI COMMAND">
+</div>
+
+<ul>
+
+<a href="index.html">Home</a>
+
+<li><a href="curriculum.html">Curriculum</a></li>
+
+<li><a href="videos.html">Videos</a></li>
+
+<li><a href="prompts.html">Prompts</a></li>
+
+<span id="studentName"></span>
+
+    <button onclick="logout()">Logout</button>
+
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<h1>Learn AI. <span>Create Opportunities.</span></h1>
+
+<p>
+Master Artificial Intelligence with
+organized modules, video lessons,
+and premium prompts.
+</p>
+
+
+
+</section>
+
+<h2 class="section-title">
+What You'll Get
+</h2>
+
+<section class="features">
+
+<div class="card" onclick="window.location.href='curriculum.html'">
+
+    <div class="card-left">
+
+        <div class="icon">
+            <i class="fa-solid fa-book-open"></i>
+        </div>
+
+        <div class="card-content">
+            <h3>8 Modules</h3>
+            <p>Step-by-step learning path from beginner to advanced.</p>
+        </div>
+
+    </div>
+
+   
+
+</div>
+
+<div class="card" onclick="window.location.href='videos.html'">
+
+    <div class="card-left">
+
+        <div class="icon">
+            <i class="fa-solid fa-circle-play"></i>
+        </div>
+
+        <div class="card-content">
+            <h3>21 Video Lessons</h3>
+            <p>Watch practical AI tutorials and walkthroughs.</p>
+        </div>
+
+    </div>
+
+   
+
+</div>
+
+<div class="card" onclick="window.location.href='prompts.html'">
+
+    <div class="card-left">
+
+        <div class="icon">
+            <i class="fa-regular fa-file-lines"></i>
+        </div>
+
+        <div class="card-content">
+            <h3>100+ Premium Prompts</h3>
+            <p>Ready-to-use prompts for real-world results.</p>
+        </div>
+
+    </div>
+
+    
+
+</div>
+
+<div class="card" onclick="window.location.href='benefits.html'">
+
+    <div class="icon">
+        <i class="fa-solid fa-crown"></i>
+    </div>
+
+    <div class="card-content">
+        <h3>Lifetime Access</h3>
+        <p>No subscription fee. Learn anytime.</p>
+    </div>
+
+    
+
+</div>
+
+</section>
+
+    <section>
+
+    <h2 class="section-title">Why Learn AI?</h2>
+
+    <div class="features">
+
+<div class="feature-card">
+    <div class="feature-icon">
+        <i class="fas fa-rocket"></i>
+    </div>
+
+    <div class="feature-content">
+        <h3>Future-Proof Skills</h3>
+        <p>Learn the tools and workflows used by modern professionals.</p>
+    </div>
+</div>
+
+<div class="feature-card">
+    <div class="feature-icon">
+        <i class="fas fa-briefcase"></i>
+    </div>
+
+    <div class="feature-content">
+        <h3>Career Growth</h3>
+        <p>Increase productivity and create more opportunities.</p>
+    </div>
+</div>
+
+<div class="feature-card">
+    <div class="feature-icon">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <div class="feature-content">
+        <h3>Practical AI</h3>
+        <p>Apply AI immediately in work, business, and daily life.</p>
+    </div>
+</div>
+
+</section>
+
+<div class="info-sections">
+
+    <!-- DISCORD -->
+    <div class="community-card">
+
+        <div class="card-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord">
+        </div>
+
+        <div class="card-content">
+
+        
+
+            <h2>AI COMMAND Community</h2>
+
+            <p>
+                Network with fellow members, get support, access exclusive
+                resources, share your AI projects, and stay updated with
+                the latest AI lessons and tools.
+            </p>
+
+            <a href="https://discord.gg/xTdpSncQQV"
+               target="_blank"
+               class="main-btn">
+               Join Exclusive Community 
+            </a>
+
+          
+
+        </div>
+
+    </div>
+   
+
+    <!-- FACEBOOK -->
+    <div class="community-card">
+
+        <div class="card-icon">
+            <i class="fab fa-facebook-f"></i>
+        </div>
+
+        <div class="card-content">
+
+        
+            <h2>Need Help?</h2>
+
+            <p>
+                Have questions, need assistance, or experiencing issues?
+                Our team is ready to help you get the most out of your
+                AI learning journey.
+            </p>
+
+
+            <a href="https://www.facebook.com/profile.php?id=61593968056715"
+               target="_blank"
+               class="main-btn">
+               Contact Our Facebook Page 
+            </a>
+
+        
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<footer>
+    <p>© 2025 AI COMMAND Academy</p>
+</footer>
+
+<script type="module">
+import { auth, signOut } from "./firebase-config.js";
+
+window.logout = function() {
+    signOut(auth)
+        .then(() => {
+            window.location.href = "login.html";
+        })
+        .catch((error) => {
+            alert("Logout Error: " + error.message);
+        });
+};
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,2397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Phase 8 - AI Video Creation</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+}
+
+.module-header{
+    text-align:center;
+    padding:60px 20px 50px;
+    margin-bottom:40px;
+}
+
+.phase-badge{
+    display:inline-block;
+    padding:10px 20px;
+    border:1px solid rgba(0,140,255,.3);
+    border-radius:50px;
+    background:rgba(0,140,255,.08);
+    color:#4da6ff;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:1px;
+    margin-bottom:20px;
+}
+
+.module-header h1{
+    font-size:48px;
+    font-weight:800;
+    color:white;
+    margin-bottom:15px;
+    line-height:1.2;
+}
+
+.module-header h1 span{
+    color:#4da6ff;
+}
+
+.module-subtitle{
+    max-width:800px;
+    margin:auto;
+    font-size:18px;
+    line-height:1.8;
+    color:#b8c7e0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    background: rgba(25,35,60,0.95);
+    border: 1px solid rgba(80,140,255,0.3);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px auto;
+max-width: 800px;
+}
+
+.card p {
+    font-size: 30px;
+    line-height: 1.8;
+    color: #d6e4ff;
+}
+
+.card ul {
+    margin-top: 10px;
+    padding-left: 25px;
+}
+
+.card li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    color: #d6e4ff;
+        font-size: 30px;
+
+}
+
+.card h2 {
+    margin-bottom: 15px;
+            font-size: 45px;
+
+}
+
+.lesson{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(77,124,255,.25);
+    border-radius:12px;
+
+    padding:25px;
+    margin-top:20px;
+}
+
+.lesson-info{
+    flex:1;
+}
+
+.lesson-info h3{
+    color:#69a7ff;
+    margin-bottom:10px;
+}
+
+.lesson-info p{
+    color:#d0d7ff;
+}
+
+.btn{
+    white-space:nowrap;
+}
+
+.lesson-action{
+    margin-left:20px;
+}
+
+/* Lesson Content */
+.lesson-box h3 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.lesson-box h4,
+.info-box h4 {
+    font-size: 25px;
+    font-weight: 600;
+       margin-top: 30px;
+    margin-bottom: 12px;
+    color: #4da3ff;
+}
+
+.lesson-box p,
+.info-box p {
+    font-size: 25px;
+       margin-bottom: 20px;
+    line-height: 1.8;
+    color: #d6e4ff;
+}
+
+.info-box ul li {
+    font-size: 25px;
+    line-height: 1.8;
+    margin-bottom: 8px;
+}
+
+.prompt-box {
+    background: rgba(77,163,255,0.08);
+    border-left: 4px solid #4da3ff;
+    padding: 18px;
+    margin: 20px 0;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.video-section {
+    text-align: center;
+    margin: 40px 0;
+    padding: 25px;
+    border: 1px solid rgba(77,163,255,.3);
+    border-radius: 12px;
+    background: rgba(77,163,255,.05);
+}
+
+.video-section h3 {
+    margin-bottom: 10px;
+    color: #4da3ff;
+}
+
+.video-section p {
+    margin-bottom: 20px;
+}
+
+h1,h2{
+color:#3b82f6;
+}
+
+.btn{
+display:inline-block;
+background:#3b82f6;
+padding:12px 20px;
+border-radius:8px;
+color:white;
+text-decoration:none;
+margin-top:15px;
+}
+
+.card,
+.lesson,
+.activity-card,
+.quiz-card,
+.premium-resource {
+    width: 100%;
+    max-width: 1200px;
+    margin: 25px auto;
+}
+
+.lesson-card{
+    background: #122347;
+    border: 1px solid #2f5fbf;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 40px 0;
+}
+
+.checklist label{
+display:block;
+margin-bottom:10px;
+}
+
+footer{
+text-align:center;
+padding:40px;
+}
+
+/* PREMIUM MODULE SECTIONS */
+
+.premium-resource,
+.activity-card,
+.quiz-card,
+.text-lesson{
+   padding:30px;
+    border-radius:20px;
+
+    background:rgba(15,23,42,.8);
+
+    border:1px solid rgba(96,165,250,.2);
+
+    box-shadow:
+    0 0 30px rgba(59,130,246,.08);
+}
+
+.premium-resource h2,
+.activity-card h3,
+.quiz-card h3,
+.text-lesson h3{
+    color:#60a5fa;
+    margin-bottom:15px;
+            font-size: 35px;
+
+    
+}
+
+.premium-resource .template-list li{
+    font-size: 30px;
+    line-height: 2;
+}
+
+.premium-resource p,
+.activity-card p,
+.quiz-card p,
+.text-lesson p{
+    color:#dbeafe;
+    line-height:1.8;
+     font-size: 30px;
+
+}
+
+.prompt-box{
+    background: rgba(96,165,250,0.12);
+    border-left:4px solid #60a5fa;
+    padding:15px;
+    border-radius:10px;
+    margin:15px 0;
+    color:white;
+      font-size: 25px;
+}
+
+.tip-box{
+    background: rgba(59,130,246,0.12);
+    border:1px solid rgba(96,165,250,0.25);
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+    color:#93c5fd;
+                font-size: 25px;
+
+}
+
+.mission-box h3,
+.challenge-card h3 {
+    font-size: 24px;
+    color: #4da3ff;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.mission-box {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.mission-box h3 {
+    font-size: 24px;
+    color: #4da3ff;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.mission-box p {
+    font-size: 25px !important;
+    line-height: 1.8;
+    color: #ffffff;
+    margin-top: 10px;
+}
+
+.mission-box h4,
+.challenge-card h4 {
+    font-size: 25px;
+    color: #ffffff;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.challenge-list {
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+.challenge-list li {
+    font-size: 25px !important;
+    line-height: 1.8;
+    margin-bottom: 12px;
+}
+
+.challenge-list strong {
+    font-size: 25px !important;
+    color: #4d8dff;
+    font-weight: 700;
+}
+
+.challenge-card p,
+.mission-box p {
+    font-size: 25px;
+    line-height: 1.8;
+    color: #ffffff;
+}
+
+.template-list{
+    padding-left:20px;
+}
+
+.template-list li{
+    margin-bottom:10px;
+    color:#dbeafe;
+}
+
+.quiz-question{
+    margin-top:20px;
+    margin-bottom:10px;
+    color:white;
+    font-weight:600;
+}
+
+.quiz-card ul,
+.activity-card ul{
+    padding-left:25px;
+}
+
+.quiz-card li,
+.activity-card li{
+    margin-bottom:8px;
+    color:#dbeafe;
+}
+
+textarea{
+    width:100%;
+    min-height:120px;
+    background:#101d3d;
+    border:1px solid #2d5cff;
+    border-radius:10px;
+    color:white;
+    padding:15px;
+    margin:15px 0;
+}
+
+
+
+.quiz-card label{
+    display:block;
+    padding:12px 15px;
+    margin:10px 0;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(77,124,255,.2);
+    border-radius:10px;
+    transition:.3s;
+        font-size: 25px;
+    font-weight: 500;
+}
+
+.quiz-card label:hover{
+    border-color:#4d7cff;
+    background:rgba(77,124,255,.08);
+}
+
+.quiz-card input[type="radio"]{
+    margin-right:10px;
+    transform:scale(1.2);
+}
+
+.quiz-card h4{
+    color:#69a7ff;
+    margin-top:25px;
+    margin-bottom:10px;
+    font-size:25px;
+
+}
+
+.quiz-card p{
+    margin-bottom:15px;
+}
+
+#quiz21-result{
+    margin-top:20px;
+    font-weight:600;
+    color:#4cff88;
+}
+
+.quiz-result{
+    margin-top:20px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(76,255,136,.1);
+    border:1px solid rgba(76,255,136,.3);
+    color:#4cff88;
+    font-weight:600;
+}
+
+.quiz-result{
+    margin-top:20px;
+    padding:15px 20px;
+    border-radius:12px;
+    font-size:25px;
+    font-weight:700;
+    backdrop-filter: blur(10px);
+}
+
+.quiz-result.success{
+    background: rgba(0,255,120,.08);
+    border:1px solid rgba(0,255,120,.4);
+    box-shadow: 0 0 20px rgba(0,255,120,.15);
+    color:#7dffb2;
+}
+
+.quiz-result.fail{
+    background: rgba(255,60,60,.08);
+    border:1px solid rgba(255,60,60,.4);
+    box-shadow: 0 0 20px rgba(255,60,60,.15);
+    color:#ff8b8b;
+}
+
+.activity-input{
+    width:100%;
+    min-height:150px;
+    margin-top:15px;
+    padding:15px;
+    background:#162544;
+    border:1px solid #2d4f8f;
+    border-radius:10px;
+    color:white;
+    resize:vertical;
+    font-size:25px;
+}
+
+.activity-input:focus{
+    outline:none;
+    border-color:#4f8cff;
+}
+
+.prompt-tip{
+    margin-top:10px;
+    padding:12px;
+    background:rgba(79,140,255,.08);
+    border:1px solid rgba(79,140,255,.25);
+    border-radius:8px;
+    color:#9bbcff;
+    font-size:20px;
+}
+
+.quiz-option{
+    display:block;
+    padding:12px 15px;
+    margin:10px 0;
+    background:#162544;
+    border:1px solid #29477e;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.quiz-option:hover{
+    border-color:#4f8cff;
+    background:#1a2d52;
+}
+
+.quiz-option input{
+    margin-right:10px;
+}
+
+.comparison-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top:20px;
+}
+
+.case-card{
+    background:#111d3b;
+    border:1px solid #2b4f8a;
+    border-radius:12px;
+    padding:20px;
+}
+
+.bad-prompt{
+    border-left:4px solid #ff6b6b;
+}
+
+.good-prompt{
+    border-left:4px solid #4ade80;
+}
+
+.case-card ul{
+    margin-top:15px;
+    padding-left:20px;
+}
+
+.case-card li{
+    margin-bottom:8px;
+}
+
+.case-card ul li {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.challenge-box{
+    background:#101c3d;
+    border:1px solid #2f5cff;
+    border-radius:12px;
+    padding:20px;
+    margin:20px 0;
+}
+
+.activity-input{
+    width:100%;
+    background:#16284d;
+    border:1px solid #2f5cff;
+    color:white;
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+
+
+.result-success{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(0,255,120,.15);
+    border:1px solid #00ff88;
+    color:#00ff88;
+}
+
+.result-error{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(255,70,70,.15);
+    border:1px solid #ff5555;
+    color:#ff5555;
+}
+
+.completion-card{
+    margin-top:30px;
+}
+
+.check-item{
+    display:block;
+    background:#16284d;
+    border:1px solid rgba(255,255,255,.08);
+    padding:14px 18px;
+    border-radius:10px;
+    margin:10px 0;
+    cursor:pointer;
+     font-size: 25px;
+}
+
+.check-item input{
+    margin-right:10px;
+    cursor:pointer;
+}
+
+#progressText{
+    margin-top:15px;
+    font-weight:bold;
+    color:#58a6ff;
+}
+
+.check-item input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-right: 12px;
+}
+
+.phase-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#phase3Btn {
+    padding: 15px 35px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+.grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin:25px 0;
+}
+
+.success-message{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(0,255,100,.1);
+    border:1px solid #00ff88;
+    color:#00ff88;
+}
+
+.error-message{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(255,0,0,.1);
+    border:1px solid #ff4d4d;
+    color:#ff4d4d;
+}
+
+.example-box{
+    background:#1a2747;
+    padding:15px;
+    border-radius:10px;
+    margin:15px 0;
+}
+
+.comparison-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+.comparison-table th,
+.comparison-table td{
+    padding:12px;
+    border:1px solid #2f4f85;
+    font-size:16px;
+    text-align:center;
+}
+
+.comparison-table th{
+    color:#4f8cff;
+}
+
+.info-box,
+.example-box,
+.comparison-card{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+ul li{
+    margin-bottom:10px;
+    line-height:1.6;
+}
+
+.requirements-box{
+    background: rgba(52, 87, 163, 0.15);
+    border: 1px solid #2d5fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.requirements-box h3{
+    color: #4d8dff;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.requirements-box ul{
+    padding-left: 25px;
+}
+
+.requirements-box li{
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.info-box ol {
+    padding-left: 35px;
+    margin-top: 15px;
+}
+
+.info-box ol li {
+    font-size: 25px;
+    line-height: 1.8;
+    margin-bottom: 12px;
+    padding-left: 8px;
+}
+
+</style>
+
+<script type="module">
+import { auth, onAuthStateChanged }
+from "./firebase-config.js";
+
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        window.location.href = "login.html";
+    }
+});
+</script>
+
+</head>
+
+<body>
+
+<header>
+
+    <header class="module-header">
+
+    <span class="phase-badge">
+         AI COMMAND ACADEMY
+    </span>
+
+  <h1>
+    Phase 8:
+    <span>  AI Video Creation</span>
+</h1>
+
+ <p class="module-subtitle">
+Create professional videos, AI avatars, and cinematic content using modern AI tools.
+</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Module Overview</h2>
+
+<p>
+        Artificial Intelligence is transforming the way videos are created.
+        Today, anyone can produce professional-quality videos, AI avatars,
+        promotional content, training materials, and cinematic scenes without
+        advanced video editing skills.
+    </p>
+
+    <p>
+        In this phase, you will learn how to use modern AI video tools to
+        generate engaging content for business, education, marketing, and
+        content creation. You will explore AI video generation, AI avatars,
+        and cinematic video production techniques.
+    </p>
+
+    <p>
+        By combining creative prompts with powerful AI platforms, you can
+        significantly reduce production time while improving content quality
+        and consistency.
+    </p>
+
+</div>
+
+<div class="card">
+
+<h2>Learning Objectives</h2>
+
+       <ul>
+            <li>Create videos using AI-powered video generation tools</li>
+            <li>Build realistic AI avatars for presentations and training</li>
+            <li>Generate cinematic video scenes using AI prompts</li>
+            <li>Design complete AI video production workflows</li>
+            <li>Apply AI video tools for business and content creation</li>
+        </ul>
+
+</div>
+<div class="card text-lesson">
+
+    <h2>Lesson 8.1</h2>
+
+ <div class="text-lesson">
+
+        <h3>Smarter AI Video Creation</h3>
+
+        <p>
+            AI video generation allows users to create videos using text prompts,
+            images, scripts, and AI-powered tools. Instead of manually recording
+            every scene, AI can generate visuals, animations, transitions, and
+            video content automatically.
+        </p>
+
+
+    <div class="info-box">
+
+        <h3>What is AI Video Creation?</h3>
+
+        <p>
+            AI Video Creation is the process of using artificial intelligence
+            to generate, edit, and enhance videos. Users provide instructions
+            through prompts, and the AI creates video scenes based on those
+            descriptions.
+        </p>
+
+        <p>
+            AI tools can generate characters, environments, animations,
+            voiceovers, subtitles, and visual effects in minutes.
+        </p>
+
+
+       <div class="prompt-box">
+    Example:
+        Text Prompt → AI Video Generation → Editing → Publishing
+    </div>
+
+    <div class="info-box">
+
+        <h3>Popular AI Video Tools</h3>
+
+        <ul>
+            <li><strong>Runway</strong> – AI video generation and editing</li>
+            <li><strong>Pika</strong> – Text-to-video and animation creation</li>
+            <li><strong>Luma AI</strong> – Realistic video generation</li>
+            <li><strong>Kling AI</strong> – High-quality cinematic videos</li>
+            <li><strong>CapCut AI</strong> – AI-powered editing tools</li>
+        </ul>
+
+    </div>
+
+    <div class="info-box">
+
+        <h3>How AI Video Generation Works</h3>
+
+        <ol>
+            <li>Create a detailed prompt.</li>
+            <li>Choose an AI video platform.</li>
+            <li>Generate the video scene.</li>
+            <li>Edit and improve the results.</li>
+            <li>Export and publish the final video.</li>
+        </ol>
+
+    </div>
+
+       <div class="prompt-box">
+    Example Prompt: 
+         <br><br>
+            "A futuristic city at sunset with flying cars, cinematic lighting,
+            highly detailed, 4K video quality, smooth camera movement."
+        </p>
+
+    </div>
+
+    <div class="info-box">
+
+        <h3>Benefits of AI Video Creation</h3>
+
+        <ul>
+            <li>Reduces video production time</li>
+            <li>Requires fewer technical skills</li>
+            <li>Creates professional-looking videos</li>
+            <li>Supports content creation at scale</li>
+            <li>Helps businesses reduce production costs</li>
+        </ul>
+
+    </div>
+
+    <div class="info-box">
+
+        <h3>Common Use Cases</h3>
+
+        <ul>
+            <li>Marketing and advertising videos</li>
+            <li>Educational content</li>
+            <li>Social media videos</li>
+            <li>Product demonstrations</li>
+            <li>Business presentations</li>
+            <li>YouTube content creation</li>
+        </ul>
+
+    </div>
+    </div>
+    </div>
+
+
+ <div class="video-section">
+
+<h3>Smarter AI Video Creation</h3>
+
+<p>
+Learn efficient workflows for creating videos with AI.
+</p>
+
+<a href="https://drive.google.com/file/d/1uWdbpANYjB7GrGRyOykTUDt2BAfS-JEX/view"
+target="_blank"
+class="btn">
+
+Watch Video
+
+</a>
+
+</div>
+
+<div class="activity-card">
+
+    <h3>Activity 8.1</h3>
+
+    <p>
+        Design an AI-generated video concept using a text prompt.
+    </p>
+
+    <div class="prompt-box">
+        Video Type: Product Advertisement<br>
+        Prompt: "A futuristic smartwatch floating above a glowing city skyline,
+        cinematic lighting, smooth camera movement, 4K quality."<br>
+        Outcome: Promotional marketing video.
+    </div>
+
+    <p>
+        Create your own AI video project idea that includes:
+    </p>
+
+    <ul class="activity-list">
+        <li>Video Type</li>
+        <li>Target Audience</li>
+        <li>AI Video Tool</li>
+        <li>Text Prompt</li>
+        <li>Expected Outcome</li>
+    </ul>
+
+    <textarea
+        id="activity81"
+        class="activity-input"
+        placeholder="Describe your AI video concept here..."></textarea>
+
+    <button
+        class="btn"
+        onclick="checkActivity81()">
+        Submit Activity
+    </button>
+
+    <div id="activity81-result"></div>
+
+</div>
+
+<div class="quiz-card">
+
+    <h3>Quiz 8.1</h3>
+
+    <h4>Question 1</h4>
+
+    <p>
+        What is AI video generation?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q811" value="A">
+        Creating videos using artificial intelligence
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q811" value="B">
+        Repairing computer hardware
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q811" value="C">
+        Installing operating systems
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q811" value="D">
+        Building websites
+    </label>
+
+    <h4>Question 2</h4>
+
+    <p>
+        Which tool is commonly used for AI video generation?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q812" value="A">
+        Microsoft Excel
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q812" value="B">
+        Runway
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q812" value="C">
+        Notepad
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q812" value="D">
+        Paint
+    </label>
+
+    <h4>Question 3</h4>
+
+    <p>
+        What is the first step in an AI video workflow?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q813" value="A">
+        Publish the video
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q813" value="B">
+        Delete the project
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q813" value="C">
+        Create a prompt
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q813" value="D">
+        Upload to social media
+    </label>
+
+    <h4>Question 4</h4>
+
+    <p>
+        Why do businesses use AI video tools?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q814" value="A">
+        To increase production time
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q814" value="B">
+        To reduce efficiency
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q814" value="C">
+        To create videos faster and more efficiently
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q814" value="D">
+        To replace internet access
+    </label>
+
+    <button class="btn" onclick="checkQuiz81()">
+        Submit Quiz
+    </button>
+
+    <div id="quiz81-result"></div>
+
+</div>
+
+</div>
+
+<div class="card text-lesson">
+
+    <h2>Lesson 8.2</h2>
+
+    <div class="text-lesson">
+
+        <h3>HeyGen AI Avatar Creation</h3>
+
+        <p>
+            HeyGen is an AI-powered video platform that allows users to create
+            realistic digital avatars that can speak, present information,
+            and deliver messages without requiring a live camera recording.
+        </p>
+
+    <div class="info-box">
+
+        <h3>What is an AI Avatar?</h3>
+
+        <p>
+            An AI Avatar is a digital character powered by artificial
+            intelligence that can communicate using generated speech,
+            facial expressions, and natural movements.
+        </p>
+
+        <p>
+            AI avatars are commonly used in training videos, business
+            presentations, customer support, marketing campaigns,
+            and educational content.
+        </p>
+
+
+    <div class="prompt-box">
+        Example:
+        Script → AI Avatar → Voice Generation → Video Production
+    </div>
+
+    <div class="info-box">
+
+        <h3>How HeyGen Works</h3>
+
+        <ol>
+            <li>Select an AI avatar.</li>
+            <li>Write or upload a script.</li>
+            <li>Choose a voice and language.</li>
+            <li>Generate the video.</li>
+            <li>Download and share the final content.</li>
+        </ol>
+
+    <div class="info-box">
+
+        <h3>Key Features of HeyGen</h3>
+
+        <ul>
+            <li>AI-generated avatars</li>
+            <li>Text-to-video creation</li>
+            <li>Multiple languages and voices</li>
+            <li>Professional business presentations</li>
+            <li>Training and educational videos</li>
+            <li>Marketing video production</li>
+        </ul>
+
+
+    <div class="prompt-box">
+
+     Example Use Case:
+            A company creates employee onboarding videos using an AI avatar
+            that explains workplace policies, procedures, and company values.
+        </p>
+
+    </div>
+
+    <div class="info-box">
+
+        <h3>Benefits of AI Avatars</h3>
+
+        <ul>
+            <li>Reduce video production costs</li>
+            <li>Eliminate repeated recordings</li>
+            <li>Create multilingual content quickly</li>
+            <li>Maintain consistent presentation quality</li>
+            <li>Scale video production efficiently</li>
+        </ul>
+
+
+    <div class="info-box">
+
+        <h3>Responsible Use of AI Avatars</h3>
+
+        <p>
+            AI avatars should be used ethically and transparently.
+            Organizations should avoid misleading audiences and should
+            clearly communicate when AI-generated presenters are used.
+        </p>
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+ <div class="video-section">
+
+<h3>HeyGen AI Avatar Creation</h3>
+
+<p>
+Create AI avatars for presentations, training, and marketing videos.
+</p>
+
+<a href="https://drive.google.com/file/d/17YpM5WT8SelEi52DMoZDGZO_jQb9GcLb/view"
+target="_blank"
+class="btn">
+
+Watch Video
+
+</a>
+
+</div>
+
+<div class="activity-card">
+
+    <h3>Activity 8.2</h3>
+
+    <p>
+        Design an AI avatar presentation using HeyGen or a similar AI avatar platform.
+    </p>
+
+    <div class="prompt-box">
+
+        Example:
+
+        <br><br>
+
+        Presentation Type: Employee Training
+
+        <br>
+
+        AI Avatar: Professional Business Presenter
+
+        <br>
+
+        Audience: New Employees
+
+        <br>
+
+        Topic: Workplace Safety Guidelines
+
+        <br>
+
+        Outcome: Training Video
+
+    </div>
+
+
+    <p>
+        Create your own AI avatar presentation project that includes:
+    </p>
+
+    <ul class="activity-list">
+        <li>Presentation Type</li>
+        <li>Target Audience</li>
+        <li>AI Avatar Style</li>
+        <li>Presentation Topic</li>
+        <li>Expected Outcome</li>
+    </ul>
+
+    <textarea
+        id="activity82"
+        class="activity-input"
+        placeholder="Describe your AI avatar presentation here..."></textarea>
+
+    <button
+        class="btn"
+        onclick="checkActivity82()">
+        Submit Activity
+    </button>
+
+    <div id="activity82-result"></div>
+
+</div>
+
+<div class="quiz-card">
+
+    <h3>Quiz 8.2</h3>
+
+    <h4>Question 1</h4>
+
+    <p>
+        What is the primary purpose of HeyGen?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q821" value="A">
+        Create AI avatar videos
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q821" value="B">
+        Edit spreadsheets
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q821" value="C">
+        Build computer hardware
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q821" value="D">
+        Install operating systems
+    </label>
+
+    <h4>Question 2</h4>
+
+    <p>
+        What is an AI Avatar?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q822" value="A">
+        A digital character powered by AI
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q822" value="B">
+        A computer monitor
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q822" value="C">
+        A web browser
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q822" value="D">
+        A printer
+    </label>
+
+    <h4>Question 3</h4>
+
+    <p>
+        Which content commonly uses AI avatars?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q823" value="A">
+        Training videos
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q823" value="B">
+        Motherboard assembly
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q823" value="C">
+        Hardware repairs
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q823" value="D">
+        Device formatting
+    </label>
+
+    <h4>Question 4</h4>
+
+    <p>
+        What is a major benefit of AI avatars?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q824" value="A">
+        Faster and scalable video production
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q824" value="B">
+        Slower production process
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q824" value="C">
+        Requires more manual work
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q824" value="D">
+        Eliminates internet access
+    </label>
+
+    <button class="btn" onclick="checkQuiz82()">
+        Submit Quiz
+    </button>
+
+    <div id="quiz82-result"></div>
+
+</div>
+
+</div>
+
+<div class="card text-lesson">
+
+    <h2>Lesson 8.3</h2>
+
+    <div class="text-lesson">
+
+        <h3>Hollywood Style Cinematic Videos</h3>
+
+        <p>
+            Modern AI video tools can create cinematic scenes that look similar
+            to professional movie productions. By combining strong storytelling,
+            camera movement, lighting, and detailed prompts, creators can
+            generate visually stunning videos with AI.
+        </p>
+
+
+    <div class="info-box">
+
+        <h3>What Makes a Video Cinematic?</h3>
+
+        <p>
+            Cinematic videos focus on storytelling, visual quality, camera
+            composition, lighting, and emotional impact. They are designed to
+            create an immersive viewing experience.
+        </p>
+
+
+    <div class="info-box">
+
+        <h3>Key Elements of Cinematic Videos</h3>
+
+        <ul>
+            <li>Storytelling</li>
+            <li>Camera Angles</li>
+            <li>Lighting Effects</li>
+            <li>Visual Composition</li>
+            <li>Smooth Camera Movement</li>
+            <li>Color Grading</li>
+        </ul>
+
+
+    <div class="prompt-box">
+       Example: Story Idea → Cinematic Prompt → AI Video Generation → Editing → Final Movie Scene
+    </div>
+
+    <div class="info-box">
+
+        <h3>Popular Camera Angles</h3>
+
+        <ul>
+            <li><strong>Wide Shot</strong> – Shows the full environment.</li>
+            <li><strong>Close-Up</strong> – Highlights emotions and details.</li>
+            <li><strong>Low Angle</strong> – Makes subjects appear powerful.</li>
+            <li><strong>High Angle</strong> – Creates a feeling of vulnerability.</li>
+            <li><strong>Tracking Shot</strong> – Follows movement smoothly.</li>
+        </ul>
+
+
+    <div class="info-box">
+
+        <h3>Lighting Techniques</h3>
+
+        <ul>
+            <li>Golden Hour Lighting</li>
+            <li>Neon City Lighting</li>
+            <li>Dramatic Shadows</li>
+            <li>Soft Natural Lighting</li>
+            <li>Studio Lighting</li>
+        </ul>
+
+
+        <div class="prompt-box">
+
+    Example Cinematic Prompt
+         <br><br>
+        <p>
+            "A lone explorer walking through a futuristic city at sunset,
+            cinematic lighting, wide camera shot, dramatic atmosphere,
+            ultra-realistic details, smooth camera movement, 4K quality."
+        </p>
+    </div>
+
+    <div class="info-box">
+
+        <h3>Storyboarding with AI</h3>
+
+        <p>
+            Before generating a video, creators often build a storyboard that
+            outlines scenes, camera angles, character actions, and transitions.
+            This helps organize the production process and improve results.
+        </p>
+
+
+    <div class="info-box">
+
+        <h3>Benefits of Cinematic AI Videos</h3>
+
+        <ul>
+            <li>Create professional-looking content</li>
+            <li>Improve audience engagement</li>
+            <li>Reduce production costs</li>
+            <li>Generate movie-style visuals quickly</li>
+            <li>Support creative storytelling</li>
+        </ul>
+
+    </div>
+    </div>
+    </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+
+  <div class="video-section">
+   
+<h3>Hollywood Style Cinematic Videos</h3>
+
+<p>
+Learn how to create cinematic-quality videos using AI tools.
+</p>
+
+<a href="https://drive.google.com/file/d/1Cy1fRZGN8v-VF85JYmFv-XJtASqVo_Sv/view"
+target="_blank"
+class="btn">
+
+Watch Video
+
+</a>
+
+</div>
+
+<div class="activity-card">
+
+    <h3>Activity 8.3</h3>
+
+    <p>
+        Create a cinematic AI video storyboard using the concepts learned in this lesson.
+    </p>
+
+    <div class="prompt-box">
+
+        Example:
+
+        <br><br>
+
+        Scene 1:
+        A futuristic city at sunset.
+
+        <br><br>
+
+        Scene 2:
+        A flying vehicle moves between skyscrapers.
+
+        <br><br>
+
+        Scene 3:
+        The main character arrives at a glowing tower.
+
+        <br><br>
+
+        Camera Style:
+        Wide Shot → Tracking Shot → Close-Up
+
+    </div>
+
+    <p>
+        Create a storyboard that includes:
+    </p>
+
+    <ul class="activity-list">
+        <li>At least 3 scenes</li>
+        <li>Main subject or character</li>
+        <li>Camera angles</li>
+        <li>Lighting style</li>
+        <li>Expected outcome</li>
+    </ul>
+
+    <textarea
+        id="activity83"
+        class="activity-input"
+        placeholder="Describe your cinematic storyboard here..."></textarea>
+
+    <button
+        class="btn"
+        onclick="checkActivity83()">
+        Submit Activity
+    </button>
+
+    <div id="activity83-result"></div>
+
+</div>
+
+<div class="quiz-card">
+
+    <h3>Quiz 8.3</h3>
+
+    <h4>Question 1</h4>
+
+    <p>
+        What is one key element of a cinematic video?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q831" value="A">
+        Storytelling
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q831" value="B">
+        Spreadsheet Design
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q831" value="C">
+        Hardware Installation
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q831" value="D">
+        Network Configuration
+    </label>
+
+    <h4>Question 2</h4>
+
+    <p>
+        Which camera angle shows the full environment?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q832" value="A">
+        Close-Up
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q832" value="B">
+        Wide Shot
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q832" value="C">
+        Low Angle
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q832" value="D">
+        High Angle
+    </label>
+
+    <h4>Question 3</h4>
+
+    <p>
+        Why is lighting important in cinematic videos?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q833" value="A">
+        It creates mood and visual impact
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q833" value="B">
+        It installs software
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q833" value="C">
+        It repairs hardware
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q833" value="D">
+        It increases internet speed
+    </label>
+
+    <h4>Question 4</h4>
+
+    <p>
+        What is a storyboard used for?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q834" value="A">
+        Planning scenes before production
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q834" value="B">
+        Formatting a computer
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q834" value="C">
+        Installing drivers
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q834" value="D">
+        Managing databases
+    </label>
+
+    <button class="btn" onclick="checkQuiz83()">
+        Submit Quiz
+    </button>
+
+    <div id="quiz83-result"></div>
+
+</div>
+
+</div>
+
+<div class="premium-resource">
+
+    <h2>Module Challenge</h2>
+
+    <p>
+        Apply everything you learned about AI video generation, AI avatars,
+        and cinematic video creation by designing a complete AI-powered
+        video production project.
+    </p>
+
+    <div class="mission-box">
+
+        <h3>Your Mission</h3>
+
+        <p>
+            Create a detailed AI video project that could be used for
+            business, education, marketing, entertainment, or content creation.
+        </p>
+
+    <div class="info-box">
+
+    <h3>Requirements</h3>
+
+    <ul class="challenge-list">
+
+        <li>
+            <strong>Project Type:</strong>
+            Marketing Video, Educational Video, Product Demo,
+            Training Video, Social Media Content, etc.
+        </li>
+
+        <li>
+            <strong>AI Video Tool:</strong>
+            Identify the AI video platform you will use.
+        </li>
+
+        <li>
+            <strong>Target Audience:</strong>
+            Who will watch the video?
+        </li>
+
+        <li>
+            <strong>Video Concept:</strong>
+            Describe the story, purpose, or message.
+        </li>
+
+        <li>
+            <strong>Production Workflow:</strong>
+            Explain the process from prompt creation to final video.
+        </li>
+
+        <li>
+            <strong>Expected Outcome:</strong>
+            Describe the final result and goals.
+        </li>
+
+        <li>
+            <strong>Responsible AI Use:</strong>
+            Explain how AI will be used ethically and responsibly.
+        </li>
+
+    </ul>
+
+</div>
+
+    <div class="tip-box">
+
+        <strong>Pro Tip:</strong>
+
+        The best projects clearly explain the audience,
+        AI tools, workflow, and expected business or creative impact.
+
+    </div>
+
+    <div class="activity-card">
+
+    <h3>Submit Your Challenge</h3>
+
+    <p>
+        Describe your complete AI-powered video production project.
+    </p>
+
+    <textarea
+        id="challenge8"
+        class="activity-input"
+        placeholder="Describe your AI video project here..."></textarea>
+
+    <button
+        class="btn"
+        onclick="submitChallenge8()">
+        Submit Challenge
+    </button>
+
+    <div id="challenge8-result"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+    <h2>Completion Checklist</h2>
+
+    <p>
+        Complete all lessons, activities, quizzes, and the module challenge to finish Phase 8.
+    </p>
+
+    <label class="check-item">
+        <input type="checkbox" id="lesson81">
+        Lesson 8.1 Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" id="lesson82">
+        Lesson 8.2 Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" id="lesson83">
+        Lesson 8.3 Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" id="activities8">
+        Activities Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" id="quizzes8">
+        Quizzes Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" id="challenge8">
+        Module Challenge Completed
+    </label>
+
+    <div class="progress-text" id="progress8">
+        Progress: 0 / 6 Completed
+    </div>
+
+</div>
+
+<div class="phase-btn-container">
+
+<a
+id="courseCompleteBtn"
+href="ai-career-discovery.html"
+class="btn"
+style="pointer-events:none; opacity:0.5;">
+Career Discovery Phase
+</a>
+
+</div>
+
+</div>
+
+<footer>
+
+<a href="../curriculum.html" class="btn">
+Back to Curriculum
+</a>
+
+</footer>
+
+<script>
+
+
+function checkActivity81() {
+
+    const answer =
+        document.getElementById("activity81").value.trim();
+
+    const result =
+        document.getElementById("activity81-result");
+
+    if (answer.length < 50) {
+
+        result.innerHTML =
+            '<span style="color:#ff6b6b;">❌ Please provide more details about your AI video concept.</span>';
+
+        return;
+    }
+
+    result.innerHTML =
+        '<span style="color:#4CAF50;">✅ Activity Completed! Great AI video concept.</span>';
+}
+
+
+/* ==========================
+   ACTIVITY 8.1 AUTO SAVE
+   ========================== */
+
+const activity81 =
+    document.getElementById("activity81");
+
+if (activity81) {
+
+    // Load saved answer
+    activity81.value =
+        localStorage.getItem("phase8_activity81") || "";
+
+    // Save while typing
+    activity81.addEventListener(
+        "input",
+        function () {
+
+            localStorage.setItem(
+                "phase8_activity81",
+                this.value
+            );
+
+        }
+    );
+
+}
+
+function checkQuiz81() {
+
+    let score = 0;
+
+    const q1 =
+        document.querySelector('input[name="q811"]:checked');
+
+    const q2 =
+        document.querySelector('input[name="q812"]:checked');
+
+    const q3 =
+        document.querySelector('input[name="q813"]:checked');
+
+    const q4 =
+        document.querySelector('input[name="q814"]:checked');
+
+    if (!q1 || !q2 || !q3 || !q4) {
+
+        document.getElementById("quiz81-result").innerHTML =
+            '<span style="color:#ff6b6b;">❌ Please answer all questions.</span>';
+
+        return;
+    }
+
+    if (q1.value === "A") score++;
+    if (q2.value === "B") score++;
+    if (q3.value === "C") score++;
+    if (q4.value === "C") score++;
+
+    document.getElementById("quiz81-result").innerHTML =
+        `<span style="color:#4CAF50;">✅ You scored ${score}/4</span>`;
+}
+
+
+/* ==========================
+   QUIZ 8.1 AUTO SAVE
+   ========================== */
+
+["q811", "q812", "q813", "q814"].forEach(function(question){
+
+    document
+        .querySelectorAll(`input[name="${question}"]`)
+        .forEach(function(radio){
+
+            radio.addEventListener("change", function(){
+
+                localStorage.setItem(
+                    "phase8_" + question,
+                    this.value
+                );
+
+            });
+
+        });
+
+});
+
+
+/* ==========================
+   LOAD SAVED ANSWERS
+   ========================== */
+
+window.addEventListener("load", function(){
+
+    ["q811", "q812", "q813", "q814"].forEach(function(question){
+
+        const saved =
+            localStorage.getItem(
+                "phase8_" + question
+            );
+
+        if(saved){
+
+            const radio =
+                document.querySelector(
+                    `input[name="${question}"][value="${saved}"]`
+                );
+
+            if(radio){
+                radio.checked = true;
+            }
+        }
+
+    });
+
+});
+
+function checkActivity82() {
+
+    const answer =
+        document.getElementById("activity82").value.trim();
+
+    const result =
+        document.getElementById("activity82-result");
+
+    if (answer.length >= 80) {
+
+        result.innerHTML =
+            `<div class="success-box">
+                ✅ Excellent! Your AI avatar presentation project is complete.
+            </div>`;
+
+    } else {
+
+        result.innerHTML =
+            `<div class="error-box">
+                ❌ Please provide more details about your presentation, audience, avatar, and outcome.
+            </div>`;
+    }
+}
+
+
+/* ==========================
+   ACTIVITY 8.2 AUTO SAVE
+   ========================== */
+
+const activity82 =
+    document.getElementById("activity82");
+
+if (activity82) {
+
+    // Load saved answer
+    activity82.value =
+        localStorage.getItem("phase8_activity82") || "";
+
+    // Save while typing
+    activity82.addEventListener(
+        "input",
+        function () {
+
+            localStorage.setItem(
+                "phase8_activity82",
+                this.value
+            );
+
+        }
+    );
+
+}
+
+function checkQuiz82() {
+
+    let score = 0;
+
+    const q1 =
+        document.querySelector('input[name="q821"]:checked');
+
+    const q2 =
+        document.querySelector('input[name="q822"]:checked');
+
+    const q3 =
+        document.querySelector('input[name="q823"]:checked');
+
+    const q4 =
+        document.querySelector('input[name="q824"]:checked');
+
+    if (!q1 || !q2 || !q3 || !q4) {
+
+        document.getElementById("quiz82-result").innerHTML =
+            `<div class="error-box">
+                Please answer all questions.
+            </div>`;
+
+        return;
+    }
+
+    if (q1.value === "A") score++;
+    if (q2.value === "A") score++;
+    if (q3.value === "A") score++;
+    if (q4.value === "A") score++;
+
+    document.getElementById("quiz82-result").innerHTML =
+        `<div class="success-box">
+            ✅ Your Score: ${score}/4
+        </div>`;
+}
+
+
+/* ==========================
+   QUIZ 8.2 AUTO SAVE
+   ========================== */
+
+["q821", "q822", "q823", "q824"].forEach(function(question){
+
+    document
+        .querySelectorAll(`input[name="${question}"]`)
+        .forEach(function(radio){
+
+            radio.addEventListener("change", function(){
+
+                localStorage.setItem(
+                    "phase8_" + question,
+                    this.value
+                );
+
+            });
+
+        });
+
+});
+
+
+/* ==========================
+   LOAD SAVED ANSWERS
+   ========================== */
+
+window.addEventListener("load", function(){
+
+    ["q821", "q822", "q823", "q824"].forEach(function(question){
+
+        const saved =
+            localStorage.getItem(
+                "phase8_" + question
+            );
+
+        if(saved){
+
+            const radio =
+                document.querySelector(
+                    `input[name="${question}"][value="${saved}"]`
+                );
+
+            if(radio){
+                radio.checked = true;
+            }
+        }
+
+    });
+
+});
+
+function checkActivity83() {
+
+    const answer =
+        document.getElementById("activity83").value.trim();
+
+    const result =
+        document.getElementById("activity83-result");
+
+    if (answer.length >= 100) {
+
+        result.innerHTML =
+            `<div class="success-box">
+                🎬 Excellent! Your cinematic storyboard is complete.
+            </div>`;
+
+    } else {
+
+        result.innerHTML =
+            `<div class="error-box">
+                ❌ Please provide more details about your scenes, camera angles, and lighting.
+            </div>`;
+    }
+}
+
+
+/* ==========================
+   ACTIVITY 8.3 AUTO SAVE
+   ========================== */
+
+const activity83 =
+    document.getElementById("activity83");
+
+if (activity83) {
+
+    // Load saved answer
+    activity83.value =
+        localStorage.getItem("phase8_activity83") || "";
+
+    // Save while typing
+    activity83.addEventListener(
+        "input",
+        function () {
+
+            localStorage.setItem(
+                "phase8_activity83",
+                this.value
+            );
+
+        }
+    );
+
+}
+
+function checkQuiz83() {
+
+    let score = 0;
+
+    const q1 =
+        document.querySelector('input[name="q831"]:checked');
+
+    const q2 =
+        document.querySelector('input[name="q832"]:checked');
+
+    const q3 =
+        document.querySelector('input[name="q833"]:checked');
+
+    const q4 =
+        document.querySelector('input[name="q834"]:checked');
+
+    if (!q1 || !q2 || !q3 || !q4) {
+
+        document.getElementById("quiz83-result").innerHTML =
+            `<div class="error-box">
+                Please answer all questions.
+            </div>`;
+
+        return;
+    }
+
+    if (q1.value === "A") score++;
+    if (q2.value === "B") score++;
+    if (q3.value === "A") score++;
+    if (q4.value === "A") score++;
+
+    document.getElementById("quiz83-result").innerHTML =
+        `<div class="success-box">
+            ✅ Your Score: ${score}/4
+        </div>`;
+}
+
+
+/* ==========================
+   QUIZ 8.3 AUTO SAVE
+   ========================== */
+
+["q831", "q832", "q833", "q834"].forEach(function(question){
+
+    document
+        .querySelectorAll(`input[name="${question}"]`)
+        .forEach(function(radio){
+
+            radio.addEventListener("change", function(){
+
+                localStorage.setItem(
+                    "phase8_" + question,
+                    this.value
+                );
+
+            });
+
+        });
+
+});
+
+
+/* ==========================
+   LOAD SAVED ANSWERS
+   ========================== */
+
+window.addEventListener("load", function(){
+
+    ["q831", "q832", "q833", "q834"].forEach(function(question){
+
+        const saved =
+            localStorage.getItem(
+                "phase8_" + question
+            );
+
+        if(saved){
+
+            const radio =
+                document.querySelector(
+                    `input[name="${question}"][value="${saved}"]`
+                );
+
+            if(radio){
+                radio.checked = true;
+            }
+        }
+
+    });
+
+});
+function submitChallenge8() {
+
+    const answer =
+        document.getElementById("challenge8").value.trim();
+
+    const result =
+        document.getElementById("challenge8-result");
+
+    if (answer.length >= 120) {
+
+        result.innerHTML =
+            `<div class="success-box">
+                🎬 Module Challenge Completed!
+                <br><br>
+                Great job applying AI video creation concepts.
+            </div>`;
+
+        result.className = "success-box";
+
+    } else {
+
+        result.innerHTML =
+            `<div class="error-box">
+                Please provide a more detailed project plan.
+            </div>`;
+
+        result.className = "error-box";
+    }
+}
+
+
+/* ==========================
+   MODULE CHALLENGE 8 AUTO SAVE
+   ========================== */
+
+const challenge8 =
+    document.getElementById("challenge8");
+
+if (challenge8) {
+
+    // Load saved answer
+    challenge8.value =
+        localStorage.getItem("phase8_challenge8") || "";
+
+    // Auto-save habang nagta-type
+    challenge8.addEventListener("input", function () {
+
+        localStorage.setItem(
+            "phase8_challenge8",
+            this.value
+        );
+
+    });
+
+}
+
+function updateProgress8() {
+
+    const checks = document.querySelectorAll('.check-item input');
+
+    let completed = 0;
+
+    checks.forEach(check => {
+        if (check.checked) completed++;
+    });
+
+    document.getElementById("progress8").innerHTML =
+        `Progress: ${completed}/${checks.length} Completed`;
+
+    const completeBtn = document.getElementById("courseCompleteBtn");
+
+    if (completed === checks.length) {
+
+        completeBtn.style.pointerEvents = "auto";
+        completeBtn.style.opacity = "1";
+
+    } else {
+
+        completeBtn.style.pointerEvents = "none";
+        completeBtn.style.opacity = "0.5";
+
+    }
+}
+
+document.querySelectorAll('.check-item input').forEach(check => {
+    check.addEventListener("change", updateProgress8);
+});
+
+updateProgress8();
+</script>
+
+</script>
+
+</body>
+</html>

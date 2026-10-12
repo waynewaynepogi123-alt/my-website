@@ -1,0 +1,2462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Phase 7 - AI Audio Creation</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+}
+
+.module-header{
+    text-align:center;
+    padding:60px 20px 50px;
+    margin-bottom:40px;
+}
+
+.phase-badge{
+    display:inline-block;
+    padding:10px 20px;
+    border:1px solid rgba(0,140,255,.3);
+    border-radius:50px;
+    background:rgba(0,140,255,.08);
+    color:#4da6ff;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:1px;
+    margin-bottom:20px;
+}
+
+.module-header h1{
+    font-size:48px;
+    font-weight:800;
+    color:white;
+    margin-bottom:15px;
+    line-height:1.2;
+}
+
+.module-header h1 span{
+    color:#4da6ff;
+}
+
+.module-subtitle{
+    max-width:800px;
+    margin:auto;
+    font-size:18px;
+    line-height:1.8;
+    color:#b8c7e0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    background: rgba(25,35,60,0.95);
+    border: 1px solid rgba(80,140,255,0.3);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px auto;
+max-width: 800px;
+}
+
+.card p {
+    font-size: 30px;
+    line-height: 1.8;
+    color: #d6e4ff;
+}
+
+.card ul {
+    margin-top: 10px;
+    padding-left: 25px;
+}
+
+.card li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    color: #d6e4ff;
+        font-size: 30px;
+
+}
+
+.card h2 {
+    margin-bottom: 15px;
+            font-size: 45px;
+
+}
+
+.lesson{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(77,124,255,.25);
+    border-radius:12px;
+
+    padding:25px;
+    margin-top:20px;
+}
+
+.lesson-info{
+    flex:1;
+}
+
+.lesson-info h3{
+    color:#69a7ff;
+    margin-bottom:10px;
+}
+
+.lesson-info p{
+    color:#d0d7ff;
+}
+
+.btn{
+    white-space:nowrap;
+}
+
+.lesson-action{
+    margin-left:20px;
+}
+
+/* Lesson Content */
+.lesson-box h3 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.lesson-box h4,
+.info-box h4 {
+    font-size: 25px;
+    font-weight: 600;
+       margin-top: 30px;
+    margin-bottom: 12px;
+    color: #4da3ff;
+}
+
+.lesson-box p,
+.info-box p {
+    font-size: 25px;
+       margin-bottom: 20px;
+    line-height: 1.8;
+    color: #d6e4ff;
+}
+
+.info-box ul li {
+    font-size: 25px;
+    line-height: 1.8;
+    margin-bottom: 8px;
+}
+
+.prompt-box {
+    background: rgba(77,163,255,0.08);
+    border-left: 4px solid #4da3ff;
+    padding: 18px;
+    margin: 20px 0;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.video-section {
+    text-align: center;
+    margin: 40px 0;
+    padding: 25px;
+    border: 1px solid rgba(77,163,255,.3);
+    border-radius: 12px;
+    background: rgba(77,163,255,.05);
+}
+
+.video-section h3 {
+    margin-bottom: 10px;
+    color: #4da3ff;
+}
+
+.video-section p {
+    margin-bottom: 20px;
+}
+
+h1,h2{
+color:#3b82f6;
+}
+
+.btn{
+display:inline-block;
+background:#3b82f6;
+padding:12px 20px;
+border-radius:8px;
+color:white;
+text-decoration:none;
+margin-top:15px;
+}
+
+.card,
+.lesson,
+.activity-card,
+.quiz-card,
+.premium-resource {
+    width: 100%;
+    max-width: 1200px;
+    margin: 25px auto;
+}
+
+.lesson-card{
+    background: #122347;
+    border: 1px solid #2f5fbf;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 40px 0;
+}
+
+.checklist label{
+display:block;
+margin-bottom:10px;
+}
+
+footer{
+text-align:center;
+padding:40px;
+}
+
+/* PREMIUM MODULE SECTIONS */
+
+.premium-resource,
+.activity-card,
+.quiz-card,
+.text-lesson{
+   padding:30px;
+    border-radius:20px;
+
+    background:rgba(15,23,42,.8);
+
+    border:1px solid rgba(96,165,250,.2);
+
+    box-shadow:
+    0 0 30px rgba(59,130,246,.08);
+}
+
+.premium-resource h2,
+.activity-card h3,
+.quiz-card h3,
+.text-lesson h3{
+    color:#60a5fa;
+    margin-bottom:15px;
+            font-size: 35px;
+
+    
+}
+
+.premium-resource .template-list li{
+    font-size: 30px;
+    line-height: 2;
+}
+
+.premium-resource p,
+.activity-card p,
+.quiz-card p,
+.text-lesson p{
+    color:#dbeafe;
+    line-height:1.8;
+     font-size: 30px;
+
+}
+
+.prompt-box{
+    background: rgba(96,165,250,0.12);
+    border-left:4px solid #60a5fa;
+    padding:15px;
+    border-radius:10px;
+    margin:15px 0;
+    color:white;
+      font-size: 25px;
+}
+
+.tip-box{
+    background: rgba(59,130,246,0.12);
+    border:1px solid rgba(96,165,250,0.25);
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+    color:#93c5fd;
+                font-size: 25px;
+
+}
+
+.mission-box h3,
+.challenge-card h3 {
+    font-size: 24px;
+    color: #4da3ff;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.mission-box {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.mission-box h3 {
+    font-size: 24px;
+    color: #4da3ff;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.mission-box p {
+    font-size: 25px !important;
+    line-height: 1.8;
+    color: #ffffff;
+    margin-top: 10px;
+}
+
+.mission-box h4,
+.challenge-card h4 {
+    font-size: 25px;
+    color: #ffffff;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.challenge-list {
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+.challenge-list li {
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.challenge-card p,
+.mission-box p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #ffffff;
+}
+
+.template-list{
+    padding-left:20px;
+}
+
+.template-list li{
+    margin-bottom:10px;
+    color:#dbeafe;
+}
+
+.quiz-question{
+    margin-top:20px;
+    margin-bottom:10px;
+    color:white;
+    font-weight:600;
+}
+
+.quiz-card ul,
+.activity-card ul{
+    padding-left:25px;
+}
+
+.quiz-card li,
+.activity-card li{
+    margin-bottom:8px;
+    color:#dbeafe;
+}
+
+textarea{
+    width:100%;
+    min-height:120px;
+    background:#101d3d;
+    border:1px solid #2d5cff;
+    border-radius:10px;
+    color:white;
+    padding:15px;
+    margin:15px 0;
+}
+
+
+
+.quiz-card label{
+    display:block;
+    padding:12px 15px;
+    margin:10px 0;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(77,124,255,.2);
+    border-radius:10px;
+    transition:.3s;
+        font-size: 25px;
+    font-weight: 500;
+}
+
+.quiz-card label:hover{
+    border-color:#4d7cff;
+    background:rgba(77,124,255,.08);
+}
+
+.quiz-card input[type="radio"]{
+    margin-right:10px;
+    transform:scale(1.2);
+}
+
+.quiz-card h4{
+    color:#69a7ff;
+    margin-top:25px;
+    margin-bottom:10px;
+    font-size:25px;
+
+}
+
+.quiz-card p{
+    margin-bottom:15px;
+}
+
+#quiz21-result{
+    margin-top:20px;
+    font-weight:600;
+    color:#4cff88;
+}
+
+.quiz-result{
+    margin-top:20px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(76,255,136,.1);
+    border:1px solid rgba(76,255,136,.3);
+    color:#4cff88;
+    font-weight:600;
+}
+
+.quiz-result{
+    margin-top:20px;
+    padding:15px 20px;
+    border-radius:12px;
+    font-size:25px;
+    font-weight:700;
+    backdrop-filter: blur(10px);
+}
+
+.quiz-result.success{
+    background: rgba(0,255,120,.08);
+    border:1px solid rgba(0,255,120,.4);
+    box-shadow: 0 0 20px rgba(0,255,120,.15);
+    color:#7dffb2;
+}
+
+.quiz-result.fail{
+    background: rgba(255,60,60,.08);
+    border:1px solid rgba(255,60,60,.4);
+    box-shadow: 0 0 20px rgba(255,60,60,.15);
+    color:#ff8b8b;
+}
+
+.activity-input{
+    width:100%;
+    min-height:150px;
+    margin-top:15px;
+    padding:15px;
+    background:#162544;
+    border:1px solid #2d4f8f;
+    border-radius:10px;
+    color:white;
+    resize:vertical;
+    font-size:25px;
+}
+
+.activity-input:focus{
+    outline:none;
+    border-color:#4f8cff;
+}
+
+.prompt-tip{
+    margin-top:10px;
+    padding:12px;
+    background:rgba(79,140,255,.08);
+    border:1px solid rgba(79,140,255,.25);
+    border-radius:8px;
+    color:#9bbcff;
+    font-size:20px;
+}
+
+.quiz-option{
+    display:block;
+    padding:12px 15px;
+    margin:10px 0;
+    background:#162544;
+    border:1px solid #29477e;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.quiz-option:hover{
+    border-color:#4f8cff;
+    background:#1a2d52;
+}
+
+.quiz-option input{
+    margin-right:10px;
+}
+
+.comparison-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top:20px;
+}
+
+.case-card{
+    background:#111d3b;
+    border:1px solid #2b4f8a;
+    border-radius:12px;
+    padding:20px;
+}
+
+.bad-prompt{
+    border-left:4px solid #ff6b6b;
+}
+
+.good-prompt{
+    border-left:4px solid #4ade80;
+}
+
+.case-card ul{
+    margin-top:15px;
+    padding-left:20px;
+}
+
+.case-card li{
+    margin-bottom:8px;
+}
+
+.case-card ul li {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.challenge-box{
+    background:#101c3d;
+    border:1px solid #2f5cff;
+    border-radius:12px;
+    padding:20px;
+    margin:20px 0;
+}
+
+.activity-input{
+    width:100%;
+    background:#16284d;
+    border:1px solid #2f5cff;
+    color:white;
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+
+
+.result-success{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(0,255,120,.15);
+    border:1px solid #00ff88;
+    color:#00ff88;
+}
+
+.result-error{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(255,70,70,.15);
+    border:1px solid #ff5555;
+    color:#ff5555;
+}
+
+.completion-card{
+    margin-top:30px;
+}
+
+.check-item{
+    display:block;
+    background:#16284d;
+    border:1px solid rgba(255,255,255,.08);
+    padding:14px 18px;
+    border-radius:10px;
+    margin:10px 0;
+    cursor:pointer;
+     font-size: 25px;
+}
+
+.check-item input{
+    margin-right:10px;
+    cursor:pointer;
+}
+
+#progressText{
+    margin-top:15px;
+    font-weight:bold;
+    color:#58a6ff;
+}
+
+.check-item input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-right: 12px;
+}
+
+.phase-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#phase3Btn {
+    padding: 15px 35px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+.grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin:25px 0;
+}
+
+.success-message{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(0,255,100,.1);
+    border:1px solid #00ff88;
+    color:#00ff88;
+}
+
+.error-message{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(255,0,0,.1);
+    border:1px solid #ff4d4d;
+    color:#ff4d4d;
+}
+
+.example-box{
+    background:#1a2747;
+    padding:15px;
+    border-radius:10px;
+    margin:15px 0;
+}
+
+.comparison-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+.comparison-table th,
+.comparison-table td{
+    padding:12px;
+    border:1px solid #2f4f85;
+    font-size:16px;
+    text-align:center;
+}
+
+.comparison-table th{
+    color:#4f8cff;
+}
+
+.info-box,
+.example-box,
+.comparison-card{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+ul li{
+    margin-bottom:10px;
+    line-height:1.6;
+}
+
+
+
+</style>
+<script type="module">
+import { auth, onAuthStateChanged }
+from "./firebase-config.js";
+
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        window.location.href = "login.html";
+    }
+});
+</script>
+</head>
+
+<body>
+
+<header>
+
+    <header class="module-header">
+
+    <span class="phase-badge">
+         AI COMMAND ACADEMY
+    </span>
+
+  <h1>
+    Phase 7:
+    <span>  AI Audio Creation</span>
+</h1>
+
+ <p class="module-subtitle">
+Create music, voiceovers, sound effects, and audio content using AI.
+</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Module Overview</h2>
+
+ <p>
+        This module explores how Artificial Intelligence can be used to create,
+        edit, and enhance professional audio content for business, marketing,
+        education, and digital media.
+    </p>
+
+    <p>
+        You will learn how AI tools can generate original music, produce
+        realistic voiceovers, create sound effects, and assist with audio
+        production without requiring advanced recording or editing skills.
+    </p>
+
+    <p>
+        The module also introduces responsible voice-cloning practices,
+        including obtaining permission before creating or using a digital
+        recreation of another person's voice.
+    </p>
+
+    <p>
+        Through practical activities and real-world examples, you will learn
+        how to use AI audio tools efficiently while maintaining quality,
+        creativity, and responsible use.
+    </p>
+
+</div>
+
+<div class="card">
+
+<h2>Learning Objectives</h2>
+
+   <ul>
+            <li>How AI audio generation works</li>
+            <li>How to create original AI-generated music</li>
+            <li>How to generate professional voiceovers</li>
+            <li>How voice cloning works and when it should be used</li>
+            <li>How to create audio content for business and social media</li>
+            <li>How to use AI audio tools responsibly</li>
+        </ul>
+
+
+    </div>
+    </div>
+
+<div class="card text-lesson">
+
+    <h2>Lesson 7.1</h2>
+ <div class="text-lesson">
+
+     <h3>Introduction to AI Audio Tools</h3>
+
+        <p>
+            AI audio tools allow users to create, edit, and enhance audio
+            content using Artificial Intelligence. These tools can generate
+            voiceovers, music, sound effects, podcasts, and other audio
+            assets without requiring advanced audio production skills.
+        </p>
+
+
+    <div class="info-box">
+
+        <h3>What Are AI Audio Tools?</h3>
+
+        <p>
+            AI audio tools use machine learning models trained on large
+            amounts of audio data. They can analyze speech patterns,
+            musical structures, and sound characteristics to generate
+            realistic audio content automatically.
+        </p>
+
+        <p>
+            Instead of manually recording and editing every audio file,
+            users can create professional-quality content through simple
+            text prompts and automated workflows.
+        </p>
+
+          <div class="prompt-box">
+    Example:
+    
+            Script →
+            AI Voice Generator →
+            Background Music →
+            Export Audio →
+            Upload to Social Media
+        </p>
+    </div>
+    </div>
+
+    <div class="info-box">
+
+        <h3>Common Uses of AI Audio Tools</h3>
+
+        <ul>
+            <li>AI Voiceovers</li>
+            <li>Podcast Production</li>
+            <li>Music Generation</li>
+            <li>Audiobook Narration</li>
+            <li>Video Voice Narration</li>
+            <li>Sound Effect Creation</li>
+            <li>Social Media Content</li>
+            <li>Marketing Advertisements</li>
+        </ul>
+
+
+    <div class="info-box">
+
+        <h3>Popular AI Audio Platforms</h3>
+
+        <ul>
+            <li><strong>ElevenLabs</strong> – AI voice generation and voiceovers</li>
+            <li><strong>Suno AI</strong> – AI music generation</li>
+            <li><strong>Udio</strong> – AI song creation</li>
+            <li><strong>Descript</strong> – Audio editing and transcription</li>
+            <li><strong>Murf AI</strong> – Professional AI voiceovers</li>
+        </ul>
+
+    <div class="info-box">
+
+        <h3>Benefits of AI Audio Tools</h3>
+
+        <ul>
+            <li>Faster content creation</li>
+            <li>Lower production costs</li>
+            <li>Professional-quality audio</li>
+            <li>Multiple language support</li>
+            <li>Scalable content production</li>
+        </ul>
+
+
+    <div class="warning-box">
+
+        <h3>Responsible Use</h3>
+
+        <p>
+            Always obtain permission before cloning or recreating
+            another person's voice. AI-generated audio should be used
+            ethically and transparently, especially in business,
+            education, and media projects.
+        </p>
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+ <div class="video-section">
+   
+<h3>AI Audio Tools</h3>
+
+<p>
+Discover the best AI tools for audio generation and editing.
+</p>
+
+<a href="https://drive.google.com/file/d/16Ghf92tdvDIciJbjym2y6NPE4au5GNgo/view"
+target="_blank"
+class="btn">
+
+Watch Video
+
+</a>
+
+</div>
+
+<div class="activity-card">
+
+    <h3>Activity 7.1</h3>
+
+    <p>
+        Choose an AI audio tool and explain how you would use it for a real-world project.
+    </p>
+
+    <div class="prompt-box">
+        Tool: ElevenLabs
+        <br>
+        Content: Educational Video Voiceover
+        <br>
+        Benefit: Generates professional narration from text
+    </div>
+
+
+    <p>
+        Describe:
+    </p>
+
+    <ul class="activity-list">
+        <li>The AI audio tool you will use</li>
+        <li>What type of audio content you will create</li>
+        <li>How the tool helps you</li>
+        <li>The expected result</li>
+    </ul>
+
+    <textarea
+        id="activity71"
+        class="activity-input"
+        placeholder="Describe your AI audio project here..."></textarea>
+
+    <button
+        class="btn"
+        onclick="checkActivity71()">
+        Submit Activity
+    </button>
+
+    <div id="activity71-result"></div>
+
+</div>
+
+<div class="quiz-card">
+
+    <h3>Quiz 7.1</h3>
+
+    <h4>Question 1</h4>
+
+    <p>What is the primary purpose of AI audio tools?</p>
+
+    <label class="option">
+        <input type="radio" name="q71" value="A">
+        Create and edit audio automatically
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q71" value="B">
+        Build computer hardware
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q71" value="C">
+        Install operating systems
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q71" value="D">
+        Design databases
+    </label>
+
+    <h4>Question 2</h4>
+
+    <p>Which AI tool is widely known for realistic AI voice generation?</p>
+
+    <label class="option">
+        <input type="radio" name="q72" value="A">
+        Microsoft Paint
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q72" value="B">
+        ElevenLabs
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q72" value="C">
+        Calculator
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q72" value="D">
+        Notepad
+    </label>
+
+    <h4>Question 3</h4>
+
+    <p>What can AI audio tools help content creators do?</p>
+
+    <label class="option">
+        <input type="radio" name="q73" value="A">
+        Generate voiceovers quickly
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q73" value="B">
+        Manufacture smartphones
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q73" value="C">
+        Upgrade computer processors
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q73" value="D">
+        Build internet cables
+    </label>
+
+    <h4>Question 4</h4>
+
+    <p>Which type of content can be created using AI audio tools?</p>
+
+    <label class="option">
+        <input type="radio" name="q74" value="A">
+        Voiceovers and podcasts
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q74" value="B">
+        Computer chips
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q74" value="C">
+        Office furniture
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q74" value="D">
+        Network routers
+    </label>
+
+    <h4>Question 5</h4>
+
+    <p>What is a major benefit of AI-generated audio?</p>
+
+    <label class="option">
+        <input type="radio" name="q75" value="A">
+        Faster content production
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q75" value="B">
+        More manual work
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q75" value="C">
+        Larger computer cases
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q75" value="D">
+        More keyboard keys
+    </label>
+
+    <button class="btn" onclick="checkQuiz71()">
+        Submit Quiz
+    </button>
+
+    <div id="quiz71-result"></div>
+
+</div>
+
+</div>
+
+<div class="card text-lesson">
+
+    <h2>Lesson 7.2</h2>
+
+    <div class="text-lesson">
+
+        <h3>Creating Music with Suno AI</h3>
+
+        <p>
+            Suno AI is an AI-powered music generation platform that can create
+            complete songs from simple text prompts. Users can generate lyrics,
+            vocals, melodies, and instrumentals without traditional music
+            production skills.
+        </p>
+
+    <div class="info-box">
+
+        <h3>What is Suno AI?</h3>
+
+        <p>
+            Suno AI uses advanced artificial intelligence models to generate
+            original music. Users simply describe the type of song they want,
+            and the AI creates a complete track based on the prompt.
+        </p>
+
+        <div class="prompt-box">
+            Example Prompt:
+            <br><br>
+            "Create an upbeat motivational pop song about achieving goals and
+            staying productive."
+        </div>
+
+    <div class="info-box">
+
+        <h3>How Suno AI Works</h3>
+
+        <ul>
+             <li>Enter a text prompt.</li>
+            <li>Select a music style or genre.</li>
+            <li>Generate the song.</li>
+            <li>Review and refine the result.</li>
+            <li>Download or share the music.</li>
+        </ul>
+    </div>
+
+    <div class="info-box">
+
+        <h3>Popular Music Genres</h3>
+
+        <ul>
+            <li>Pop</li>
+            <li>Rock</li>
+            <li>Hip-Hop</li>
+            <li>Electronic</li>
+            <li>Jazz</li>
+            <li>Classical</li>
+            <li>Lo-Fi</li>
+            <li>Cinematic</li>
+        </ul>
+
+    </div>
+
+   <div class="prompt-box">
+            Business Example:
+            <br><br>
+        <p>
+            A marketing team uses Suno AI to generate background music for
+            promotional videos, reducing production costs and speeding up
+            content creation.
+        </p>
+
+    </div>
+
+    <div class="info-box">
+
+        <h3>Benefits of Suno AI</h3>
+
+        <ul>
+            <li>Fast music creation</li>
+            <li>No music production experience required</li>
+            <li>Supports multiple genres</li>
+            <li>Useful for content creators and businesses</li>
+            <li>Encourages creativity and experimentation</li>
+        </ul>
+
+    <div class="warning-box">
+
+        <h3>Responsible Use</h3>
+
+        <p>
+            Always respect copyright and intellectual property. AI-generated
+            music should be reviewed carefully before commercial use, and users
+            should follow the platform's licensing terms.
+        </p>
+
+    </div>
+    </div>
+    </div>
+    </div>
+
+<div class="video-section">
+
+<h3>Suno AI Music Creation</h3>
+
+<p>
+Create original songs, music, and soundtracks using AI.
+</p>
+
+<a href="https://drive.google.com/file/d/1sje8bG6UAforkRQuqsyKa0hFIzMtpLj5/view"
+target="_blank"
+class="btn">
+
+Watch Video
+
+</a>
+
+</div>
+
+<div class="activity-card">
+
+    <h3>Activity 7.2</h3>
+
+    <p>
+        Create a detailed Suno AI music prompt for a song you would like to generate.
+    </p>
+
+    <div class="prompt-box">
+
+        Example Prompt:
+
+        <br><br>
+
+        Create an uplifting pop song about achieving goals,
+        staying motivated, and never giving up.
+        Use energetic vocals, catchy melodies, and a positive mood.
+
+    </div>
+
+
+    <p>
+        Your prompt should include:
+    </p>
+
+    <ul class="activity-list">
+        <li>Music Genre</li>
+        <li>Song Theme</li>
+        <li>Mood or Emotion</li>
+        <li>Target Audience</li>
+        <li>Special Instructions</li>
+    </ul>
+
+    <textarea
+        id="activity72"
+        class="activity-input"
+        placeholder="Write your Suno AI music prompt here..."></textarea>
+
+    <button
+        class="btn"
+        onclick="checkActivity72()">
+        Submit Activity
+    </button>
+
+    <div id="activity72-result"></div>
+
+</div>
+
+<div class="quiz-card">
+
+    <h3>Quiz 7.2</h3>
+
+    <h4>Question 1</h4>
+
+    <p>
+        What is the primary purpose of Suno AI?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q721" value="A">
+        Create AI-generated music
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q721" value="B">
+        Edit videos
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q721" value="C">
+        Build websites
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q721" value="D">
+        Create spreadsheets
+    </label>
+
+    <h4>Question 2</h4>
+
+    <p>
+        What do users provide to generate music in Suno AI?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q722" value="A">
+        Hardware components
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q722" value="B">
+        Text prompts
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q722" value="C">
+        Computer code only
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q722" value="D">
+        Network settings
+    </label>
+
+    <h4>Question 3</h4>
+
+    <p>
+        Which of the following is a music genre that Suno AI can generate?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q723" value="A">
+        Pop
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q723" value="B">
+        Rock
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q723" value="C">
+        Hip-Hop
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q723" value="D">
+        All of the above
+    </label>
+
+    <h4>Question 4</h4>
+
+    <p>
+        What makes a good Suno AI prompt?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q724" value="A">
+        Clear genre, mood, and theme
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q724" value="B">
+        Random words only
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q724" value="C">
+        Empty input
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q724" value="D">
+        Hardware specifications
+    </label>
+
+    <h4>Question 5</h4>
+
+    <p>
+        Which is a benefit of using Suno AI?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q725" value="A">
+        Faster music creation
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q725" value="B">
+        Requires advanced music production skills
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q725" value="C">
+        Requires expensive studio equipment
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q725" value="D">
+        Cannot generate original songs
+    </label>
+
+    <button class="btn" onclick="checkQuiz72()">
+        Submit Quiz
+    </button>
+
+    <div id="quiz72-result"></div>
+
+</div>
+
+</div>
+
+<div class="card text-lesson">
+
+    <h2>Lesson 7.3</h2>
+
+    <div class="text-lesson">
+
+        <h3>AI Voice Generation with ElevenLabs</h3>
+
+        <p>
+            ElevenLabs is one of the most popular AI voice generation platforms.
+            It can convert written text into realistic human-like speech using
+            advanced artificial intelligence technology.
+        </p>
+
+
+    <div class="info-box">
+
+        <h3>What is ElevenLabs?</h3>
+
+        <p>
+            ElevenLabs is an AI-powered voice platform that allows users to
+            generate professional-quality voiceovers, narrations, and audio
+            content from simple text input.
+        </p>
+
+        <p>
+            It supports multiple languages, accents, and voice styles,
+            making it useful for creators, educators, businesses,
+            and marketers.
+        </p>
+
+
+    <div class="info-box">
+
+        <h3>Key Features</h3>
+
+        <ul>
+            <li>Text-to-Speech Generation</li>
+            <li>Multiple AI Voices</li>
+            <li>Multilingual Support</li>
+            <li>Voice Customization</li>
+            <li>Audio Download and Sharing</li>
+            <li>Professional Narration Quality</li>
+        </ul>
+
+  <div class="prompt-box">
+    Example Workflow:
+
+            Write Script →
+            Paste into ElevenLabs →
+            Generate Voice →
+            Download Audio →
+            Use in Video or Podcast
+        </p>
+
+    </div>
+
+    <div class="info-box">
+
+        <h3>Common Applications</h3>
+
+        <ul>
+            <li>YouTube Voiceovers</li>
+            <li>Podcast Narration</li>
+            <li>Audiobooks</li>
+            <li>E-Learning Courses</li>
+            <li>Business Presentations</li>
+            <li>Marketing Advertisements</li>
+        </ul>
+
+    </div>
+
+    <div class="info-box">
+
+        <h3>Benefits of AI Voice Generation</h3>
+
+        <ul>
+            <li>Faster audio production</li>
+            <li>Consistent voice quality</li>
+            <li>No recording equipment required</li>
+            <li>Supports multiple languages</li>
+            <li>Scalable content creation</li>
+        </ul>
+
+    </div>
+
+    <div class="warning-box">
+
+        <h3>Responsible Use of AI Voices</h3>
+
+        <p>
+            Always obtain permission before recreating or cloning another
+            person's voice. AI-generated voices should be used responsibly
+            and transparently in educational, business, and media projects.
+        </p>
+
+    </div>
+    </div>
+        </div>
+    </div>
+
+<div class="video-section">
+<h3>AI Voice Cloning</h3>
+
+<p>
+Learn how AI voice cloning works and its practical applications.
+</p>
+
+<a href="https://drive.google.com/file/d/1shWbwfMYXHLa1lDbiSpedOyF8rnTmDdG/view"
+target="_blank"
+class="btn">
+
+Watch Video
+
+</a>
+
+</div>
+
+<div class="activity-card">
+
+    <h3>Activity 7.3</h3>
+
+    <p>
+        Create a voiceover project using an AI voice generation tool such as ElevenLabs.
+    </p>
+
+    <div class="prompt-box">
+
+        Example:
+
+        <br><br>
+
+        Project Type: Educational Video
+
+        <br>
+
+        Audience: Students
+
+        <br>
+
+        Voice Style: Professional and Friendly
+
+        <br>
+
+        Topic: Introduction to Artificial Intelligence
+
+    </div>
+
+
+    <p>
+        Describe the following:
+    </p>
+
+    <ul class="activity-list">
+        <li>Project Type</li>
+        <li>Target Audience</li>
+        <li>Voice Style</li>
+        <li>Topic or Script Purpose</li>
+        <li>Expected Outcome</li>
+    </ul>
+
+    <textarea
+        id="activity73"
+        class="activity-input"
+        placeholder="Describe your AI voiceover project here..."></textarea>
+
+    <button
+        class="btn"
+        onclick="checkActivity73()">
+        Submit Activity
+    </button>
+
+    <div id="activity73-result"></div>
+
+</div>
+
+<div class="quiz-card">
+
+    <h3>Quiz 7.3</h3>
+
+    <h4>Question 1</h4>
+
+    <p>
+        What is the primary purpose of ElevenLabs?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q731" value="A">
+        AI Voice Generation
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q731" value="B">
+        Video Editing
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q731" value="C">
+        Website Development
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q731" value="D">
+        Spreadsheet Creation
+    </label>
+
+    <h4>Question 2</h4>
+
+    <p>
+        What technology does ElevenLabs primarily use?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q732" value="A">
+        Text-to-Speech
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q732" value="B">
+        Video Rendering
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q732" value="C">
+        Graphic Design
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q732" value="D">
+        Database Management
+    </label>
+
+    <h4>Question 3</h4>
+
+    <p>
+        Which of the following is a common use of ElevenLabs?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q733" value="A">
+        Podcast Narration
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q733" value="B">
+        Building Computer Hardware
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q733" value="C">
+        Installing Operating Systems
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q733" value="D">
+        Network Configuration
+    </label>
+
+    <h4>Question 4</h4>
+
+    <p>
+        What is one major benefit of AI voice generation?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q734" value="A">
+        Faster audio production
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q734" value="B">
+        Requires expensive microphones
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q734" value="C">
+        Requires a recording studio
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q734" value="D">
+        Increases manual editing work
+    </label>
+
+    <h4>Question 5</h4>
+
+    <p>
+        What should users do before recreating another person's voice?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q735" value="A">
+        Obtain permission
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q735" value="B">
+        Share it immediately
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q735" value="C">
+        Sell the voice online
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q735" value="D">
+        Skip the approval process
+    </label>
+
+    <button class="btn" onclick="checkQuiz73()">
+        Submit Quiz
+    </button>
+
+    <div id="quiz73-result"></div>
+
+</div>
+
+</div>
+
+<div class="premium-resource">
+
+    <h2>Module Challenge</h2>
+
+    <p>
+        Apply everything you learned about AI audio tools, music generation,
+        and AI voice creation by designing a complete AI-powered audio project.
+    </p>
+
+    <div class="mission-box">
+
+<h3>Your Mission</h3>
+        <p>
+            Create a detailed plan for an AI-generated audio project that could
+            be used for education, business, marketing, entertainment, or
+            content creation.
+        </p>
+
+    </div>
+
+    <div class="info-box">
+
+        <h4>Requirements</h4>
+
+        <ul class="challenge-list">
+            <li><strong>Project Type:</strong> Podcast, Advertisement, Audiobook, Song, Video Voiceover, etc.</li>
+
+            <li><strong>AI Tool:</strong> Identify the AI audio tool you will use.</li>
+
+            <li><strong>Target Audience:</strong> Who will listen to the content?</li>
+
+            <li><strong>Audio Content:</strong> Describe what will be created.</li>
+
+            <li><strong>Benefits:</strong> Explain how AI improves the project.</li>
+
+            <li><strong>Responsible Use:</strong> Describe how you will use AI audio ethically.</li>
+        </ul>
+
+    </div>
+
+    <div class="tip-box">
+
+        <strong>Pro Tip:</strong>
+
+        The best projects clearly explain the purpose, audience,
+        AI tools used, and expected outcomes.
+
+    </div>
+
+<div class="activity-card">
+
+    <h3>Submit Your Challenge</h3>
+
+    <p>
+        Describe your complete AI audio project plan.
+    </p>
+
+    <textarea
+        id="challenge7"
+        class="activity-input"
+        placeholder="Describe your AI audio project here..."></textarea>
+
+    <button
+        class="btn"
+        onclick="submitChallenge7()">
+        Submit Challenge
+    </button>
+
+    <div id="challenge7-result"></div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+    <h2>Completion Checklist</h2>
+
+    <p>
+        Complete all lessons, activities, quizzes, and the module challenge to finish Phase 7.
+    </p>
+
+    <label class="check-item">
+        <input type="checkbox" id="lesson71" onchange="updateProgress7()">
+        Lesson 7.1 Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" id="lesson72" onchange="updateProgress7()">
+        Lesson 7.2 Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" id="lesson73" onchange="updateProgress7()">
+        Lesson 7.3 Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" id="activities7" onchange="updateProgress7()">
+        Activities Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" id="quizzes7" onchange="updateProgress7()">
+        Quizzes Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" id="challenge7" onchange="updateProgress7()">
+        Module Challenge Completed
+    </label>
+
+    <div class="progress-text" id="progress7">
+        Progress: 0 / 6 Completed
+    </div>
+
+</div>
+
+<div class="phase-btn-container">
+
+<a id="phase8Btn"
+   href="phase8.html"
+   class="btn"
+   style="pointer-events:none; opacity:0.5;">
+   Proceed to Phase 8
+</a>
+
+</div>
+</div>
+
+<footer>
+
+<a href="../curriculum.html" class="btn">
+Back to Curriculum
+</a>
+
+</footer>
+
+<script>
+
+function checkActivity71() {
+
+    const answer =
+        document.getElementById("activity71").value;
+
+    const result =
+        document.getElementById("activity71-result");
+
+    if (answer.trim().length >= 50) {
+
+        result.innerHTML = `
+            <div class="success-box">
+                ✅ Activity Completed!
+            </div>
+        `;
+
+    } else {
+
+        result.innerHTML = `
+            <div class="error-box">
+                Please provide a more detailed response.
+            </div>
+        `;
+    }
+}
+
+
+/* ==========================
+   AUTO SAVE ACTIVITY 7.1
+   ========================== */
+
+const activity71 =
+    document.getElementById("activity71");
+
+if (activity71) {
+
+    // Load saved answer
+    activity71.value =
+        localStorage.getItem("phase7_activity71") || "";
+
+    // Auto save habang nagta-type
+    activity71.addEventListener(
+        "input",
+        function () {
+
+            localStorage.setItem(
+                "phase7_activity71",
+                this.value
+            );
+
+        }
+    );
+
+}
+
+function checkQuiz71() {
+
+    let score = 0;
+
+    const q71 =
+        document.querySelector('input[name="q71"]:checked');
+
+    const q72 =
+        document.querySelector('input[name="q72"]:checked');
+
+    const q73 =
+        document.querySelector('input[name="q73"]:checked');
+
+    const q74 =
+        document.querySelector('input[name="q74"]:checked');
+
+    const q75 =
+        document.querySelector('input[name="q75"]:checked');
+
+    if (q71 && q71.value === "A") score++;
+    if (q72 && q72.value === "B") score++;
+    if (q73 && q73.value === "A") score++;
+    if (q74 && q74.value === "A") score++;
+    if (q75 && q75.value === "A") score++;
+
+    document.getElementById("quiz71-result").innerHTML = `
+        <div class="success-box">
+            ✅ Your Score: ${score}/5
+        </div>
+    `;
+}
+
+
+/* ==========================
+   QUIZ 7.1 AUTO SAVE
+   ========================== */
+
+document
+    .querySelectorAll('input[name="q71"]')
+    .forEach(function(radio) {
+
+        radio.addEventListener("change", function() {
+
+            localStorage.setItem(
+                "phase7_q71",
+                this.value
+            );
+
+        });
+
+    });
+
+document
+    .querySelectorAll('input[name="q72"]')
+    .forEach(function(radio) {
+
+        radio.addEventListener("change", function() {
+
+            localStorage.setItem(
+                "phase7_q72",
+                this.value
+            );
+
+        });
+
+    });
+
+document
+    .querySelectorAll('input[name="q73"]')
+    .forEach(function(radio) {
+
+        radio.addEventListener("change", function() {
+
+            localStorage.setItem(
+                "phase7_q73",
+                this.value
+            );
+
+        });
+
+    });
+
+document
+    .querySelectorAll('input[name="q74"]')
+    .forEach(function(radio) {
+
+        radio.addEventListener("change", function() {
+
+            localStorage.setItem(
+                "phase7_q74",
+                this.value
+            );
+
+        });
+
+    });
+
+document
+    .querySelectorAll('input[name="q75"]')
+    .forEach(function(radio) {
+
+        radio.addEventListener("change", function() {
+
+            localStorage.setItem(
+                "phase7_q75",
+                this.value
+            );
+
+        });
+
+    });
+
+
+/* ==========================
+   LOAD SAVED ANSWERS
+   ========================== */
+
+window.addEventListener("load", function() {
+
+    const savedQ71 =
+        localStorage.getItem("phase7_q71");
+
+    if (savedQ71) {
+
+        const radio =
+            document.querySelector(
+                `input[name="q71"][value="${savedQ71}"]`
+            );
+
+        if (radio) radio.checked = true;
+    }
+
+    const savedQ72 =
+        localStorage.getItem("phase7_q72");
+
+    if (savedQ72) {
+
+        const radio =
+            document.querySelector(
+                `input[name="q72"][value="${savedQ72}"]`
+            );
+
+        if (radio) radio.checked = true;
+    }
+
+    const savedQ73 =
+        localStorage.getItem("phase7_q73");
+
+    if (savedQ73) {
+
+        const radio =
+            document.querySelector(
+                `input[name="q73"][value="${savedQ73}"]`
+            );
+
+        if (radio) radio.checked = true;
+    }
+
+    const savedQ74 =
+        localStorage.getItem("phase7_q74");
+
+    if (savedQ74) {
+
+        const radio =
+            document.querySelector(
+                `input[name="q74"][value="${savedQ74}"]`
+            );
+
+        if (radio) radio.checked = true;
+    }
+
+    const savedQ75 =
+        localStorage.getItem("phase7_q75");
+
+    if (savedQ75) {
+
+        const radio =
+            document.querySelector(
+                `input[name="q75"][value="${savedQ75}"]`
+            );
+
+        if (radio) radio.checked = true;
+    }
+
+});
+
+function checkActivity72() {
+
+    const answer =
+        document.getElementById("activity72").value.trim();
+
+    const result =
+        document.getElementById("activity72-result");
+
+    if (answer.length >= 80) {
+
+        result.innerHTML =
+            `<div class="success-box">
+                ✅ Excellent! Your AI music prompt contains enough detail for music generation.
+            </div>`;
+
+    } else {
+
+        result.innerHTML =
+            `<div class="error-box">
+                ❌ Please provide more details about the genre, theme, mood, audience, and instructions.
+            </div>`;
+    }
+}
+
+
+/* ==========================
+   ACTIVITY 7.2 AUTO SAVE
+   ========================== */
+
+const activity72 =
+    document.getElementById("activity72");
+
+if (activity72) {
+
+    // Load saved answer
+    activity72.value =
+        localStorage.getItem("phase7_activity72") || "";
+
+    // Save while typing
+    activity72.addEventListener(
+        "input",
+        function () {
+
+            localStorage.setItem(
+                "phase7_activity72",
+                this.value
+            );
+
+        }
+    );
+
+}
+
+function checkQuiz72() {
+
+    let score = 0;
+
+    const q721 =
+        document.querySelector('input[name="q721"]:checked');
+
+    const q722 =
+        document.querySelector('input[name="q722"]:checked');
+
+    const q723 =
+        document.querySelector('input[name="q723"]:checked');
+
+    const q724 =
+        document.querySelector('input[name="q724"]:checked');
+
+    const q725 =
+        document.querySelector('input[name="q725"]:checked');
+
+    if (q721 && q721.value === "A") score++;
+    if (q722 && q722.value === "B") score++;
+    if (q723 && q723.value === "D") score++;
+    if (q724 && q724.value === "A") score++;
+    if (q725 && q725.value === "A") score++;
+
+    document.getElementById("quiz72-result").innerHTML =
+        `<div class="success-box">
+            Your Score: ${score}/5
+        </div>`;
+}
+
+
+/* ==========================
+   QUIZ 7.2 AUTO SAVE
+   ========================== */
+
+["q721","q722","q723","q724","q725"].forEach(function(question){
+
+    document
+        .querySelectorAll(`input[name="${question}"]`)
+        .forEach(function(radio){
+
+            radio.addEventListener("change", function(){
+
+                localStorage.setItem(
+                    "phase7_" + question,
+                    this.value
+                );
+
+            });
+
+        });
+
+});
+
+
+/* ==========================
+   LOAD SAVED ANSWERS
+   ========================== */
+
+window.addEventListener("load", function(){
+
+    ["q721","q722","q723","q724","q725"].forEach(function(question){
+
+        const saved =
+            localStorage.getItem(
+                "phase7_" + question
+            );
+
+        if(saved){
+
+            const radio =
+                document.querySelector(
+                    `input[name="${question}"][value="${saved}"]`
+                );
+
+            if(radio){
+                radio.checked = true;
+            }
+        }
+
+    });
+
+});
+
+function checkActivity73() {
+
+    const answer =
+        document.getElementById("activity73").value.trim();
+
+    const result =
+        document.getElementById("activity73-result");
+
+    if (answer.length >= 80) {
+
+        result.innerHTML =
+            `<div class="success-box">
+                ✅ Excellent! Your AI voiceover project plan is complete.
+            </div>`;
+
+    } else {
+
+        result.innerHTML =
+            `<div class="error-box">
+                ❌ Please provide more details about your project, audience, voice style, and expected outcome.
+            </div>`;
+    }
+}
+
+
+/* ==========================
+   ACTIVITY 7.3 AUTO SAVE
+   ========================== */
+
+const activity73 =
+    document.getElementById("activity73");
+
+if (activity73) {
+
+    // Load saved answer
+    activity73.value =
+        localStorage.getItem("phase7_activity73") || "";
+
+    // Save while typing
+    activity73.addEventListener(
+        "input",
+        function () {
+
+            localStorage.setItem(
+                "phase7_activity73",
+                this.value
+            );
+
+        }
+    );
+
+}
+
+function checkQuiz73() {
+
+    let score = 0;
+
+    const q731 =
+        document.querySelector('input[name="q731"]:checked');
+
+    const q732 =
+        document.querySelector('input[name="q732"]:checked');
+
+    const q733 =
+        document.querySelector('input[name="q733"]:checked');
+
+    const q734 =
+        document.querySelector('input[name="q734"]:checked');
+
+    const q735 =
+        document.querySelector('input[name="q735"]:checked');
+
+    if (q731 && q731.value === "A") score++;
+    if (q732 && q732.value === "A") score++;
+    if (q733 && q733.value === "A") score++;
+    if (q734 && q734.value === "A") score++;
+    if (q735 && q735.value === "A") score++;
+
+    document.getElementById("quiz73-result").innerHTML =
+        `<div class="success-box">
+            Your Score: ${score}/5
+        </div>`;
+}
+
+
+/* ==========================
+   QUIZ 7.3 AUTO SAVE
+   ========================== */
+
+["q731", "q732", "q733", "q734", "q735"].forEach(function(question){
+
+    document
+        .querySelectorAll(`input[name="${question}"]`)
+        .forEach(function(radio){
+
+            radio.addEventListener("change", function(){
+
+                localStorage.setItem(
+                    "phase7_" + question,
+                    this.value
+                );
+
+            });
+
+        });
+
+});
+
+
+/* ==========================
+   LOAD SAVED ANSWERS
+   ========================== */
+
+window.addEventListener("load", function(){
+
+    ["q731", "q732", "q733", "q734", "q735"].forEach(function(question){
+
+        const saved =
+            localStorage.getItem(
+                "phase7_" + question
+            );
+
+        if(saved){
+
+            const radio =
+                document.querySelector(
+                    `input[name="${question}"][value="${saved}"]`
+                );
+
+            if(radio){
+                radio.checked = true;
+            }
+        }
+
+    });
+
+});
+
+function submitChallenge7() {
+
+    const answer =
+        document.getElementById("challenge7").value.trim();
+
+    const result =
+        document.getElementById("challenge7-result");
+
+    if (answer.length >= 120) {
+
+        result.innerHTML =
+            `<div class="success-box">
+                🎉 Module Challenge Completed!
+                <br>
+                Great job applying AI audio creation concepts.
+            </div>`;
+
+        result.className = "success-box";
+
+    } else {
+
+        result.innerHTML =
+            `<div class="error-box">
+                ❌ Please provide a more detailed project plan.
+            </div>`;
+
+        result.className = "error-box";
+    }
+}
+
+
+/* ==========================
+   MODULE CHALLENGE 7
+   AUTO SAVE
+   ========================== */
+
+const challenge7 =
+    document.getElementById("challenge7");
+
+if (challenge7) {
+
+    // Load saved answer
+    challenge7.value =
+        localStorage.getItem("phase7_challenge7") || "";
+
+    // Save while typing
+    challenge7.addEventListener(
+        "input",
+        function () {
+
+            localStorage.setItem(
+                "phase7_challenge7",
+                this.value
+            );
+
+        }
+    );
+
+}
+
+function updateProgress7() {
+
+    const checks = document.querySelectorAll('.check-item input');
+
+    let completed = 0;
+
+    checks.forEach(check => {
+        if (check.checked) completed++;
+    });
+
+    document.getElementById("progress7").innerHTML =
+        `Progress: ${completed}/${checks.length} Completed`;
+
+    const phaseBtn = document.getElementById("phase8Btn");
+
+    if (completed === checks.length) {
+
+        phaseBtn.style.pointerEvents = "auto";
+        phaseBtn.style.opacity = "1";
+
+    } else {
+
+        phaseBtn.style.pointerEvents = "none";
+        phaseBtn.style.opacity = "0.5";
+
+    }
+}
+
+document.querySelectorAll('.check-item input').forEach(check => {
+    check.addEventListener("change", updateProgress7);
+});
+
+updateProgress7();
+</script>
+
+
+</body>
+</html>

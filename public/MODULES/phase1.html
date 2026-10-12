@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI COMMAND | Phase 1 - AI Foundations</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+}
+
+.module-header{
+    text-align:center;
+    padding:60px 20px 50px;
+    margin-bottom:40px;
+}
+
+.phase-badge{
+    display:inline-block;
+    padding:10px 20px;
+    border:1px solid rgba(0,140,255,.3);
+    border-radius:50px;
+    background:rgba(0,140,255,.08);
+    color:#4da6ff;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:1px;
+    margin-bottom:20px;
+}
+
+.module-header h1{
+    font-size:48px;
+    font-weight:800;
+    color:white;
+    margin-bottom:15px;
+    line-height:1.2;
+}
+
+.module-header h1 span{
+    color:#4da6ff;
+}
+
+.module-subtitle{
+    max-width:800px;
+    margin:auto;
+    font-size:18px;
+    line-height:1.8;
+    color:#b8c7e0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    background: rgba(25,35,60,0.95);
+    border: 1px solid rgba(80,140,255,0.3);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px auto;
+max-width: 800px;
+}
+
+.card p {
+    font-size: 30px;
+    line-height: 1.8;
+    color: #d6e4ff;
+}
+
+.card ul {
+    margin-top: 10px;
+    padding-left: 25px;
+}
+
+.card li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    color: #d6e4ff;
+        font-size: 30px;
+
+}
+
+.card h2 {
+    margin-bottom: 15px;
+            font-size: 45px;
+
+}
+
+.lesson{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(77,124,255,.25);
+    border-radius:12px;
+
+    padding:25px;
+    margin-top:20px;
+}
+
+.lesson-info{
+    flex:1;
+}
+
+.lesson-info h3{
+    color:#69a7ff;
+    margin-bottom:10px;
+}
+
+.lesson-info p{
+    color:#d0d7ff;
+}
+
+.btn{
+    white-space:nowrap;
+}
+
+.lesson-action{
+    margin-left:20px;
+}
+
+/* Lesson Content */
+.lesson-box h3 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.lesson-box h4,
+.info-box h4 {
+    font-size: 25px;
+    font-weight: 600;
+       margin-top: 30px;
+    margin-bottom: 12px;
+    color: #4da3ff;
+}
+
+.lesson-box p,
+.info-box p {
+    font-size: 25px;
+       margin-bottom: 20px;
+    line-height: 1.8;
+    color: #d6e4ff;
+}
+
+.info-box ul li {
+    font-size: 25px;
+    line-height: 1.8;
+    margin-bottom: 8px;
+}
+
+.prompt-box {
+    background: rgba(77,163,255,0.08);
+    border-left: 4px solid #4da3ff;
+    padding: 18px;
+    margin: 20px 0;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.video-section {
+    text-align: center;
+    margin: 40px 0;
+    padding: 25px;
+    border: 1px solid rgba(77,163,255,.3);
+    border-radius: 12px;
+    background: rgba(77,163,255,.05);
+}
+
+.video-section h3 {
+    margin-bottom: 10px;
+    color: #4da3ff;
+}
+
+.video-section p {
+    margin-bottom: 20px;
+}
+
+h1,h2{
+color:#3b82f6;
+}
+
+.btn{
+display:inline-block;
+background:#3b82f6;
+padding:12px 20px;
+border-radius:8px;
+color:white;
+text-decoration:none;
+margin-top:15px;
+}
+
+.card,
+.lesson,
+.activity-card,
+.quiz-card,
+.premium-resource {
+    width: 100%;
+    max-width: 1200px;
+    margin: 25px auto;
+}
+
+.checklist label{
+display:block;
+margin-bottom:10px;
+}
+
+footer{
+text-align:center;
+padding:40px;
+}
+
+/* PREMIUM MODULE SECTIONS */
+
+.premium-resource,
+.activity-card,
+.quiz-card,
+.text-lesson{
+   padding:30px;
+    border-radius:20px;
+
+    background:rgba(15,23,42,.8);
+
+    border:1px solid rgba(96,165,250,.2);
+
+    box-shadow:
+    0 0 30px rgba(59,130,246,.08);
+}
+
+.premium-resource h2,
+.activity-card h3,
+.quiz-card h3,
+.text-lesson h3{
+    color:#60a5fa;
+    margin-bottom:15px;
+            font-size: 35px;
+
+    
+}
+
+.premium-resource .template-list li{
+    font-size: 30px;
+    line-height: 2;
+}
+
+.premium-resource p,
+.activity-card p,
+.quiz-card p,
+.text-lesson p{
+    color:#dbeafe;
+    line-height:1.8;
+     font-size: 30px;
+
+}
+
+.prompt-box{
+    background: rgba(96,165,250,0.12);
+    border-left:4px solid #60a5fa;
+    padding:15px;
+    border-radius:10px;
+    margin:15px 0;
+    color:white;
+      font-size: 25px;
+}
+
+.tip-box{
+    background: rgba(59,130,246,0.12);
+    border:1px solid rgba(96,165,250,0.25);
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+    color:#93c5fd;
+                font-size: 25px;
+
+}
+
+.template-list{
+    padding-left:20px;
+}
+
+.template-list li{
+    margin-bottom:10px;
+    color:#dbeafe;
+}
+
+.quiz-question{
+    margin-top:20px;
+    margin-bottom:10px;
+    color:white;
+    font-weight:600;
+}
+
+.quiz-card ul,
+.activity-card ul{
+    padding-left:25px;
+}
+
+.quiz-card li,
+.activity-card li{
+    margin-bottom:8px;
+    color:#dbeafe;
+}
+
+textarea{
+    width:100%;
+    min-height:120px;
+    background:#101d3d;
+    border:1px solid #2d5cff;
+    border-radius:10px;
+    color:white;
+    padding:15px;
+    margin:15px 0;
+}
+
+
+
+.quiz-card label{
+    display:block;
+    padding:12px 15px;
+    margin:10px 0;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(77,124,255,.2);
+    border-radius:10px;
+    transition:.3s;
+        font-size: 25px;
+    font-weight: 500;
+}
+
+.quiz-card label:hover{
+    border-color:#4d7cff;
+    background:rgba(77,124,255,.08);
+}
+
+.quiz-card input[type="radio"]{
+    margin-right:10px;
+    transform:scale(1.2);
+}
+
+.quiz-card h4{
+    color:#69a7ff;
+    margin-top:25px;
+    margin-bottom:10px;
+    font-size:25px;
+
+}
+
+.quiz-card p{
+    margin-bottom:15px;
+}
+
+#quiz21-result{
+    margin-top:20px;
+    font-weight:600;
+    color:#4cff88;
+}
+
+.quiz-result{
+    margin-top:20px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(76,255,136,.1);
+    border:1px solid rgba(76,255,136,.3);
+    color:#4cff88;
+    font-weight:600;
+}
+
+.quiz-result{
+    margin-top:20px;
+    padding:15px 20px;
+    border-radius:12px;
+    font-size:25px;
+    font-weight:700;
+    backdrop-filter: blur(10px);
+}
+
+.quiz-result.success{
+    background: rgba(0,255,120,.08);
+    border:1px solid rgba(0,255,120,.4);
+    box-shadow: 0 0 20px rgba(0,255,120,.15);
+    color:#7dffb2;
+}
+
+.quiz-result.fail{
+    background: rgba(255,60,60,.08);
+    border:1px solid rgba(255,60,60,.4);
+    box-shadow: 0 0 20px rgba(255,60,60,.15);
+    color:#ff8b8b;
+}
+
+.activity-input{
+    width:100%;
+    min-height:150px;
+    margin-top:15px;
+    padding:15px;
+    background:#162544;
+    border:1px solid #2d4f8f;
+    border-radius:10px;
+    color:white;
+    resize:vertical;
+    font-size:25px;
+}
+
+.activity-input:focus{
+    outline:none;
+    border-color:#4f8cff;
+}
+
+.prompt-tip{
+    margin-top:10px;
+    padding:12px;
+    background:rgba(79,140,255,.08);
+    border:1px solid rgba(79,140,255,.25);
+    border-radius:8px;
+    color:#9bbcff;
+    font-size:20px;
+}
+
+.quiz-option{
+    display:block;
+    padding:12px 15px;
+    margin:10px 0;
+    background:#162544;
+    border:1px solid #29477e;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.quiz-option:hover{
+    border-color:#4f8cff;
+    background:#1a2d52;
+}
+
+.quiz-option input{
+    margin-right:10px;
+}
+
+.comparison-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top:20px;
+}
+
+.case-card{
+    background:#111d3b;
+    border:1px solid #2b4f8a;
+    border-radius:12px;
+    padding:20px;
+}
+
+.bad-prompt{
+    border-left:4px solid #ff6b6b;
+}
+
+.good-prompt{
+    border-left:4px solid #4ade80;
+}
+
+.case-card ul{
+    margin-top:15px;
+    padding-left:20px;
+}
+
+.case-card li{
+    margin-bottom:8px;
+}
+
+.case-card ul li {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.challenge-box{
+    background:#101c3d;
+    border:1px solid #2f5cff;
+    border-radius:12px;
+    padding:20px;
+    margin:20px 0;
+}
+
+.activity-input{
+    width:100%;
+    background:#16284d;
+    border:1px solid #2f5cff;
+    color:white;
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+
+
+.result-success{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(0,255,120,.15);
+    border:1px solid #00ff88;
+    color:#00ff88;
+}
+
+.result-error{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(255,70,70,.15);
+    border:1px solid #ff5555;
+    color:#ff5555;
+}
+
+.completion-card{
+    margin-top:30px;
+}
+
+.check-item{
+    display:block;
+    background:#16284d;
+    border:1px solid rgba(255,255,255,.08);
+    padding:14px 18px;
+    border-radius:10px;
+    margin:10px 0;
+    cursor:pointer;
+     font-size: 25px;
+}
+
+.check-item input{
+    margin-right:10px;
+    cursor:pointer;
+}
+
+#progressText{
+    margin-top:15px;
+    font-weight:bold;
+    color:#58a6ff;
+}
+
+.check-item input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-right: 12px;
+}
+
+.phase-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#phase3Btn {
+    padding: 15px 35px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+.grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin:25px 0;
+}
+
+.success-message{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(0,255,100,.1);
+    border:1px solid #00ff88;
+    color:#00ff88;
+}
+
+.error-message{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(255,0,0,.1);
+    border:1px solid #ff4d4d;
+    color:#ff4d4d;
+}
+
+.challenge-card{
+    background:#0f2348;
+    border:1px solid #2f5fa8;
+    border-radius:12px;
+    padding:25px;
+    margin-top:30px;
+}
+
+.challenge-card h2{
+    color:#4da3ff;
+    margin-bottom:15px;
+}
+
+
+.challenge-box{
+    background:#152c54;
+    border:1px solid #2f5fa8;
+    border-radius:10px;
+    padding:20px;
+    margin-top:15px;
+}
+
+
+
+.challenge-box ul{
+    margin:15px 0;
+    padding-left:20px;
+        font-size: 25px;
+
+}
+
+.challenge-box li{
+    margin-bottom:8px;
+}
+
+.challenge-card h4 {
+    font-size: 20px;
+    color: #4da3ff;
+    margin-bottom: 10px;
+}
+
+.challenge-card ul {
+    font-size: 25px;
+    line-height: 1.8;
+    margin-left: 20px;
+}
+
+.challenge-card li {
+    margin-bottom: 8px;
+}
+
+.challenge-list {
+    font-size: 25px;
+    line-height: 1.8;
+    padding-left: 20px;
+}
+
+.challenge-list li {
+    margin-bottom: 10px;
+}
+
+.challenge-input{
+    font-size: 25px;
+    line-height: 1.8;
+    padding: 18px;
+}
+
+</style>
+<script type="module">
+import { auth, onAuthStateChanged }
+from "./firebase-config.js";
+
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        window.location.href = "login.html";
+    }
+});
+</script>
+
+</head>
+
+<body>
+
+<header class="module-header">
+
+    <span class="phase-badge">
+         AI COMMAND ACADEMY
+    </span>
+
+  <h1>
+    Phase 1:
+    <span>AI Foundations</span>
+
+    <p class="module-subtitle">
+       Build your AI knowledge from the ground up.
+    </p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+    <h2>Module Overview</h2>
+
+   <p>
+This module introduces the fundamentals of Artificial Intelligence (AI),
+including how AI systems work, where they are used in everyday life,
+and why they are becoming essential tools for modern professionals.
+
+You will explore Generative AI, AI chatbots, practical applications,
+and important safety considerations while developing the mindset needed
+to work effectively with AI technologies.
+
+By the end of this module, you will understand the core concepts of AI,
+identify real-world use cases, and confidently begin your AI learning journey.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Learning Objectives</h2>
+
+<ul>
+<li>How AI systems make decisions</li>
+<li>The difference between AI and Generative AI</li>
+<li>Popular AI tools used by professionals</li>
+<li>How AI chatbots work</li>
+<li>AI safety and responsible usage</li>
+<li>Practical AI applications for work and business</li>
+
+</ul>
+
+</div>
+</div>
+
+<div class="card text-lesson">
+
+<h2>Lesson 1.1</h2>
+
+<div class="text-lesson">
+
+<h3>Introduction to Artificial Intelligence</h3>
+
+<p>
+Artificial Intelligence (AI) is a branch of computer science that enables machines
+to perform tasks that normally require human intelligence. These tasks include
+understanding language, recognizing patterns, making decisions, solving problems,
+and generating content.
+
+Today, AI is used in search engines, virtual assistants, recommendation systems,
+chatbots, healthcare, education, marketing, and many other industries.
+</p>
+
+<div class="info-box">
+<h3>What is Artificial Intelligence?</h3>
+
+<p>
+AI refers to computer systems that can analyze information, learn from data,
+and perform tasks with a level of intelligence similar to humans.
+
+Unlike traditional software that follows fixed rules, AI can recognize patterns
+and improve its performance based on data and experience.
+</p>
+
+<div class="prompt-box">
+Example: Netflix recommends movies based on your viewing history using AI.
+</div>
+
+<div class="info-box">
+
+<h4>Common Uses of AI</h4>
+
+<ul>
+<li>Virtual Assistants (Siri, Alexa, Google Assistant)</li>
+<li>Chatbots and Customer Support</li>
+<li>Content Creation</li>
+<li>Image Generation</li>
+<li>Translation Services</li>
+<li>Healthcare Diagnostics</li>
+<li>Recommendation Systems</li>
+</ul>
+
+</div>
+
+<div class="info-box">
+
+<h4>Benefits of AI</h4>
+
+<ul>
+<li>Automates repetitive tasks</li>
+<li>Saves time and increases productivity</li>
+<li>Provides data-driven insights</li>
+<li>Improves customer experiences</li>
+<li>Supports decision-making</li>
+<li>Scales business operations efficiently</li>
+</ul>
+
+</div>
+</div>
+</div>
+
+<div class="video-section">
+<h3>Introduction to Artificial Intelligence</h3>
+
+<p>
+Learn the basics of AI, why it matters, and how it is used today.
+</p>
+
+<a href="https://drive.google.com/file/d/1g3YBcYAWrGwtiLrzEcEC4N_0CKsYYRJ1/preview"
+   target="_blank"
+   class="btn">
+
+   Watch Video
+
+</a>
+
+</div>
+
+<div class="activity-card">
+
+<h3>Activity 1.1</h3>
+
+<p>
+Identify three ways AI is already being used in your daily life.
+</p>
+
+<div class="tip-box">
+Think about apps, websites, social media platforms, or devices you use every day.
+</div>
+
+<textarea
+id="activity11"
+class="activity-input"
+placeholder="Example: YouTube recommendations, Google Maps navigation, ChatGPT..."
+></textarea>
+
+<button class="btn" onclick="checkActivity11()">
+Submit Activity
+</button>
+
+<div id="activity11-result"></div>
+
+</div>
+
+<div class="quiz-card">
+
+<h3>Quiz 1.1</h3>
+
+<h4>Question 1</h4>
+
+<p>
+What is the primary purpose of Artificial Intelligence?
+</p>
+
+<label class="option">
+<input type="radio" name="q11" value="A">
+Create physical robots only
+</label>
+
+<label class="option">
+<input type="radio" name="q11" value="B">
+Perform tasks that normally require human intelligence
+</label>
+
+<label class="option">
+<input type="radio" name="q11" value="C">
+Replace all computer software
+</label>
+
+<label class="option">
+<input type="radio" name="q11" value="D">
+Store files on the internet
+</label>
+
+<button class="btn" onclick="checkQuiz11()">
+Submit Quiz
+</button>
+
+<div id="quiz11-result"></div>
+
+</div>
+</div>
+</div>
+
+<div class="card text-lesson">
+
+<h2>Lesson 1.2</h2>
+
+<div class="text-lesson">
+
+<h3>Top AI Tools You Should Know</h3>
+
+<p>
+Artificial Intelligence has become more accessible than ever. Today, professionals,
+students, entrepreneurs, and content creators use AI tools to save time, automate work,
+generate ideas, and improve productivity.
+
+Each AI tool has unique strengths. Some are designed for writing and research,
+while others specialize in image generation, coding, automation, or business workflows.
+</p>
+
+
+<h3>Why Learn AI Tools?</h3>
+
+<p>
+Understanding the capabilities of different AI tools allows you to choose the right
+tool for specific tasks. Instead of doing repetitive work manually, AI can help
+you brainstorm ideas, create content, analyze information, and automate processes.
+</p>
+
+<div class="prompt-box">
+Example: A marketer can use ChatGPT to write social media posts, Canva AI to design graphics,
+and Grammarly to improve writing quality.
+</div>
+
+<div class="info-box">
+
+<h4>Popular AI Tools</h4>
+
+<ul>
+<li><strong>ChatGPT</strong> — Writing, research, brainstorming, productivity</li>
+<li><strong>Claude</strong> — Long-form analysis and document processing</li>
+<li><strong>Gemini</strong> — Google ecosystem integration and research</li>
+<li><strong>Grok</strong> — Real-time information and conversational AI</li>
+<li><strong>Kimi</strong> — Large-context document understanding</li>
+<li><strong>Canva AI</strong> — Design and visual content creation</li>
+<li><strong>Gamma</strong> — AI presentations and slide generation</li>
+</ul>
+
+
+<div class="info-box">
+
+<h4>Choosing the Right Tool</h4>
+
+<ul>
+<li>Writing articles → ChatGPT or Claude</li>
+<li>Research projects → Gemini or Claude</li>
+<li>Presentation creation → Gamma</li>
+<li>Graphic design → Canva AI</li>
+<li>Business productivity → ChatGPT + automation tools</li>
+<li>Document analysis → Claude or Kimi</li>
+</ul>
+
+
+<div class="info-box">
+
+<h4>Best Practices When Using AI Tools</h4>
+
+<ul>
+<li>Always verify important information</li>
+<li>Provide clear instructions</li>
+<li>Use AI as an assistant, not a replacement for critical thinking</li>
+<li>Review outputs before publishing</li>
+<li>Protect sensitive information</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="video-section">
+<h3>Top AI Tools You Should Know</h3>
+
+<p>
+
+Explore ChatGPT, Claude, Gemini, Grok, Kimi and other popular AI tools.
+
+</p>
+
+<a href="https://drive.google.com/file/d/1FFPRbRa7iq4vzCzc_1qoxMvRwVqGmy8g/preview"
+   target="_blank"
+   class="btn">
+    Watch Video
+</a>
+
+</div>
+
+<div class="activity-card">
+
+<h3>Activity 1.2</h3>
+
+<p>
+Choose one AI tool and explain how you would use it in your work, studies,
+or daily life.
+</p>
+
+<div class="tip-box">
+Describe the tool, the task you want to accomplish, and how AI can help.
+</div>
+
+<textarea
+id="activity12"
+class="activity-input"
+placeholder="Example: I would use ChatGPT to create social media content for my business..."
+></textarea>
+
+<button class="btn" onclick="checkActivity12()">
+Submit Activity
+</button>
+
+<div id="activity12-result"></div>
+
+</div>
+
+<div class="quiz-card">
+
+<h3>Quiz 1.2</h3>
+
+<h4>Question 1</h4>
+
+<p>
+Which AI tool is commonly used for writing, brainstorming, and productivity?
+</p>
+
+<label class="option">
+<input type="radio" name="q12" value="A">
+Canva AI
+</label>
+
+<label class="option">
+<input type="radio" name="q12" value="B">
+ChatGPT
+</label>
+
+<label class="option">
+<input type="radio" name="q12" value="C">
+Photoshop
+</label>
+
+<label class="option">
+<input type="radio" name="q12" value="D">
+Excel
+</label>
+
+<button class="btn" onclick="checkQuiz12()">
+Submit Quiz
+</button>
+
+<div id="quiz12-result"></div>
+
+</div>
+</div>
+
+
+<div class="card text-lesson">
+
+<h2>Lesson 1.3</h2>
+
+<div class="text-lesson">
+
+<h3>AI Chatbots Explained</h3>
+
+<p>
+AI chatbots are software applications that use Artificial Intelligence to
+understand questions, process information, and generate human-like responses.
+
+Modern AI chatbots can assist with writing, research, customer support,
+content creation, learning, coding, brainstorming, and productivity tasks.
+
+Unlike traditional chatbots that follow pre-programmed scripts, AI chatbots
+can understand context, adapt to conversations, and generate original responses.
+</p>
+
+
+<h3>How AI Chatbots Work</h3>
+
+<p>
+AI chatbots are trained on large amounts of data and use Large Language Models
+(LLMs) to predict and generate responses.
+
+When a user enters a prompt, the AI analyzes the request, identifies patterns,
+and produces the most relevant response based on its training and instructions.
+</p>
+
+<div class="prompt-box">
+Example Prompt:
+"Create a professional email requesting a meeting with a client."
+</div>
+
+<div class="info-box">
+
+<h4>Popular AI Chatbots</h4>
+
+<ul>
+<li>ChatGPT</li>
+<li>Claude</li>
+<li>Gemini</li>
+<li>Grok</li>
+<li>Kimi</li>
+<li>Microsoft Copilot</li>
+</ul>
+
+
+<div class="info-box">
+
+<h4>What AI Chatbots Can Do</h4>
+
+<ul>
+<li>Answer questions</li>
+<li>Summarize information</li>
+<li>Create content</li>
+<li>Generate ideas</li>
+<li>Write emails and reports</li>
+<li>Assist with coding</li>
+<li>Translate languages</li>
+<li>Analyze documents</li>
+</ul>
+
+
+<div class="info-box">
+
+<h4>Limitations of AI Chatbots</h4>
+
+<ul>
+<li>May provide incorrect information</li>
+<li>Cannot guarantee accuracy</li>
+<li>May lack real-world context</li>
+<li>Require clear instructions</li>
+<li>Should not replace human judgment</li>
+</ul>
+
+
+<div class="info-box">
+
+<h4>Best Practices</h4>
+
+<ul>
+<li>Write clear prompts</li>
+<li>Provide context</li>
+<li>Specify the desired format</li>
+<li>Verify important information</li>
+<li>Use follow-up questions for better results</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="video-section">
+<h3>AI Chatbots Explained</h3>
+
+<p>
+
+Understand how AI chatbots work and where they are most useful.
+
+</p>
+
+<a href="https://drive.google.com/file/d/1wlYWs2zh8GOt5mY-85AY1F6kwXjNlK6C/preview"
+   target="_blank"
+   class="btn">
+    Watch Video
+</a>
+
+</div>
+
+<div class="activity-card">
+
+<h3>Activity 1.3</h3>
+
+<p>
+Write a practical task that you would ask an AI chatbot to help you complete.
+</p>
+
+<div class="tip-box">
+Include the goal, context, and expected result.
+</div>
+
+<textarea
+id="activity13"
+class="activity-input"
+placeholder="Example: Help me create a weekly study schedule for my college classes..."
+></textarea>
+
+<button class="btn" onclick="checkActivity13()">
+Submit Activity
+</button>
+
+<div id="activity13-result"></div>
+
+</div>
+
+<div class="quiz-card">
+
+<h3>Quiz 1.3</h3>
+
+<h4>Question 1</h4>
+
+<p>
+What is one major advantage of AI chatbots?
+</p>
+
+<label class="option">
+<input type="radio" name="q13" value="A">
+They can answer questions and assist with tasks
+</label>
+
+<label class="option">
+<input type="radio" name="q13" value="B">
+They never make mistakes
+</label>
+
+<label class="option">
+<input type="radio" name="q13" value="C">
+They replace all human workers
+</label>
+
+<label class="option">
+<input type="radio" name="q13" value="D">
+They only work offline
+</label>
+
+<button class="btn" onclick="checkQuiz13()">
+Submit Quiz
+</button>
+
+<div id="quiz13-result"></div>
+
+</div>
+</div>
+</div>
+
+<div class="premium-resource">
+
+    <h2>Module Challenge</h2>
+
+    <p>
+        Apply everything you learned in this module by identifying real-world
+        opportunities where Artificial Intelligence can improve productivity,
+        learning, or business operations.
+    </p>
+
+<div class="info-box">
+    <h4>Your Mission</h4>
+
+        <p>
+            Identify three tasks from your daily life, studies, or work that
+            could be improved using AI tools or AI chatbots.
+        </p>
+
+    </div>
+
+<div class="info-box">
+    <h4>Requirements</h4>
+
+<ul class="challenge-list">
+    <li><strong>Task 1:</strong> Describe a task that can be improved with AI.</li>
+
+    <li><strong>Task 2:</strong> Explain what AI tool you would use.</li>
+
+    <li><strong>Task 3:</strong> Describe how the AI tool would help.</li>
+
+    <li><strong>Reasoning:</strong> Explain the expected benefits.</li>
+
+    <li><strong>Reflection:</strong> Describe what you learned about AI.</li>
+</ul>
+
+    <div class="tip-box">
+        Pro Tip:
+        Focus on real situations from your daily life. The best answers show
+        how AI can save time, improve quality, or increase productivity.
+    </div>
+
+<div class="challenge-card">
+
+
+    <p>
+        Write your complete response based on the requirements above.
+    </p>
+
+    <textarea
+        id="challenge1"
+        class="challenge-input"
+        placeholder="Describe your tasks, AI tools, benefits, and reflections..."
+    ></textarea>
+
+    <button
+        class="btn"
+        onclick="submitChallenge1()">
+
+        Submit Challenge
+
+    </button>
+
+    <div id="challenge1-result"></div>
+
+</div>
+
+</div>
+</div>
+
+<div class="card checklist-card">
+
+    <h2>Completion Checklist</h2>
+
+    <p>
+        Complete all lessons, activities, quizzes, and the module challenge
+        to unlock Phase 2.
+    </p>
+
+    <label class="check-item">
+        <input type="checkbox" onchange="checkCompletion()">
+        Lesson 1.1 Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" onchange="checkCompletion()">
+        Lesson 1.2 Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" onchange="checkCompletion()">
+        Lesson 1.3 Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" onchange="checkCompletion()">
+        Activities Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" onchange="checkCompletion()">
+        Quizzes Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" onchange="checkCompletion()">
+        Module Challenge Completed
+    </label>
+
+    <div class="progress-text">
+        Progress: 0/6 Completed
+    </div>
+
+</div>
+
+<div class="phase-btn-container">
+
+    <a id="phase2Btn"
+       href="phase2.html"
+       class="btn">
+       Proceed to Phase 2
+    </a>
+
+</div>
+
+<footer>
+    <a href="../curriculum.html" class="btn">
+    Back to Curriculum
+    </a>
+
+</footer>
+
+<script>
+function checkActivity11(){
+
+    const answer =
+    document.getElementById("activity11").value.trim();
+
+    const result =
+    document.getElementById("activity11-result");
+
+    if(answer.length < 30){
+
+        result.innerHTML =
+        "❌ Add more examples of AI in your daily life.";
+
+        result.className = "result-box error";
+
+    }else{
+
+        result.innerHTML =
+        "✅ Great job! You identified practical AI applications.";
+
+        result.className = "result-box success";
+    }
+}
+
+
+// AUTO SAVE
+const activity11 =
+document.getElementById("activity11");
+
+if(activity11){
+
+    activity11.value =
+    localStorage.getItem("phase1_activity11") || "";
+
+    activity11.addEventListener(
+        "input",
+        function(){
+
+            localStorage.setItem(
+                "phase1_activity11",
+                this.value
+            );
+
+        }
+    );
+
+}
+
+function checkQuiz11(){
+
+    const answer =
+    document.querySelector(
+        'input[name="q11"]:checked'
+    );
+
+    const result =
+    document.getElementById(
+        "quiz11-result"
+    );
+
+    if(!answer){
+
+        result.innerHTML =
+        "❌ Please select an answer.";
+
+        result.className =
+        "result-box error";
+
+        return;
+
+    }
+
+    // Save Answer
+    localStorage.setItem(
+        "phase1_quiz11",
+        answer.value
+    );
+
+    if(answer.value === "B"){
+
+        result.innerHTML =
+        "✅ Correct! AI performs tasks that normally require human intelligence.";
+
+        result.className =
+        "result-box success";
+
+    }else{
+
+        result.innerHTML =
+        "❌ Incorrect. Try again.";
+
+        result.className =
+        "result-box error";
+
+    }
+
+}
+
+// Quiz 1.1 Autosave + Restore
+
+const quiz11Options =
+document.querySelectorAll(
+    'input[name="q11"]'
+);
+
+quiz11Options.forEach(option => {
+
+    option.addEventListener(
+        "change",
+        function(){
+
+            localStorage.setItem(
+                "phase1_quiz11",
+                this.value
+            );
+
+        }
+    );
+
+});
+
+const savedQuiz11 =
+localStorage.getItem(
+    "phase1_quiz11"
+);
+
+if(savedQuiz11){
+
+    const savedOption =
+    document.querySelector(
+        `input[name="q11"][value="${savedQuiz11}"]`
+    );
+
+    if(savedOption){
+
+        savedOption.checked = true;
+
+    }
+
+}
+
+function checkActivity12(){
+
+    const answer =
+    document.getElementById("activity12").value.trim();
+
+    const result =
+    document.getElementById("activity12-result");
+
+    if(answer.length < 40){
+
+        result.innerHTML =
+        "❌ Add more details about how the AI tool will help you.";
+
+        result.className = "result-box error";
+
+    }else{
+
+        result.innerHTML =
+        "✅ Excellent! You identified a practical AI use case.";
+
+        result.className = "result-box success";
+
+    }
+
+}
+
+
+// =========================
+// AUTO SAVE ACTIVITY 1.2
+// =========================
+
+const activity12 =
+document.getElementById("activity12");
+
+if(activity12){
+
+    // Load saved answer
+    activity12.value =
+    localStorage.getItem(
+        "phase1_activity12"
+    ) || "";
+
+    // Auto save while typing
+    activity12.addEventListener(
+        "input",
+        function(){
+
+            console.log("typing...");
+
+            localStorage.setItem(
+                "phase1_activity12",
+                this.value
+            );
+
+        }
+    );
+
+}
+
+function checkQuiz12(){
+
+    const answer =
+    document.querySelector(
+        'input[name="q12"]:checked'
+    );
+
+    const result =
+    document.getElementById(
+        "quiz12-result"
+    );
+
+    if(!answer){
+
+        result.innerHTML =
+        "❌ Please select an answer.";
+
+        result.className =
+        "result-box error";
+
+        return;
+
+    }
+
+    // Save Answer
+    localStorage.setItem(
+        "phase1_quiz12",
+        answer.value
+    );
+
+    if(answer.value === "B"){
+
+        result.innerHTML =
+        "✅ Correct! ChatGPT is widely used for writing, brainstorming, and productivity.";
+
+        result.className =
+        "result-box success";
+
+    }else{
+
+        result.innerHTML =
+        "❌ Incorrect. Try again.";
+
+        result.className =
+        "result-box error";
+
+    }
+
+}
+
+// Quiz 1.2 Autosave + Restore
+
+const quiz12Options =
+document.querySelectorAll(
+    'input[name="q12"]'
+);
+
+quiz12Options.forEach(option => {
+
+    option.addEventListener(
+        "change",
+        function(){
+
+            localStorage.setItem(
+                "phase1_quiz12",
+                this.value
+            );
+
+        }
+    );
+
+});
+
+const savedQuiz12 =
+localStorage.getItem(
+    "phase1_quiz12"
+);
+
+if(savedQuiz12){
+
+    const savedOption =
+    document.querySelector(
+        `input[name="q12"][value="${savedQuiz12}"]`
+    );
+
+    if(savedOption){
+
+        savedOption.checked = true;
+
+    }
+
+}
+
+function checkActivity13(){
+
+    const answer =
+    document.getElementById("activity13").value.trim();
+
+    const result =
+    document.getElementById("activity13-result");
+
+    if(answer.length < 40){
+
+        result.innerHTML =
+        "❌ Add more details about your chatbot task.";
+
+        result.className = "result-box error";
+
+    }else{
+
+        result.innerHTML =
+        "✅ Great! You created a practical AI chatbot use case.";
+
+        result.className = "result-box success";
+
+    }
+
+}
+
+
+// =========================
+// AUTO SAVE ACTIVITY 1.3
+// =========================
+
+const activity13 =
+document.getElementById("activity13");
+
+if(activity13){
+
+    // Load saved answer
+    activity13.value =
+    localStorage.getItem(
+        "phase1_activity13"
+    ) || "";
+
+    // Auto save while typing
+    activity13.addEventListener(
+        "input",
+        function(){
+
+            localStorage.setItem(
+                "phase1_activity13",
+                this.value
+            );
+
+        }
+    );
+
+}
+
+function checkQuiz13(){
+
+    const answer =
+    document.querySelector(
+        'input[name="q13"]:checked'
+    );
+
+    const result =
+    document.getElementById(
+        "quiz13-result"
+    );
+
+    if(!answer){
+
+        result.innerHTML =
+        "❌ Please select an answer.";
+
+        result.className =
+        "result-box error";
+
+        return;
+
+    }
+
+    // Save Answer
+    localStorage.setItem(
+        "phase1_quiz13",
+        answer.value
+    );
+
+    if(answer.value === "A"){
+
+        result.innerHTML =
+        "✅ Correct! AI chatbots can answer questions and assist with many tasks.";
+
+        result.className =
+        "result-box success";
+
+    }else{
+
+        result.innerHTML =
+        "❌ Incorrect. Try again.";
+
+        result.className =
+        "result-box error";
+
+    }
+
+}
+
+// Quiz 1.3 Autosave + Restore
+
+const quiz13Options =
+document.querySelectorAll(
+    'input[name="q13"]'
+);
+
+quiz13Options.forEach(option => {
+
+    option.addEventListener(
+        "change",
+        function(){
+
+            localStorage.setItem(
+                "phase1_quiz13",
+                this.value
+            );
+
+        }
+    );
+
+});
+
+const savedQuiz13 =
+localStorage.getItem(
+    "phase1_quiz13"
+);
+
+if(savedQuiz13){
+
+    const savedOption =
+    document.querySelector(
+        `input[name="q13"][value="${savedQuiz13}"]`
+    );
+
+    if(savedOption){
+
+        savedOption.checked = true;
+
+    }
+
+}
+
+function submitChallenge1(){
+
+    const answer =
+    document.getElementById("challenge1").value.trim();
+
+    const result =
+    document.getElementById("challenge1-result");
+
+    if(answer.length < 120){
+
+        result.innerHTML =
+        "❌ Please provide a more detailed response.";
+
+        result.className =
+        "error-message";
+
+        return;
+
+    }
+
+    result.innerHTML =
+    "✅ Module Challenge Completed!";
+
+    result.className =
+    "success-message";
+
+}
+
+
+// =========================
+// AUTO SAVE MODULE CHALLENGE
+// =========================
+
+const challenge1 =
+document.getElementById("challenge1");
+
+if(challenge1){
+
+    // Load saved answer
+    challenge1.value =
+    localStorage.getItem(
+        "phase1_challenge"
+    ) || "";
+
+    // Auto save while typing
+    challenge1.addEventListener(
+        "input",
+        function(){
+
+            localStorage.setItem(
+                "phase1_challenge",
+                this.value
+            );
+
+        }
+    );
+
+}
+function checkCompletion() {
+
+    const checks =
+    document.querySelectorAll('.check-item input');
+
+    let completed = 0;
+
+    checks.forEach(box => {
+        if(box.checked){
+            completed++;
+        }
+    });
+
+    document.querySelector(".progress-text").textContent =
+    `Progress: ${completed}/6 Completed`;
+
+    const phase2Btn =
+    document.getElementById("phase2Btn");
+
+    if(completed === 6){
+
+        phase2Btn.style.pointerEvents = "auto";
+        phase2Btn.style.opacity = "1";
+
+    } else {
+
+        phase2Btn.style.pointerEvents = "none";
+        phase2Btn.style.opacity = "0.5";
+    }
+}
+
+checkCompletion();
+
+</script>
+
+
+
+</body>
+</html>

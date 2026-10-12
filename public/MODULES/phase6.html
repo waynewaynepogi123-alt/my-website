@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Phase 6 - AI Automation</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+}
+
+.module-header{
+    text-align:center;
+    padding:60px 20px 50px;
+    margin-bottom:40px;
+}
+
+.phase-badge{
+    display:inline-block;
+    padding:10px 20px;
+    border:1px solid rgba(0,140,255,.3);
+    border-radius:50px;
+    background:rgba(0,140,255,.08);
+    color:#4da6ff;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:1px;
+    margin-bottom:20px;
+}
+
+.module-header h1{
+    font-size:48px;
+    font-weight:800;
+    color:white;
+    margin-bottom:15px;
+    line-height:1.2;
+}
+
+.module-header h1 span{
+    color:#4da6ff;
+}
+
+.module-subtitle{
+    max-width:800px;
+    margin:auto;
+    font-size:18px;
+    line-height:1.8;
+    color:#b8c7e0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    background: rgba(25,35,60,0.95);
+    border: 1px solid rgba(80,140,255,0.3);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px auto;
+max-width: 800px;
+}
+
+.card p {
+    font-size: 30px;
+    line-height: 1.8;
+    color: #d6e4ff;
+}
+
+.card ul {
+    margin-top: 10px;
+    padding-left: 25px;
+}
+
+.card li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    color: #d6e4ff;
+        font-size: 30px;
+
+}
+
+.card h2 {
+    margin-bottom: 15px;
+            font-size: 45px;
+
+}
+
+.lesson{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(77,124,255,.25);
+    border-radius:12px;
+
+    padding:25px;
+    margin-top:20px;
+}
+
+.lesson-info{
+    flex:1;
+}
+
+.lesson-info h3{
+    color:#69a7ff;
+    margin-bottom:10px;
+}
+
+.lesson-info p{
+    color:#d0d7ff;
+}
+
+.btn{
+    white-space:nowrap;
+}
+
+.lesson-action{
+    margin-left:20px;
+}
+
+/* Lesson Content */
+.lesson-box h3 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.lesson-box h4,
+.info-box h4 {
+    font-size: 25px;
+    font-weight: 600;
+       margin-top: 30px;
+    margin-bottom: 12px;
+    color: #4da3ff;
+}
+
+.lesson-box p,
+.info-box p {
+    font-size: 25px;
+       margin-bottom: 20px;
+    line-height: 1.8;
+    color: #d6e4ff;
+}
+
+.info-box ul li {
+    font-size: 25px;
+    line-height: 1.8;
+    margin-bottom: 8px;
+}
+
+.prompt-box {
+    background: rgba(77,163,255,0.08);
+    border-left: 4px solid #4da3ff;
+    padding: 18px;
+    margin: 20px 0;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.video-section {
+    text-align: center;
+    margin: 40px 0;
+    padding: 25px;
+    border: 1px solid rgba(77,163,255,.3);
+    border-radius: 12px;
+    background: rgba(77,163,255,.05);
+}
+
+.video-section h3 {
+    margin-bottom: 10px;
+    color: #4da3ff;
+}
+
+.video-section p {
+    margin-bottom: 20px;
+}
+
+h1,h2{
+color:#3b82f6;
+}
+
+.btn{
+display:inline-block;
+background:#3b82f6;
+padding:12px 20px;
+border-radius:8px;
+color:white;
+text-decoration:none;
+margin-top:15px;
+}
+
+.card,
+.lesson,
+.activity-card,
+.quiz-card,
+.premium-resource {
+    width: 100%;
+    max-width: 1200px;
+    margin: 25px auto;
+}
+
+.lesson-card{
+    background: #122347;
+    border: 1px solid #2f5fbf;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 40px 0;
+}
+
+.checklist label{
+display:block;
+margin-bottom:10px;
+}
+
+footer{
+text-align:center;
+padding:40px;
+}
+
+/* PREMIUM MODULE SECTIONS */
+
+.premium-resource,
+.activity-card,
+.quiz-card,
+.text-lesson{
+   padding:30px;
+    border-radius:20px;
+
+    background:rgba(15,23,42,.8);
+
+    border:1px solid rgba(96,165,250,.2);
+
+    box-shadow:
+    0 0 30px rgba(59,130,246,.08);
+}
+
+.premium-resource h2,
+.activity-card h3,
+.quiz-card h3,
+.text-lesson h3{
+    color:#60a5fa;
+    margin-bottom:15px;
+            font-size: 35px;
+
+    
+}
+
+.premium-resource .template-list li{
+    font-size: 30px;
+    line-height: 2;
+}
+
+.premium-resource p,
+.activity-card p,
+.quiz-card p,
+.text-lesson p{
+    color:#dbeafe;
+    line-height:1.8;
+     font-size: 30px;
+
+}
+
+.prompt-box{
+    background: rgba(96,165,250,0.12);
+    border-left:4px solid #60a5fa;
+    padding:15px;
+    border-radius:10px;
+    margin:15px 0;
+    color:white;
+      font-size: 25px;
+}
+
+.tip-box{
+    background: rgba(59,130,246,0.12);
+    border:1px solid rgba(96,165,250,0.25);
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+    color:#93c5fd;
+                font-size: 25px;
+
+}
+
+.template-list{
+    padding-left:20px;
+}
+
+.template-list li{
+    margin-bottom:10px;
+    color:#dbeafe;
+}
+
+.quiz-question{
+    margin-top:20px;
+    margin-bottom:10px;
+    color:white;
+    font-weight:600;
+}
+
+.quiz-card ul,
+.activity-card ul{
+    padding-left:25px;
+}
+
+.quiz-card li,
+.activity-card li{
+    margin-bottom:8px;
+    color:#dbeafe;
+}
+
+textarea{
+    width:100%;
+    min-height:120px;
+    background:#101d3d;
+    border:1px solid #2d5cff;
+    border-radius:10px;
+    color:white;
+    padding:15px;
+    margin:15px 0;
+}
+
+
+
+.quiz-card label{
+    display:block;
+    padding:12px 15px;
+    margin:10px 0;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(77,124,255,.2);
+    border-radius:10px;
+    transition:.3s;
+        font-size: 25px;
+    font-weight: 500;
+}
+
+.quiz-card label:hover{
+    border-color:#4d7cff;
+    background:rgba(77,124,255,.08);
+}
+
+.quiz-card input[type="radio"]{
+    margin-right:10px;
+    transform:scale(1.2);
+}
+
+.quiz-card h4{
+    color:#69a7ff;
+    margin-top:25px;
+    margin-bottom:10px;
+    font-size:25px;
+
+}
+
+.quiz-card p{
+    margin-bottom:15px;
+}
+
+#quiz21-result{
+    margin-top:20px;
+    font-weight:600;
+    color:#4cff88;
+}
+
+.quiz-result{
+    margin-top:20px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(76,255,136,.1);
+    border:1px solid rgba(76,255,136,.3);
+    color:#4cff88;
+    font-weight:600;
+}
+
+.quiz-result{
+    margin-top:20px;
+    padding:15px 20px;
+    border-radius:12px;
+    font-size:25px;
+    font-weight:700;
+    backdrop-filter: blur(10px);
+}
+
+.quiz-result.success{
+    background: rgba(0,255,120,.08);
+    border:1px solid rgba(0,255,120,.4);
+    box-shadow: 0 0 20px rgba(0,255,120,.15);
+    color:#7dffb2;
+}
+
+.quiz-result.fail{
+    background: rgba(255,60,60,.08);
+    border:1px solid rgba(255,60,60,.4);
+    box-shadow: 0 0 20px rgba(255,60,60,.15);
+    color:#ff8b8b;
+}
+
+.activity-input{
+    width:100%;
+    min-height:150px;
+    margin-top:15px;
+    padding:15px;
+    background:#162544;
+    border:1px solid #2d4f8f;
+    border-radius:10px;
+    color:white;
+    resize:vertical;
+    font-size:25px;
+}
+
+.activity-input:focus{
+    outline:none;
+    border-color:#4f8cff;
+}
+
+.prompt-tip{
+    margin-top:10px;
+    padding:12px;
+    background:rgba(79,140,255,.08);
+    border:1px solid rgba(79,140,255,.25);
+    border-radius:8px;
+    color:#9bbcff;
+    font-size:20px;
+}
+
+.quiz-option{
+    display:block;
+    padding:12px 15px;
+    margin:10px 0;
+    background:#162544;
+    border:1px solid #29477e;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.quiz-option:hover{
+    border-color:#4f8cff;
+    background:#1a2d52;
+}
+
+.quiz-option input{
+    margin-right:10px;
+}
+
+.comparison-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top:20px;
+}
+
+.case-card{
+    background:#111d3b;
+    border:1px solid #2b4f8a;
+    border-radius:12px;
+    padding:20px;
+}
+
+.bad-prompt{
+    border-left:4px solid #ff6b6b;
+}
+
+.good-prompt{
+    border-left:4px solid #4ade80;
+}
+
+.case-card ul{
+    margin-top:15px;
+    padding-left:20px;
+}
+
+.case-card li{
+    margin-bottom:8px;
+}
+
+.case-card ul li {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.challenge-box{
+    background:#101c3d;
+    border:1px solid #2f5cff;
+    border-radius:12px;
+    padding:20px;
+    margin:20px 0;
+}
+
+.activity-input{
+    width:100%;
+    background:#16284d;
+    border:1px solid #2f5cff;
+    color:white;
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+
+
+.result-success{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(0,255,120,.15);
+    border:1px solid #00ff88;
+    color:#00ff88;
+}
+
+.result-error{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(255,70,70,.15);
+    border:1px solid #ff5555;
+    color:#ff5555;
+}
+
+.completion-card{
+    margin-top:30px;
+}
+
+.check-item{
+    display:block;
+    background:#16284d;
+    border:1px solid rgba(255,255,255,.08);
+    padding:14px 18px;
+    border-radius:10px;
+    margin:10px 0;
+    cursor:pointer;
+     font-size: 25px;
+}
+
+.check-item input{
+    margin-right:10px;
+    cursor:pointer;
+}
+
+#progressText{
+    margin-top:15px;
+    font-weight:bold;
+    color:#58a6ff;
+}
+
+.check-item input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-right: 12px;
+}
+
+.phase-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#phase3Btn {
+    padding: 15px 35px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+.grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin:25px 0;
+}
+
+.success-message{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(0,255,100,.1);
+    border:1px solid #00ff88;
+    color:#00ff88;
+}
+
+.error-message{
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(255,0,0,.1);
+    border:1px solid #ff4d4d;
+    color:#ff4d4d;
+}
+
+.example-box{
+    background:#1a2747;
+    padding:15px;
+    border-radius:10px;
+    margin:15px 0;
+}
+
+.comparison-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+.comparison-table th,
+.comparison-table td{
+    padding:12px;
+    border:1px solid #2f4f85;
+    font-size:25px;
+    text-align:center;
+}
+
+.comparison-table th{
+    color:#4f8cff;
+}
+
+.info-box,
+.example-box,
+.comparison-card{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+ul li{
+    margin-bottom:10px;
+    line-height:1.6;
+}
+
+.challenge-input{
+    width: 100%;
+    min-height: 180px;
+    padding: 15px;
+    background: #102a5c;
+    border: 2px solid #4da6ff;
+    border-radius: 8px;
+    color: white;
+    font-size: 24px;
+    line-height: 1.6;
+    resize: vertical;
+}
+
+</style>
+<script type="module">
+import { auth, onAuthStateChanged }
+from "./firebase-config.js";
+
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        window.location.href = "login.html";
+    }
+});
+</script>
+</head>
+
+<body>
+
+<header>
+
+    <header class="module-header">
+
+    <span class="phase-badge">
+         AI COMMAND ACADEMY
+    </span>
+
+  <h1>
+    Phase 6:
+    <span> AI Automation</span>
+</h1>
+
+ <p class="module-subtitle">
+Automate repetitive tasks and build powerful workflows without coding.
+</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Module Overview</h2>
+
+    <p>
+        Learn how to connect apps, automate workflows, and build powerful
+        AI-driven systems without coding.
+    </p>
+
+    <p>
+        Discover how businesses use automation platforms to eliminate repetitive
+        tasks, improve efficiency, and scale operations. You'll learn how to
+        combine AI tools with automation software to create smart workflows that
+        save time and increase productivity.
+    </p>
+</div>
+
+<div class="card">
+
+<h2>Learning Objectives</h2>
+
+    <ul>
+        <li>Understand workflow automation</li>
+        <li>Learn triggers and actions</li>
+        <li>Compare Zapier and Make</li>
+        <li>Create no-code automations</li>
+        <li>Connect multiple applications</li>
+        <li>Automate business processes</li>
+        <li>Build scalable workflows</li>
+        <li>Increase productivity with AI</li>
+    </ul>
+
+</div>
+
+
+<div class="card text-lesson">
+
+    <h2>Lesson 6.1</h2>
+
+    <div class="text-lesson">
+
+    <h3>Zapier vs Make AI Automation</h3>
+
+    <p>
+        Learn the strengths, weaknesses, and use cases of the two most popular
+        automation platforms: Zapier and Make.
+    </p>
+
+    <div class="info-box">
+ <h3>What is Workflow Automation?</h3>
+        <p>
+            Workflow automation uses software to perform repetitive tasks
+            automatically. Instead of manually moving information between apps,
+            automation tools handle the process for you.
+        </p>
+
+        <div class="prompt-box">
+    Example:
+            Customer submits a form →
+            AI generates a response →
+            Email is sent automatically →
+            Data is saved to Google Sheets.
+        </p>
+    </div>
+
+    <div class="info-box">
+
+    <h3>What is Zapier?</h3>
+
+    <p>
+        Zapier is a no-code automation platform that connects thousands of apps
+        and services together.
+    </p>
+
+    <ul>
+        <li>Easy for beginners</li>
+        <li>Simple setup process</li>
+        <li>Supports 6,000+ applications</li>
+        <li>Ideal for small business automation</li>
+    </ul>
+
+  
+
+  <div class="prompt-box">
+    Example:
+        New Facebook Lead → Send Email → Save Contact to Google Sheets
+    </p>
+</div>
+
+
+    <div class="info-box">
+
+    <h3>What is Make?</h3>
+
+    <p>
+        Make is an advanced visual automation platform that allows users to build
+        powerful multi-step workflows.
+    </p>
+
+    <ul>
+        <li>Visual drag-and-drop builder</li>
+        <li>Advanced logic and branching</li>
+        <li>More customization options</li>
+        <li>Ideal for complex workflows</li>
+    </ul>
+
+  <div class="prompt-box">
+    Example:
+        Example Workflow:
+        Lead Form →
+        AI Analysis →
+        CRM Update →
+        Email Sequence →
+        Slack Notification
+    </div>
+    </div>
+
+
+<div class="comparison-card">
+
+    <h3>Zapier vs Make</h3>
+
+    <table class="comparison-table">
+
+        <tr>
+            <th>Feature</th>
+            <th>Zapier</th>
+            <th>Make</th>
+        </tr>
+
+        <tr>
+            <td>Ease of Use</td>
+            <td>⭐⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐</td>
+        </tr>
+
+        <tr>
+            <td>Visual Builder</td>
+            <td>Basic</td>
+            <td>Advanced</td>
+        </tr>
+
+        <tr>
+            <td>Complex Workflows</td>
+            <td>Good</td>
+            <td>Excellent</td>
+        </tr>
+
+        <tr>
+            <td>Beginner Friendly</td>
+            <td>Excellent</td>
+            <td>Good</td>
+        </tr>
+
+    </table>
+
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="video-section">
+
+<h3>Zapier vs Make AI Automation</h3>
+
+<p>
+Learn the strengths, weaknesses, and use cases of both platforms.
+</p>
+
+<a href="https://drive.google.com/file/d/1mPm-U4RNQgpygrtRfkYjCTdl99pX8OfJ/view"
+target="_blank"
+class="btn">
+
+Watch Video
+
+</a>
+
+</div>
+
+
+<div class="activity-card">
+
+    <h3>Activity 6.1</h3>
+
+    <p>
+        Create a simple automation workflow for a business task that is normally done manually.
+    </p>
+
+    <div class="prompt-box">
+        Example:
+        Customer Inquiry →
+        AI Response →
+        Save Lead →
+        Send Email Notification
+    </div>
+
+    <h4>Your Task</h4>
+
+    <p>
+        Design an automation workflow using at least:
+    </p>
+
+    <ul class="activity-list">
+        <li>1 Trigger</li>
+        <li>3 Actions</li>
+        <li>1 AI Tool</li>
+        <li>1 Business Outcome</li>
+    </ul>
+
+    <textarea
+        id="activity61"
+        class="activity-input"
+        placeholder="Describe your automation workflow here..."></textarea>
+
+    <button
+        class="btn"
+        onclick="checkActivity61()">
+        Submit Activity
+    </button>
+
+    <div id="activity61-result"></div>
+
+</div>
+
+
+<div class="quiz-card">
+
+    <h3>Quiz 6.1</h3>
+
+    <h4>Question 1</h4>
+
+    <p>
+        What is the main purpose of workflow automation?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q61" value="A">
+        Increase manual work
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q61" value="B">
+        Automate repetitive tasks
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q61" value="C">
+        Create computer hardware
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q61" value="D">
+        Install operating systems
+    </label>
+
+    <h4>Question 2</h4>
+
+<p>
+Which automation platform is known for its advanced visual workflow builder?
+</p>
+
+<label class="option">
+    <input type="radio" name="q62" value="A">
+    Microsoft Word
+</label>
+
+<label class="option">
+    <input type="radio" name="q62" value="B">
+    Google Docs
+</label>
+
+<label class="option">
+    <input type="radio" name="q62" value="C">
+    Make
+</label>
+
+<label class="option">
+    <input type="radio" name="q62" value="D">
+    Canva
+</label>
+
+    <button class="btn" onclick="checkQuiz61()">
+        Submit Quiz
+    </button>
+
+    <div id="quiz61-result"></div>
+
+</div> <!-- quiz-card -->
+</div> <!-- lesson 6.1 -->
+</div> <!-- lesson 6.1 -->
+
+<div class="card text-lesson">
+
+    <h2>Lesson 6.2</h2>
+
+    <div class="text-lesson">
+
+        <h3>How to Automate Everything in Make</h3>
+
+        <p>
+            Make is a powerful no-code automation platform that allows users
+            to connect apps, automate workflows, and create advanced business
+            processes using a visual drag-and-drop interface.
+        </p>
+
+
+          <h3>What is Make?</h3>
+
+    <p>
+        Make enables users to automate repetitive tasks by connecting
+        multiple applications into a single workflow called a scenario.
+        These scenarios can perform actions automatically based on triggers.
+    </p>
+
+     <div class="prompt-box">
+    Example: Trigger → AI Processing → Google Sheets → Email Notification
+    </div>
+
+    <div class="info-box">
+
+        <h4>Core Components of Make</h4>
+
+        <ul>
+            <li>Triggers</li>
+            <li>Actions</li>
+            <li>Modules</li>
+            <li>Connections</li>
+            <li>Scenarios</li>
+        </ul>
+
+    <div class="info-box">
+
+        <h4>Benefits of Using Make</h4>
+
+        <ul>
+            <li>Visual workflow builder</li>
+            <li>Advanced automation logic</li>
+            <li>Connect multiple applications</li>
+            <li>Reduce manual work</li>
+            <li>Improve business efficiency</li>
+        </ul>
+
+    </div>
+    </div>
+    </div>
+
+    <div class="video-section">
+<h3>How to Automate Everything in Make</h3>
+
+<p>
+Build advanced automations and connect multiple applications.
+</p>
+
+<a href="https://drive.google.com/file/d/1u4QTEKHPffqfRGMAtuA4oAUp028B_j8i/view"
+target="_blank"
+class="btn">
+
+Watch Video
+
+</a>
+
+</div>
+
+<div class="activity-card">
+
+    <h3>Activity 6.2</h3>
+
+    <p>
+        Design a workflow using Make automation.
+    </p>
+
+    <div class="prompt-box">
+        Example:
+        New Customer →
+        AI Analysis →
+        Save Data →
+        Send Confirmation Email
+    </div>
+
+    <textarea
+        id="activity62"
+        class="activity-input"
+        placeholder="Describe your Make automation workflow..."
+    ></textarea>
+
+    <button
+        class="btn"
+        onclick="checkActivity62()">
+        Submit Activity
+    </button>
+
+    <div id="activity62-result"></div>
+
+</div>
+
+<div class="quiz-card">
+
+    <h3>Quiz 6.2</h3>
+
+    <h4>Question 1</h4>
+
+    <p>
+        What is a workflow called in Make?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q621" value="A">
+        Template
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q621" value="B">
+        Scenario
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q621" value="C">
+        Prompt
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q621" value="D">
+        Channel
+    </label>
+
+    <h4>Question 2</h4>
+
+    <p>
+        Which component starts an automation workflow?
+    </p>
+
+    <label class="option">
+        <input type="radio" name="q622" value="A">
+        Trigger
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q622" value="B">
+        Action
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q622" value="C">
+        Module
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q622" value="D">
+        Filter
+    </label>
+
+    <button
+        class="btn"
+        onclick="checkQuiz62()">
+        Submit Quiz
+    </button>
+
+    <div id="quiz62-result"></div>
+
+</div>
+
+
+</div>
+
+<div class="card text-lesson">
+
+    <h2>Lesson 6.3</h2>
+
+    <div class="text-lesson">
+
+        <h3>Zapier No-Code Workflow Automation</h3>
+
+        <p>
+            Zapier is a no-code automation platform that connects thousands of
+            apps and automates repetitive tasks without programming.
+        </p>
+
+     <h3>What is Zapier?</h3>
+
+    <p>
+        Zapier uses automated workflows called "Zaps". A Zap consists of a
+        trigger and one or more actions.
+    </p>
+
+    <div class="prompt-box">
+    Example:  New Form Submission → Zapier → Send Email → Save to Google Sheets
+    </div>
+
+     <h3>Key Components of Zapier</h3>
+
+    <ul>
+        <li>Trigger</li>
+        <li>Action</li>
+        <li>Multi-Step Zaps</li>
+        <li>Filters</li>
+        <li>Paths</li>
+    </ul>
+
+  <div class="prompt-box">
+    Example:  When a customer fills out a contact form,
+        Zapier automatically sends a welcome email and saves the lead to a CRM.
+    </div>
+    </div>
+
+
+<div class="video-section">
+<h3>Zapier No-Code Workflow Automation</h3>
+
+<p>
+Create business workflows without writing code.
+</p>
+
+<a href="https://drive.google.com/file/d/1_XZWYYjQuFfKPHbz81AVSIPykbxwpUlJ/view"
+target="_blank"
+class="btn">
+
+Watch Video
+
+</a>
+
+</div>
+
+<div class="activity-card">
+
+    <h3>Activity 6.3</h3>
+
+    <p>
+        Create a simple Zapier workflow for a business.
+    </p>
+
+    <div class="prompt-box">
+        Example: New Customer Inquiry → Send Email → Save to Google Sheets
+    </div>
+
+    <textarea
+        id="activity63"
+        class="activity-input"
+        placeholder="Describe your Zapier workflow..."></textarea>
+
+    <button class="btn" onclick="checkActivity63()">
+        Submit Activity
+    </button>
+
+    <div id="activity63-result"></div>
+
+</div>
+
+<div class="quiz-card">
+    <h3>Quiz 6.3</h3>
+
+    <h4>Question 1</h4>
+    <p>What is the main purpose of Zapier?</p>
+
+    <label class="option">
+        <input type="radio" name="q631" value="A">
+        Edit videos
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q631" value="B">
+        Connect apps and automate tasks
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q631" value="C">
+        Create websites
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q631" value="D">
+        Install software
+    </label>
+
+    <h4>Question 2</h4>
+    <p>What is a Zap in Zapier?</p>
+
+    <label class="option">
+        <input type="radio" name="q632" value="A">
+        A website template
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q632" value="B">
+        A workflow that connects apps and automates actions
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q632" value="C">
+        A presentation slide
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q632" value="D">
+        A database
+    </label>
+
+    <h4>Question 3</h4>
+    <p>Which of the following can be used as a Trigger in Zapier?</p>
+
+    <label class="option">
+        <input type="radio" name="q633" value="A">
+        New Google Form submission
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q633" value="B">
+        Computer shutdown
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q633" value="C">
+        Monitor resolution change
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q633" value="D">
+        Keyboard backlight
+    </label>
+
+    <h4>Question 4</h4>
+    <p>What happens after a Trigger in a Zap?</p>
+
+    <label class="option">
+        <input type="radio" name="q634" value="A">
+        An Action is performed
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q634" value="B">
+        The Zap is deleted
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q634" value="C">
+        The app is uninstalled
+    </label>
+
+    <label class="option">
+        <input type="radio" name="q634" value="D">
+        The workflow stops
+    </label>
+
+    <button class="btn" onclick="checkQuiz63()">
+        Submit Quiz
+    </button>
+
+    <div id="quiz63-result"></div>
+</div>
+
+</div>
+
+<div class="premium-resource">
+
+   <h2>Module Challenge</h2>
+
+    <p>
+        Create an AI-powered automation workflow for a real business.
+    </p>
+
+    <div class="tip-box">
+        Include: Trigger, AI Tool, Actions, Apps Used, and Expected Result.
+    </div>
+
+    <textarea
+        id="challenge6"
+        class="challenge-input"
+        placeholder="Describe your automation workflow here..."
+    ></textarea>
+
+    <button class="btn" onclick="submitChallenge6()">
+        Submit Challenge
+    </button>
+
+    <div id="challenge6-result"></div>
+
+</div>
+</div>
+
+
+<div class="card">
+
+    <h2>Completion Checklist</h2>
+
+    <p>
+        Complete all lessons, activities, quizzes, and the module challenge
+        to finish Phase 6.
+    </p>
+
+    <label class="check-item">
+        <input type="checkbox" id="lesson61">
+        Lesson 6.1 Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" id="lesson62">
+        Lesson 6.2 Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" id="lesson63">
+        Lesson 6.3 Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" id="activities6">
+        Activities Completed
+    </label>
+
+    <label class="check-item">
+        <input type="checkbox" id="challenge6check">
+        Module Challenge Completed
+    </label>
+
+    <div class="progress-text" id="progress6">
+        Progress: 0 / 5 Completed
+    </div>
+
+</div>
+
+<div class="phase-btn-container">
+
+    <a id="phase7Btn"
+       href="phase7.html"
+       class="btn"
+       style="pointer-events:none;opacity:0.5;">
+       Proceed to Phase 7
+    </a>
+
+</div>
+
+</div>
+
+<footer>
+
+<a href="../curriculum.html" class="btn">
+Back to Curriculum
+</a>
+
+</footer>
+
+<script>
+
+
+function checkActivity61() {
+
+    const answer =
+        document.getElementById("activity61").value.trim();
+
+    const result =
+        document.getElementById("activity61-result");
+
+    if (answer.length < 50) {
+
+        result.innerHTML =
+            "❌ Add more details to your workflow.";
+
+        result.className = "incorrect";
+
+    } else {
+
+        result.innerHTML =
+            "✅ Excellent! Your workflow demonstrates a good understanding of automation.";
+
+        result.className = "correct";
+
+        document.querySelectorAll(".check-item input")[3].checked = true;
+
+        checkCompletion();
+    }
+}
+
+/* =========================
+   AUTO SAVE ACTIVITY 6.1
+   ========================= */
+
+const activity61 =
+    document.getElementById("activity61");
+
+if (activity61) {
+
+    // Load saved answer
+    activity61.value =
+        localStorage.getItem("phase6_activity61") || "";
+
+    // Auto save while typing
+    activity61.addEventListener(
+        "input",
+        function () {
+
+            localStorage.setItem(
+                "phase6_activity61",
+                this.value
+            );
+
+        }
+    );
+}
+
+function checkQuiz61(){
+
+    const q61 =
+        document.querySelector('input[name="q61"]:checked');
+
+    const q62 =
+        document.querySelector('input[name="q62"]:checked');
+
+    const result =
+        document.getElementById("quiz61-result");
+
+    if(!q61 || !q62){
+
+        result.innerHTML =
+            "❌ Please answer all questions.";
+
+        result.className = "incorrect";
+
+        return;
+    }
+
+    let score = 0;
+
+    // Question 1
+    if(q61.value === "B"){
+        score++;
+    }
+
+    // Question 2
+    if(q62.value === "C"){
+        score++;
+    }
+
+    if(score === 2){
+
+        result.innerHTML =
+            "✅ Excellent! You scored 2/2.";
+
+        result.className = "correct";
+
+    }else if(score === 1){
+
+        result.innerHTML =
+            "👍 Good job! You scored 1/2.";
+
+        result.className = "correct";
+
+    }else{
+
+        result.innerHTML =
+            "❌ You scored 0/2. Review the lesson and try again.";
+
+        result.className = "incorrect";
+    }
+}
+
+/* ==========================
+   AUTO SAVE QUIZ 6.1
+   ========================== */
+
+// Question 1
+document.querySelectorAll('input[name="q61"]').forEach(option => {
+
+    const savedQ61 =
+        localStorage.getItem("phase6_q61");
+
+    if(savedQ61 === option.value){
+        option.checked = true;
+    }
+
+    option.addEventListener("change", function(){
+
+        localStorage.setItem(
+            "phase6_q61",
+            this.value
+        );
+
+    });
+
+});
+
+// Question 2
+document.querySelectorAll('input[name="q62"]').forEach(option => {
+
+    const savedQ62 =
+        localStorage.getItem("phase6_q62");
+
+    if(savedQ62 === option.value){
+        option.checked = true;
+    }
+
+    option.addEventListener("change", function(){
+
+        localStorage.setItem(
+            "phase6_q62",
+            this.value
+        );
+
+    });
+
+});
+function checkActivity62(){
+
+    const answer =
+        document.getElementById("activity62").value.trim();
+
+    const result =
+        document.getElementById("activity62-result");
+
+    if(answer.length < 50){
+
+        result.innerHTML =
+            "❌ Add more details to your automation workflow.";
+
+        result.className = "incorrect";
+
+    }else{
+
+        result.innerHTML =
+            "✅ Excellent! Your workflow demonstrates a strong understanding of Make automation.";
+
+        result.className = "correct";
+    }
+}
+
+/* ==========================
+   AUTO SAVE ACTIVITY 6.2
+   ========================== */
+
+const activity62 =
+    document.getElementById("activity62");
+
+if(activity62){
+
+    // Load saved answer
+    activity62.value =
+        localStorage.getItem("phase6_activity62") || "";
+
+    // Auto save while typing
+    activity62.addEventListener(
+        "input",
+        function(){
+
+            localStorage.setItem(
+                "phase6_activity62",
+                this.value
+            );
+
+        }
+    );
+
+}
+
+function checkQuiz62(){
+
+    const q621 =
+        document.querySelector('input[name="q621"]:checked');
+
+    const q622 =
+        document.querySelector('input[name="q622"]:checked');
+
+    const result =
+        document.getElementById("quiz62-result");
+
+    if(!q621 || !q622){
+
+        result.innerHTML =
+            "❌ Please answer all questions.";
+
+        result.className = "incorrect";
+        return;
+    }
+
+    let score = 0;
+
+    if(q621.value === "B") score++;
+    if(q622.value === "A") score++;
+
+    if(score === 2){
+
+        result.innerHTML =
+            "✅ Excellent! You scored 2/2.";
+
+        result.className = "correct";
+
+    }else if(score === 1){
+
+        result.innerHTML =
+            "⚠️ Good job! You scored 1/2.";
+
+        result.className = "correct";
+
+    }else{
+
+        result.innerHTML =
+            "❌ You scored 0/2. Review the lesson and try again.";
+
+        result.className = "incorrect";
+    }
+}
+
+
+/* =========================
+   AUTO SAVE QUIZ 6.2
+   ========================= */
+
+// Question 1
+document.querySelectorAll('input[name="q621"]').forEach(option => {
+
+    const savedAnswer =
+        localStorage.getItem("phase6_q621");
+
+    if(savedAnswer === option.value){
+        option.checked = true;
+    }
+
+    option.addEventListener("change", function(){
+
+        localStorage.setItem(
+            "phase6_q621",
+            this.value
+        );
+
+    });
+
+});
+
+// Question 2
+document.querySelectorAll('input[name="q622"]').forEach(option => {
+
+    const savedAnswer =
+        localStorage.getItem("phase6_q622");
+
+    if(savedAnswer === option.value){
+        option.checked = true;
+    }
+
+    option.addEventListener("change", function(){
+
+        localStorage.setItem(
+            "phase6_q622",
+            this.value
+        );
+
+    });
+
+});
+
+function checkActivity63() {
+
+    const answer =
+        document.getElementById("activity63").value.trim();
+
+    const result =
+        document.getElementById("activity63-result");
+
+    if (answer.length < 40) {
+
+        result.innerHTML =
+            "❌ Add more details to your workflow.";
+
+        result.className = "incorrect";
+
+    } else {
+
+        result.innerHTML =
+            "✅ Great job! Your workflow is detailed enough.";
+
+        result.className = "correct";
+    }
+}
+
+
+/* ==========================
+   AUTO SAVE ACTIVITY 6.3
+   ========================== */
+
+const activity63 =
+    document.getElementById("activity63");
+
+if (activity63) {
+
+    // Load saved answer
+    activity63.value =
+        localStorage.getItem("phase6_activity63") || "";
+
+    // Auto save while typing
+    activity63.addEventListener(
+        "input",
+        function () {
+
+            localStorage.setItem(
+                "phase6_activity63",
+                this.value
+            );
+
+        }
+    );
+
+}
+
+function checkQuiz63() {
+
+    let score = 0;
+
+    const q1 = document.querySelector('input[name="q631"]:checked');
+    const q2 = document.querySelector('input[name="q632"]:checked');
+    const q3 = document.querySelector('input[name="q633"]:checked');
+    const q4 = document.querySelector('input[name="q634"]:checked');
+
+    const result =
+        document.getElementById("quiz63-result");
+
+    if (!q1 || !q2 || !q3 || !q4) {
+
+        result.innerHTML =
+            "❌ Please answer all questions.";
+
+        result.className = "incorrect";
+
+        return;
+    }
+
+    if (q1.value === "B") score++;
+    if (q2.value === "B") score++;
+    if (q3.value === "A") score++;
+    if (q4.value === "A") score++;
+
+    if (score >= 3) {
+
+        result.innerHTML =
+            "✅ Passed! Score: " + score + "/4";
+
+        result.className = "correct";
+
+    } else {
+
+        result.innerHTML =
+            "❌ Score: " + score + "/4. Review Lesson 6.3 and try again.";
+
+        result.className = "incorrect";
+    }
+}
+
+
+/* =========================
+   AUTO SAVE QUIZ 6.3
+   ========================= */
+
+// Q631
+document.querySelectorAll('input[name="q631"]').forEach(option => {
+
+    const saved =
+        localStorage.getItem("phase6_q631");
+
+    if (saved === option.value) {
+        option.checked = true;
+    }
+
+    option.addEventListener("change", function () {
+
+        localStorage.setItem(
+            "phase6_q631",
+            this.value
+        );
+
+    });
+
+});
+
+
+// Q632
+document.querySelectorAll('input[name="q632"]').forEach(option => {
+
+    const saved =
+        localStorage.getItem("phase6_q632");
+
+    if (saved === option.value) {
+        option.checked = true;
+    }
+
+    option.addEventListener("change", function () {
+
+        localStorage.setItem(
+            "phase6_q632",
+            this.value
+        );
+
+    });
+
+});
+
+
+// Q633
+document.querySelectorAll('input[name="q633"]').forEach(option => {
+
+    const saved =
+        localStorage.getItem("phase6_q633");
+
+    if (saved === option.value) {
+        option.checked = true;
+    }
+
+    option.addEventListener("change", function () {
+
+        localStorage.setItem(
+            "phase6_q633",
+            this.value
+        );
+
+    });
+
+});
+
+
+// Q634
+document.querySelectorAll('input[name="q634"]').forEach(option => {
+
+    const saved =
+        localStorage.getItem("phase6_q634");
+
+    if (saved === option.value) {
+        option.checked = true;
+    }
+
+    option.addEventListener("change", function () {
+
+        localStorage.setItem(
+            "phase6_q634",
+            this.value
+        );
+
+    });
+
+});
+
+function submitChallenge6() {
+
+    const answer =
+        document.getElementById("challenge6").value.trim();
+
+    const result =
+        document.getElementById("challenge6-result");
+
+    if (answer.length < 80) {
+
+        result.innerHTML =
+            "❌ Add more details about your automation workflow.";
+
+        result.className = "incorrect";
+
+    } else {
+
+        result.innerHTML =
+            "✅ Excellent! Your automation workflow includes key automation concepts.";
+
+        result.className = "correct";
+
+        // Optional: mark challenge as completed
+        const challenge =
+            document.getElementById("challenge");
+
+        if (challenge) {
+            challenge.checked = true;
+        }
+
+        if (typeof checkCompletion === "function") {
+            checkCompletion();
+        }
+    }
+}
+
+
+/* ==========================
+   AUTO SAVE CHALLENGE 6
+   ========================== */
+
+const challenge6 =
+    document.getElementById("challenge6");
+
+if (challenge6) {
+
+    // Load saved answer
+    challenge6.value =
+        localStorage.getItem("phase6_challenge6") || "";
+
+    // Save while typing
+    challenge6.addEventListener(
+        "input",
+        function () {
+
+            localStorage.setItem(
+                "phase6_challenge6",
+                this.value
+            );
+
+        }
+    );
+
+}
+
+const phase6Checks =
+document.querySelectorAll('.check-item input');
+
+phase6Checks.forEach(box => {
+    box.addEventListener('change', updatePhase6Progress);
+});
+
+function updatePhase6Progress(){
+
+    let completed = 0;
+
+    phase6Checks.forEach(box => {
+        if(box.checked){
+            completed++;
+        }
+    });
+
+    document.getElementById("progress6").innerHTML =
+        `Progress: ${completed} / 5 Completed`;
+
+    const phase7Btn =
+        document.getElementById("phase7Btn");
+
+    if(completed === 5){
+
+        phase7Btn.style.pointerEvents = "auto";
+        phase7Btn.style.opacity = "1";
+
+    }else{
+
+        phase7Btn.style.pointerEvents = "none";
+        phase7Btn.style.opacity = "0.5";
+
+    }
+}
+
+</script>
+
+
+
+
+</body>
+</html>

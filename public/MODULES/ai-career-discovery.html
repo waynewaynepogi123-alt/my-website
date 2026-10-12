@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Career Discovery Assessment</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#041225,#071a38,#0d2245);
+min-height:100vh;
+color:white;
+padding:40px 20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+}
+
+h1{
+font-size:48px;
+font-weight:800;
+text-align:center;
+color:#4f8cff;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+color:#cbd5e1;
+margin-bottom:40px;
+font-size:30px;
+}
+
+.progress-container{
+width:100%;
+height:12px;
+background:#10264f;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:30px;
+border:1px solid rgba(255,255,255,.1);
+}
+
+.progress-bar{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#3b82f6,#60a5fa);
+transition:.4s;
+}
+
+.question-card{
+background:rgba(20,40,80,.75);
+backdrop-filter:blur(20px);
+border:1px solid rgba(96,165,250,.3);
+border-radius:20px;
+padding:35px;
+box-shadow:0 20px 40px rgba(0,0,0,.35);
+animation:fadeIn .4s ease;
+}
+
+.question-number{
+color:#60a5fa;
+font-size:30px;
+font-weight:700;
+letter-spacing:2px;
+text-transform:uppercase;
+margin-bottom:15px;
+}
+
+.question-card h3{
+font-size:28px;
+margin-bottom:30px;
+line-height:1.4;
+}
+
+.options{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.option-btn{
+background:#18356a;
+border:1px solid #3b82f6;
+color:white;
+padding:18px;
+border-radius:12px;
+font-size:25px;
+cursor:pointer;
+transition:.3s;
+text-align:left;
+}
+
+.option-btn:hover{
+transform:translateY(-2px);
+background:#2450a1;
+border-color:#60a5fa;
+}
+
+.option-btn:active{
+transform:scale(.98);
+}
+
+.result-card{
+background:rgba(20,40,80,.75);
+border:1px solid rgba(96,165,250,.3);
+border-radius:20px;
+padding:40px;
+box-shadow:0 20px 40px rgba(0,0,0,.35);
+animation:fadeIn .5s ease;
+}
+
+.result-card h2{
+font-size:38px;
+color:#60a5fa;
+margin-bottom:20px;
+}
+
+.score-box{
+background:#18356a;
+padding:15px;
+border-radius:12px;
+margin:10px 0;
+}
+
+.score-title{
+font-weight:600;
+margin-bottom:8px;
+}
+
+.score-bar{
+height:12px;
+background:#0c1e3f;
+border-radius:20px;
+overflow:hidden;
+}
+
+.score-fill{
+height:100%;
+background:linear-gradient(90deg,#3b82f6,#60a5fa);
+}
+
+.section-title{
+font-size:30px;
+margin-top:30px;
+margin-bottom:10px;
+color:#60a5fa;
+}
+
+.graduate-card{
+    margin-top:30px;
+    padding:30px;
+    border-radius:18px;
+    background:linear-gradient(
+        135deg,
+        rgba(59,130,246,.15),
+        rgba(96,165,250,.08)
+    );
+    border:1px solid #4f8cff;
+    box-shadow:0 0 25px rgba(59,130,246,.20);
+}
+
+.graduate-card h3{
+    font-size:30px;
+    margin-bottom:15px;
+    color:#4f8cff;
+}
+
+.graduate-card p{
+    font-size:25px;
+    line-height:1.8;
+}
+.btn{
+display:block;
+width:100%;
+padding:18px;
+background:linear-gradient(90deg,#3b82f6,#60a5fa);
+color:white;
+text-decoration:none;
+border:none;
+border-radius:12px;
+font-size:25px;
+font-weight:700;
+cursor:pointer;
+margin-top:25px;
+transition:.3s;
+}
+
+.btn:hover{
+transform:translateY(-2px);
+}
+
+.retake-btn{
+background:#18356a;
+border:1px solid #3b82f6;
+}
+
+#loadingScreen{
+text-align:center;
+padding:80px 20px;
+}
+
+.loader{
+width:70px;
+height:70px;
+border:5px solid rgba(255,255,255,.1);
+border-top:5px solid #60a5fa;
+border-radius:50%;
+margin:auto;
+animation:spin 1s linear infinite;
+margin-bottom:25px;
+}
+
+@keyframes spin{
+100%{
+transform:rotate(360deg);
+}
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@media(max-width:768px){
+
+h1{
+font-size:34px;
+}
+
+.question-card h3{
+font-size:25px;
+}
+
+.option-btn{
+font-size:25px;
+padding:15px;
+}
+
+}
+
+#careerResult h2{
+    font-size:30px;
+    font-weight:700;
+    color:#4f8cff;
+    margin-bottom:20px;
+}
+
+#careerResult p{
+    font-size:25px;
+    line-height:1.8;
+}
+
+#careerResult{
+    background:rgba(18,38,77,0.95);
+    border:1px solid #3b82f6;
+    border-radius:20px;
+    padding:40px;
+    margin-top:30px;
+    box-shadow:
+    0 0 40px rgba(59,130,246,.25);
+}
+
+.career-badge{
+    display:inline-block;
+    background:linear-gradient(
+        135deg,
+        #3b82f6,
+        #60a5fa
+    );
+    color:white;
+    font-size:30px;
+    font-weight:700;
+    padding:15px 30px;
+    border-radius:15px;
+    margin-bottom:25px;
+}
+
+.match-score{
+    font-size:42px;
+    font-weight:800;
+    color:#4f8cff;
+    margin-bottom:20px;
+}
+
+.hero-title{
+    font-size: 58px;
+    font-weight: 900;
+    text-align:center;
+    color:#60a5fa;
+    letter-spacing:-2px;
+    margin-bottom:15px;
+}
+
+.subtitle{
+    font-size:20px;
+    color:#9fb3d9;
+    text-align:center;
+    max-width:700px;
+    margin:0 auto 40px;
+    line-height:1.6;
+}
+
+.container{
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.plan-container{
+    max-width:900px;
+    margin:35px auto;
+    padding:40px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(27,46,92,.95),
+        rgba(18,34,72,.95)
+    );
+
+    border:1px solid rgba(79,140,255,.6);
+    border-radius:24px;
+
+    box-shadow:
+        0 0 25px rgba(79,140,255,.15),
+        0 0 60px rgba(79,140,255,.08);
+
+    color:white;
+}
+
+.plan-card h2{
+    font-size:32px;
+    color:#4f8cff;
+    text-align:center;
+    margin-bottom:30px;
+    font-weight:800;
+}
+
+.plan-card h3{
+    font-size:22px;
+    color:#7db1ff;
+    margin-top:30px;
+    margin-bottom:15px;
+    border-left:4px solid #4f8cff;
+    padding-left:15px;
+}
+
+.plan-card ul{
+    list-style:none;
+    padding-left:0;
+}
+
+.plan-card li{
+    font-size:25px;
+    line-height:1.9;
+    margin-bottom:10px;
+
+    background:rgba(79,140,255,.08);
+    border:1px solid rgba(79,140,255,.15);
+
+    padding:14px 18px;
+    border-radius:12px;
+
+    transition:.3s;
+}
+
+.plan-card li:hover{
+    transform:translateX(8px);
+    background:rgba(79,140,255,.15);
+}
+
+.plan-card li::before{
+    content:"";
+    margin-right:12px;
+}
+
+</style>
+
+<script type="module">
+import { auth, onAuthStateChanged }
+from "./firebase-config.js";
+
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        window.location.href = "login.html";
+    }
+});
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 class="hero-title">
+ AI Career Discovery Assessment
+</h1>
+
+<p class="subtitle">
+Discover your ideal AI specialization based on your interests, skills, and career goals.
+</p>
+
+<div class="progress-container">
+<div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div id="questionContainer"></div>
+
+<div id="loadingScreen" style="display:none;">
+<h2>Analyzing Your AI Profile...</h2>
+<div class="loader"></div>
+<p>Matching strengths, interests, and career opportunities...</p>
+</div>
+
+<div id="careerResult" style="display:none;"></div>
+
+<!-- 30-Day Plan Container -->
+<div id="planContainer"
+     class="plan-container"
+     style="display:none;">
+</div>
+
+
+
+<script>
+
+const questions = [
+
+{
+question:"Which activity sounds most exciting?",
+options:[
+{text:"Building workflows and systems",value:"automation"},
+{text:"Writing content and blogs",value:"content"},
+{text:"Creating graphics and visuals",value:"design"},
+{text:"Producing videos and media",value:"video"}
+]
+},
+
+{
+question:"Which AI tool interests you most?",
+options:[
+{text:"Make / Zapier",value:"automation"},
+{text:"ChatGPT",value:"content"},
+{text:"Midjourney",value:"design"},
+{text:"Runway",value:"video"}
+]
+},
+
+{
+question:"What is your main goal?",
+options:[
+{text:"Build business systems",value:"automation"},
+{text:"Grow an audience",value:"content"},
+{text:"Create visual brands",value:"design"},
+{text:"Produce media content",value:"video"}
+]
+},
+
+{
+question:"What type of client would you most like to help?",
+options:[
+{text:"Businesses needing automation",value:"automation"},
+{text:"Content creators and influencers",value:"content"},
+{text:"Brands needing visuals",value:"design"},
+{text:"Companies creating video content",value:"video"}
+]
+},
+
+{
+question:"Which AI tool would you enjoy using every day?",
+options:[
+{text:"Make / Zapier",value:"automation"},
+{text:"ChatGPT",value:"content"},
+{text:"Midjourney",value:"design"},
+{text:"Runway",value:"video"}
+]
+},
+
+{
+question:"Which skill do you enjoy the most?",
+options:[
+{text:"Building systems",value:"automation"},
+{text:"Writing and communication",value:"content"},
+{text:"Creative design",value:"design"},
+{text:"Video storytelling",value:"video"}
+]
+},
+
+{
+question:"What sounds most rewarding?",
+options:[
+{text:"Saving businesses time",value:"automation"},
+{text:"Growing audiences",value:"content"},
+{text:"Creating beautiful visuals",value:"design"},
+{text:"Producing cinematic videos",value:"video"}
+]
+},
+
+{
+question:"What is your strongest natural ability?",
+options:[
+{text:"Logic and systems",value:"automation"},
+{text:"Communication and explanation",value:"content"},
+{text:"Creativity and visuals",value:"design"},
+{text:"Storytelling and media",value:"video"}
+]
+},
+
+{
+question:"How would you prefer to earn income with AI?",
+options:[
+{text:"Automation consulting",value:"automation"},
+{text:"Content creation services",value:"content"},
+{text:"Design services",value:"design"},
+{text:"Video production services",value:"video"}
+]
+},
+
+{
+question:"What is your dream AI business?",
+options:[
+{text:"AI Automation Agency",value:"automation"},
+{text:"AI Content Brand",value:"content"},
+{text:"AI Creative Studio",value:"design"},
+{text:"AI Media Company",value:"video"}
+]
+}
+
+];
+
+let currentQuestion = 0;
+
+let scores = {
+automation:0,
+content:0,
+design:0,
+video:0
+};
+
+let plan = "";
+
+// Load Saved Progress
+const savedQuestion =
+localStorage.getItem("currentQuestion");
+
+const savedScores =
+localStorage.getItem("scores");
+
+if(savedQuestion){
+    currentQuestion = parseInt(savedQuestion);
+
+    if(currentQuestion >= questions.length){
+        currentQuestion = 0;
+    }
+}
+
+function saveProgress(){
+
+    localStorage.setItem(
+        "currentQuestion",
+        currentQuestion
+    );
+
+    localStorage.setItem(
+        "scores",
+        JSON.stringify(scores)
+    );
+
+}
+
+
+function showQuestion(){
+
+const q = questions[currentQuestion];
+
+document.getElementById("questionContainer").innerHTML = `
+<div class="question-card">
+
+    <h2 class="question-number">
+    Question ${currentQuestion + 1} of ${questions.length}
+    </h2>
+
+    <h3>${q.question}</h3>
+
+    <div class="options">
+        ${q.options.map(option => `
+            <button
+                class="option-btn"
+                onclick="selectAnswer('${option.value}')"
+            >
+                ${option.text}
+            </button>
+        `).join("")}
+    </div>
+
+</div>
+`;
+
+updateProgress();
+
+}   // <-- IMPORTANT
+
+function selectAnswer(value){
+
+scores[value]++;
+
+document.querySelector(".question-card")
+.style.opacity = "0";
+
+setTimeout(() => {
+
+currentQuestion++;
+
+// SAVE PROGRESS
+saveProgress();
+
+if(currentQuestion < questions.length){
+
+    showQuestion();
+
+}else{
+
+    showResults();
+
+}
+
+},300);
+
+}
+
+function updateProgress(){
+
+const percent =
+((currentQuestion) /
+questions.length) * 100;
+
+document.getElementById("progressBar")
+.style.width = percent + "%";
+
+}
+
+function showResults(){
+
+document.getElementById("questionContainer").style.display="none";
+
+document.getElementById("loadingScreen").style.display="block";
+
+setTimeout(() => {
+
+document.getElementById("loadingScreen").style.display="none";
+
+generateCareerResult();
+
+},2500);
+
+}
+
+function togglePlan(){
+
+const container =
+document.getElementById("planContainer");
+
+if(container.style.display === "block"){
+
+container.style.display = "none";
+return;
+
+}
+
+container.style.display = "block";
+
+container.innerHTML = plan;
+
+}
+
+
+function restartAssessment(){
+
+    localStorage.removeItem("currentQuestion");
+    localStorage.removeItem("scores");
+    localStorage.removeItem("careerTitle");
+    localStorage.removeItem("careerPlan");
+
+    // ADD THESE
+    localStorage.removeItem("badgeAssessment");
+    localStorage.removeItem("badgeCareer");
+
+    currentQuestion = 0;
+
+    scores = {
+        automation:0,
+        content:0,
+        design:0,
+        video:0
+    };
+
+    document.getElementById("careerResult")
+    .style.display = "none";
+
+    document.getElementById("questionContainer")
+    .style.display = "block";
+
+    const planContainer =
+    document.getElementById("planContainer");
+
+    planContainer.innerHTML = "";
+    planContainer.style.display = "none";
+
+    showQuestion();
+
+}
+
+function generateCareerResult(){
+
+const winner =
+Object.keys(scores).reduce((a,b)=>
+scores[a] > scores[b] ? a : b
+);
+
+let title="";
+let tools="";
+let projects="";
+
+if(winner==="automation"){
+
+title=" AI Automation Specialist";
+tools="Make, Zapier, Airtable, ChatGPT";
+projects="Lead Generation System, CRM Automation, Customer Support AI";
+
+plan=`
+<div class="plan-card">
+
+<h2>30-Day AI Automation Specialist Plan</h2>
+
+<h3>Week 1</h3>
+<ul>
+<li>Learn ChatGPT Fundamentals</li>
+<li>Create OpenAI Account</li>
+<li>Study Make & Zapier Basics</li>
+<li>Build First Automation</li>
+</ul>
+
+<h3>Week 2</h3>
+<ul>
+<li>Create Lead Capture System</li>
+<li>Connect Forms to Airtable</li>
+<li>Build Email Automation</li>
+</ul>
+
+<h3>Week 3</h3>
+<ul>
+<li>Create CRM Workflow</li>
+<li>Build Customer Support Bot</li>
+<li>Document Process</li>
+</ul>
+
+<h3>Week 4</h3>
+<ul>
+<li>Create Portfolio</li>
+<li>Publish Case Study</li>
+<li>Get First Client</li>
+</ul>
+
+</div>
+`;
+}
+
+else if(winner==="content"){
+
+title=" AI Content Creator";
+tools="ChatGPT, Claude, Jasper";
+projects="Blog Writing, Social Media Content, Email Campaigns";
+
+plan=`
+<div class="plan-card">
+
+<h2>30-Day AI Content Creator Plan</h2>
+
+<h3>Week 1</h3>
+<ul>
+<li>Master ChatGPT Prompting</li>
+<li>Create Content Brand</li>
+<li>Define Target Audience</li>
+</ul>
+
+<h3>Week 2</h3>
+<ul>
+<li>Create 20 Content Ideas</li>
+<li>Write Blog Posts</li>
+<li>Create Social Media Content</li>
+</ul>
+
+<h3>Week 3</h3>
+<ul>
+<li>Launch Content Channels</li>
+<li>Publish Daily</li>
+<li>Study Analytics</li>
+</ul>
+
+<h3>Week 4</h3>
+<ul>
+<li>Create Portfolio</li>
+<li>Build Lead Magnet</li>
+<li>Get First Client</li>
+</ul>
+
+</div>
+`;
+}
+
+else if(winner==="design"){
+
+title=" AI Creative Designer";
+tools="Midjourney, Leonardo AI, Canva AI";
+projects="Brand Design, Marketing Graphics, Product Visuals";
+
+plan=`
+<div class="plan-card">
+
+<h2>30-Day AI Designer Plan</h2>
+
+<h3>Week 1</h3>
+<ul>
+<li>Learn Midjourney</li>
+<li>Learn Canva AI</li>
+<li>Create 20 Designs</li>
+</ul>
+
+<h3>Week 2</h3>
+<ul>
+<li>Create Logo Projects</li>
+<li>Design Social Media Kits</li>
+<li>Create Brand Assets</li>
+</ul>
+
+<h3>Week 3</h3>
+<ul>
+<li>Build Portfolio</li>
+<li>Create Mockup Projects</li>
+<li>Post Designs Online</li>
+</ul>
+
+<h3>Week 4</h3>
+<ul>
+<li>Create Fiverr Profile</li>
+<li>Offer Design Services</li>
+<li>Get First Client</li>
+</ul>
+
+</div>
+`;
+}
+
+else{
+
+title="AI Media Producer";
+tools="Runway, Pika, HeyGen, ElevenLabs";
+projects="Video Ads, AI Avatars, Content Production";
+
+plan=`
+<div class="plan-card">
+
+<h2>30-Day AI Media Producer Plan</h2>
+
+<h3>Week 1</h3>
+<ul>
+<li>Learn Runway</li>
+<li>Learn Pika</li>
+<li>Create AI Clips</li>
+</ul>
+
+<h3>Week 2</h3>
+<ul>
+<li>Create Short Form Videos</li>
+<li>Study Storytelling</li>
+<li>Create Daily Content</li>
+</ul>
+
+<h3>Week 3</h3>
+<ul>
+<li>Build Video Portfolio</li>
+<li>Create Commercial Samples</li>
+<li>Learn Editing Workflow</li>
+</ul>
+
+<h3>Week 4</h3>
+<ul>
+<li>Launch Content Agency</li>
+<li>Offer Video Services</li>
+<li>Get First Client</li>
+</ul>
+
+</div>
+`;
+
+}
+
+localStorage.setItem("careerTitle", title);
+localStorage.setItem("careerPlan", plan);
+
+localStorage.setItem("badgeAssessment", "true");
+localStorage.setItem("badgeCareer", title);
+
+document.getElementById("careerResult").style.display = "block";
+
+document.getElementById("careerResult").innerHTML = `
+
+<h2>Your Top AI Career Match</h2>
+
+<div class="career-badge">
+${title}
+</div>
+
+<p>
+Based on your interests and responses,
+this AI specialization is your strongest fit.
+</p>
+
+<h3 class="section-title">Recommended Tools</h3>
+<p class="tools-text">${tools}</p>
+
+<h3 class="section-title">Recommended Projects</h3>
+<p class="projects-text">${projects}</p>
+
+<div class="graduate-card">
+
+<h3> AI Command Academy Graduate</h3>
+
+<p>
+You have successfully completed all 8 phases of AI Command Academy.
+</p>
+
+<p>
+You now possess the foundational skills required to build AI businesses,
+automation systems, content brands, creative studios, and media production workflows.
+</p>
+
+</div>
+
+<br>
+
+<button class="btn" onclick="togglePlan()">
+ View My 30-Day Success Plan
+
+</button>
+
+<br><br>
+
+<button class="btn" onclick="restartAssessment()">
+ Retake Assessment
+</button>
+
+<a href="../curriculum.html" class="btn">
+Return to Curriculum
+</a>
+
+`;
+
+}
+
+function togglePlan(){
+
+    const container =
+    document.getElementById("planContainer");
+
+    if(container.style.display === "block"){
+        container.style.display = "none";
+        return;
+    }
+
+    container.innerHTML = plan;
+    container.style.display = "block";
+
+    container.scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+showQuestion();
+
+
+
+</script>
+
+</body>
+</html>
